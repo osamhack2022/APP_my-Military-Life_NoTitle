@@ -52,18 +52,33 @@
 }
 
 header .left{
-  background-color: red;
   font-family: 'HBIOS-SYS';
+  width: 55px;
+}
+#left_up{
+  
 }
 #left_down{
   color: white;
   background-color: purple;
 }
 header .center{
-  background-color: green;
+  
+}
+#str{
+  background-color: red;
+}
+#strs{
+  background-color: blue;
 }
 header .right{
-  background-color: blue;
+  
+}
+#set{
+  background-color: skyblue;
+}
+#rep{
+  background-color: green;
 }
 
 footer .left{
@@ -81,6 +96,7 @@ engine.state.set("month", undefined);
 engine.state.set("day", undefined);
 engine.state.set("hour", undefined);
 engine.state.set("minute", undefined);
+engine.state.set("weather", "맑음");
 
 window.onload = function(){
   var left_up = document.getElementById("left_up");
@@ -89,7 +105,7 @@ window.onload = function(){
 
 function date_change(){
   if(left_up.innerText == "D-"+engine.state.get("go-home")){
-    left_up.innerText = month+"월"+day+"일  "+hour+":"+minute;
+    left_up.innerText = month+"월"+day+"일  "+hour+":"+minute+" | "+weather;
   }
   else{
   	left_up.innerText = "D-"+engine.state.get("go-home");
@@ -296,9 +312,9 @@ hour : 06
 minute: 30
 go-home: milidate - homedate
 
-config.header.left:&quot;&lt;div id=&#39;left_up&#39;&gt;&quot;+month+&quot;월&quot;+day+&quot;일&amp;nbsp&quot;+hour+&quot;:&quot;+minute+&quot;&lt;/div&gt;&lt;div id=&#39;left_down&#39;&gt;상태&lt;/div&gt;&quot;
-config.header.center:&quot;header-center&quot;
-config.header.right:&quot;header-right&quot;
+config.header.left:&quot;&lt;div id=&#39;left_up&#39;&gt;&quot;+month+&quot;월&quot;+day+&quot;일&amp;nbsp&quot;+hour+&quot;:&quot;+minute+&quot; | &quot;+weather+&quot;&lt;/div&gt;&lt;div id=&#39;left_down&#39;&gt;상태&lt;/div&gt;&quot;
+config.header.center:&quot;&lt;div id=&#39;str&#39;&gt;체력/피로&lt;/div&gt;&lt;div id=&#39;strs&#39;&gt;스트레스/기분&lt;/div&gt;&quot;
+config.header.right:&quot;&lt;div id=&#39;set&#39;&gt;설정&lt;/div&gt;&lt;div id=&#39;rep&#39;&gt;평판&lt;/div&gt;&quot;
 
 config.footer.right:&quot;일지&quot;
 config.footer.center:&quot;관계&quot;
