@@ -107,6 +107,8 @@ engine.state.set("day", undefined);
 engine.state.set("hour", undefined);
 engine.state.set("minute", undefined);
 engine.state.set("weather", "맑음");
+engine.state.set("prev_passage", "");
+engine.state.set("now_passage", "");
 
 window.onload = function(){
   var left_up = document.getElementById("left_up");
@@ -115,12 +117,14 @@ window.onload = function(){
   var journal = document.getElementById("journal");
   var relation = document.getElementById("relation");
   var bag = document.getElementById("bag");
+  //var test = document.getElementById("test");
   left_up.onclick = date_change;
   set.onclick = set_ui;
   rep.onclick = rep_ui;
   journal.onclick = journal_ui;
   relation.onclick = relation_ui;
   bag.onclick = bag_ui;
+  //test.onclick = passage_check;
   if(minute>=60){
     minute=0;
     hour+=1;
@@ -133,6 +137,21 @@ function date_change(){
   }
   else{
   	left_up.innerText = "D-"+engine.state.get("go-home");
+  }
+}
+
+function passage_check(){
+  if(prev_passage == ""){
+    now_passage = passage.name;
+    prev_passage = passage.name;
+  }
+  else if(prev_passage != ""){
+    console.log("test");
+    prev_passage = now_passage;
+    now_passage = passage.name;
+  }
+  else{
+    alert("Error");
   }
 }
 
@@ -176,12 +195,16 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 
 모든 부대에 똑같이 적용되는 이야기가 아니며, 자신이 겪은일과 다를 수 있다는 것을 알아주시길 바랍니다.
 
+//장소 이동 시간변경 구현예정
+ - 현재 장소가 어디인가에 따라 시간이 가도록 구현 = 이동을 하는 장소가 어디인가에 따라 걸리는 시간이 달라서 취소
+ - 이전 passage이름을 prev-passage에 저장한뒤 현재 passage이름을 now-passage에 넣어 비교하여 구현 = 현재 구현 및 테스트중
+
 &lt;div style=&quot;color: red;&quot;&gt;아직 미완성인 프로젝트입니다.&lt;/div&gt;
 
 
 [[새로운 시작]]
 
-[[이어하기-&gt;생활관]]
+[[이어하기-&gt;생활관]] - 미구현
 
 [[room key test]]</tw-passagedata><tw-passagedata pid="2" name="새로운 시작" tags="" position="100,200" size="100,100">당신은 3사단 정비대대에 복무하게된 병사입니다.
 전역까지 약 15개월 남은 당신은 무사히 군복무를 마치고 전역하는것이 목표입니다.
@@ -232,13 +255,13 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 
 [[행정반]]
 
-[[연병장]]
-
 [[정비실]]
 
 [[사지방]]
 
-[[체단실]]</tw-passagedata><tw-passagedata pid="8" name="행정반" tags="" position="100,500" size="100,100">당신이 소속되어있는 중대의 행정반입니다.
+[[체단실]]
+
+[[연병장]]</tw-passagedata><tw-passagedata pid="8" name="행정반" tags="" position="100,500" size="100,100">당신이 소속되어있는 중대의 행정반입니다.
 계원들과 중대 간부님들이 컴퓨터를 두드리는 소리가 나고있습니다.
 
 [[행정보급관실]]
@@ -399,10 +422,11 @@ key: false
 --
 Rooms:
 
+&lt;button id=&quot;test&quot;&gt;var-test&lt;/button&gt;
+
 [[Front Room]]
 
-[[Back Room]]
-</tw-passagedata><tw-passagedata pid="51" name="Front Room" tags="" position="200,900" size="100,100">[if key == true]
+[[Back Room]]</tw-passagedata><tw-passagedata pid="51" name="Front Room" tags="" position="200,900" size="100,100">[if key == true]
   [[Unlock the door-&gt;Exit]]
 [else]
   *Locked Door*
