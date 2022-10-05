@@ -139,8 +139,8 @@ function date_change(){
   	left_up.innerText = "D-"+engine.state.get("go-home");
   }
 }
-
-function passage_check(){
+//구현문제로 폐지
+/*function passage_check(){
   if(prev_passage == ""){
     now_passage = passage.name;
     prev_passage = passage.name;
@@ -153,7 +153,7 @@ function passage_check(){
   else{
     alert("Error");
   }
-}
+}*/
 
 function set_ui(){
   alert("설정");
@@ -197,7 +197,8 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 
 //장소 이동 시간변경 구현예정
  - 현재 장소가 어디인가에 따라 시간이 가도록 구현 = 이동을 하는 장소가 어디인가에 따라 걸리는 시간이 달라서 취소
- - 이전 passage이름을 prev-passage에 저장한뒤 현재 passage이름을 now-passage에 넣어 비교하여 구현 = 현재 구현 및 테스트중
+ - 이전 passage이름을 prev-passage에 저장한뒤 현재 passage이름을 now-passage에 넣어 비교하여 구현 = 현재 구현 및 테스트중 &lt;- 내부함수 문제로 보류
+ - 이동시간이 같은 passage는 같은 passage로 이동하고 다른 passage로 이동하는 경우는 또 다른 시간과 연결도
 
 &lt;div style=&quot;color: red;&quot;&gt;아직 미완성인 프로젝트입니다.&lt;/div&gt;
 
