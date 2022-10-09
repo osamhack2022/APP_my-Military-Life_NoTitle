@@ -385,6 +385,22 @@ if(minute &gt;= 60){
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 방금기상해서 대부분의 전우들이 졸려보이는 얼굴입니다.&lt;br&gt;
 모두가 아침점호를 준비하고 있습니다.
+
+[if weather==&quot;비&quot; || weather==&quot;눈&quot;]
+&lt;br&gt;&lt;br&gt;
+방송이 흘러나옵니다.&lt;br&gt;
+금일은 비가오는 관계로 실내 점호입니다.&lt;br&gt;
+각 생활관에서 환호성이 터져나온다.&lt;br&gt;
+[continue]
+[if weather==&quot;맑음&quot;]
+&lt;br&gt;
+방송이 흘러나옵니다.&lt;br&gt;
+금일은 통합점호입니다.&lt;br&gt;
+06시40분까지 행정반 앞으로 집합해주시길 바랍니다.&lt;br&gt;
+통합점호라는 말을 듣자 마자 주변에서 탄식소리가 흘러나온다.&lt;br&gt;
+[[점호 하러가기-&gt;연병장]]
+[continue]
+
 [continue]
 [if hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
