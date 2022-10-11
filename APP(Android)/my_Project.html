@@ -107,13 +107,15 @@ engine.state.set("day", undefined);
 engine.state.set("hour", undefined);
 engine.state.set("minute", undefined);
 engine.state.set("weather", "맑음");
-engine.state.set("prev_passage", "");
-engine.state.set("now_passage", "");
+//############################################################
 engine.state.set("jumho", false);
 engine.state.set("eat", false);
 engine.state.set("tongsin_so", false);
 engine.state.set("AM_work", false);
 engine.state.set("PM_work", false);
+//############################################################
+engine.state.set("stress", 0); // -100~100 0 시작
+engine.state.set("reputation", 0); //-100~100 0 시작
 
 window.onload = function(){
   var left_up = document.getElementById("left_up");
@@ -192,8 +194,8 @@ minute: 30
 go_home: milidate - homedate
 
 config.header.left: &quot;&lt;div id=&#39;left_up&#39; onclick=&#39;left_up.innerHTML = {go_home}&#39;&gt;{month}월{day}일&amp;nbsp{hour}:{minute} | {weather}&lt;/div&gt;&lt;div id=&#39;left_down&#39;&gt;상태&lt;/div&gt;&quot;
-config.header.center:&quot;&lt;div id=&#39;str&#39;&gt;체력/피로&lt;/div&gt;&lt;div id=&#39;strs&#39;&gt;스트레스/기분&lt;/div&gt;&quot;
-config.header.right:&quot;&lt;div id=&#39;set&#39;&gt;설정&lt;/div&gt;&lt;div id=&#39;rep&#39;&gt;평판&lt;/div&gt;&quot;
+config.header.center:&quot;&lt;div id=&#39;str&#39;&gt;체력/피로&lt;/div&gt;&lt;div style=&#39;color: white;&#39; id=&#39;strs&#39;&gt;스트레스: {stress}&lt;/div&gt;&quot;
+config.header.right:&quot;&lt;div id=&#39;set&#39;&gt;설정&lt;/div&gt;&lt;div id=&#39;rep&#39;&gt;평판: {reputation}&lt;/div&gt;&quot;
 
 config.footer.left:&quot;&lt;div id=&#39;journal&#39;&gt;일지&lt;/div&gt;&quot;
 config.footer.center:&quot;&lt;div id=&#39;relation&#39;&gt;관계&lt;/div&gt;&quot;
@@ -224,8 +226,8 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 &lt;b&gt;[[생활관]]&lt;/b&gt;
 
 &lt;b&gt;[[시작전]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="3" name="운영과/지통실" tags="" position="1000,100" size="100,100">운영과/지통실의 앞입니다.
-초기수불대와 들어가는 문 두개가 보여지고 있습니다.
-하나는 운영과로 통하는문, 다른 하나는 지휘통제실로 연결되는 문입니다.
+총기수불대와 들어가는 문 두개가 보여지고 있습니다.
+하나는 운영과로 통하는 문, 다른 하나는 지휘통제실로 연결되는 문입니다.
 
 [[안으로 들어간다-&gt;운영과/지통실 내부]]
 
@@ -251,7 +253,7 @@ if(minute &gt;= 60){
     hour+=1;
 }
 [continued]</tw-passagedata><tw-passagedata pid="4" name="연병장" tags="" position="300,200" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 모두가 아침점호를 위해 중대별로 집합하고 있습니다.
 [if hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645]
 당신과 전우들은 점호집합을 늦지않게 완료하였습니다.&lt;br&gt;
@@ -263,7 +265,7 @@ if(hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645){
 }
 [continue]
 [if hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 아침을 먹기 위해 식당으로 가는 전우들이 보입니다.
 [if (hour*100+minute &gt;= 720 &amp;&amp; hour*100+minute &lt; 725)]
 당신과 전우들은 식사집합을 늦지않게 완료하였습니다.&lt;br&gt;
@@ -271,7 +273,7 @@ if(hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645){
 &lt;b&gt;[[밥먹으러 가기(식당)-&gt;식당]]&lt;/b&gt;&lt;br&gt;
 [continue]
 [if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1130]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 작업을 위해 도구들을 들고 이동하고 있는 전우들이 보입니다.&lt;br&gt;
 그 외에는 일과를 보러갔는지 거의 보이지 않습니다.
 [if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 835]
@@ -287,8 +289,8 @@ if(hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 835){
 }
 [continue]
 [if hour*100+minute &gt;= 1130 &amp;&amp; hour*100+minute &lt; 1300]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
-점심을 먹기 위해 전우뿐만 아니라 장교들도 식당으로 가는 것이 보입니다.&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
+점심을 먹기 위해 용사들과 간부들이 식당으로 가는 것이 보입니다.&lt;br&gt;
 한켠에서는 점심식사 후 담배를 피는 전우들도 보입니다.
 [if (hour*100+minute &gt;= 1130 &amp;&amp; hour*100+minute &lt; 1135)]
 당신과 전우들은 식사집합을 늦지않게 완료하였습니다.&lt;br&gt;
@@ -307,12 +309,12 @@ if(hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1305){
 }
 [continue]
 [if hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1530]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 작업을 위해 도구들을 들고 이동하고 있는 전우들이 보입니다.&lt;br&gt;
 그 외에는 일과를 보러갔는지 거의 보이지 않습니다.
 [continue]
 [if hour*100+minute &gt;= 1530 &amp;&amp; hour*100+minute &lt; 1620]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 처부일을 마무리하고 생활관으로 복귀하는 전우들이 보입니다.
 [continue]
 [if hour*100+minute &gt;= 1600 &amp;&amp; hour*100+minute &lt; 1605]
@@ -321,11 +323,11 @@ if(hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1305){
 &lt;b&gt;[[체단 준비하러 사열대가기-&gt;사열대]]&lt;/b&gt;
 [continue]
 [if hour*100+minute &gt;= 1620 &amp;&amp; hour*100+minute &lt; 1730]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 대부분이 밖에서 체력단련을 진행하고 있습니다.
 [continue]
 [if hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 2040]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 달리기를 하거나 캐치볼을 하는 전우들이 보입니다.&lt;br&gt;
 한켠에서는 저녁식사 후 담배를 피는 전우들도 보입니다.&lt;br&gt;
 [if hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 1735]
@@ -340,17 +342,17 @@ if(hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 1735){
 }
 [continue]
 [if hour*100+minute &gt;= 2040 &amp;&amp; hour*100+minute &lt; 2200]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 부대 곳곳에 외등이 켜져 있는 것을 볼 수 있습니다.&lt;br&gt;
 바깥에 나와 있는 전우들은 거의 없습니다.&lt;br&gt;
 개인임무분담제로 흡연장을 청소하거나 쓰레기를 분리수거하는 전우만 보일 뿐입니다.
 [continue]
 [if hour*100+minute &gt;= 2200 &amp;&amp; hour*100+minute &lt; 2359]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 부대 곳곳에 외등이 켜져 있는 것을 볼 수 있습니다.&lt;br&gt;
 [continue]
 [if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 부대 곳곳에 외등이 켜져 있는 것을 볼 수 있습니다.&lt;br&gt;
 [continue]
 
@@ -378,10 +380,40 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="5" name="식당" tags="" position="400,300" size="100,100">당신이 끼니를 책임지는 취사병들이 있는 식당입니다.
-많은수의 파리가 걸려있는 끈끈이와 빽뺵하게 앉아 식사를 하고있는 병사들의 모습이 보입니다.
+[continued]</tw-passagedata><tw-passagedata pid="5" name="식당" tags="" position="400,300" size="100,100">[if hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830]
+당신의 끼니를 책임지는 취사병들이 있는 식당입니다.
+많은수의 파리가 걸려있는 끈끈이와 빽빽하게 앉아 식사를 하고있는 병사들의 모습이 보입니다.
+[continue]
+[if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1100]
+당신의 끼니를 책임지는 취사병들이 있는 식당입니다.
+많은수의 파리가 걸려있는 끈끈이가 있습니다.
+아직 식사시간이 아니라서 그런지 식당에 특별한 용무가 있는사람들을 제외하면 아무도 보이지 않습니다.
+[continue]
+[if hour*100+minute &gt;= 1100 &amp;&amp; hour*100+minute &lt; 1300]
+당신의 끼니를 책임지는 취사병들이 있는 식당입니다.
+많은수의 파리가 걸려있는 끈끈이와 빽빽하게 앉아 식사를 하고있는 병사들의 모습이 보입니다.
+[continue]
+[if hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1700]
+당신의 끼니를 책임지는 취사병들이 있는 식당입니다.
+많은수의 파리가 걸려있는 끈끈이가 있습니다.
+아직 식사시간이 아니라서 그런지 식당에 특별한 용무가 있는사람들을 제외하면 아무도 보이지 않습니다.
+[continue]
+[if hour*100+minute &gt;= 1700 &amp;&amp; hour*100+minute &lt; 1830]
+당신의 끼니를 책임지는 취사병들이 있는 식당입니다.
+많은수의 파리가 걸려있는 끈끈이와 빽빽하게 앉아 식사를 하고있는 병사들의 모습이 보입니다.
+[continue]
+[if hour*100+minute &gt;= 1830 &amp;&amp; hour*100+minute &lt; 2359]
+당신의 끼니를 책임지는 취사병들이 있는 식당입니다.
+많은수의 파리가 걸려있는 끈끈이가 있습니다.
+안에는 아무도 없는듯 소리가 메아리칩니다.
+[continue]
+[if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 700]
+당신의 끼니를 책임지는 취사병들이 있는 식당입니다.
+많은수의 파리가 걸려있는 끈끈이가 있습니다.
+안에는 아무도 없는듯 소리가 메아리칩니다.
+[continue]
 
-[if !(eat) &amp;&amp; jumho]
+[if !(eat)]
 {reveal link: &#39;식사하기&#39;, passage: &#39;eat&#39;}
 [continue]
 
@@ -533,7 +565,7 @@ if(minute &gt;= 60){
 &lt;!--체단집합 기본메세지--&gt;
 [if hour*100+minute &gt;= 1530 &amp;&amp; hour*100+minute &lt; 1605]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
-16시에 있는 체력단련울 위하여 전우들이 준비를 하고 있습니다.
+16시에 있는 체력단련을 위하여 전우들이 준비를 하고 있습니다.
 늦지않게 행정반 앞으로 집합하여 해야합니다.&lt;br&gt;
 &lt;b&gt;[[행정반 앞으로 가기(연병장)-&gt;연병장]]&lt;/b&gt;&lt;br&gt;
 [continue]
@@ -582,6 +614,12 @@ if(minute &gt;= 60){
 [if hour*100+minute &gt;= 2200 &amp;&amp; hour*100+minute &lt; 2205]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 지금은 취침에 들어야 하는 시간입니다.
+ {reveal link: &#39;취침하기&#39;, passage: &#39;취침&#39;}
+[continue]
+&lt;!--취침--&gt;
+[if hour*100+minute &gt;= 2205 &amp;&amp; hour*100+minute &lt; 2359]
+당신이 생활하고있는 생활관입니다.&lt;br&gt;
+모두가 취침을 하고있습니다.
  {reveal link: &#39;취침하기&#39;, passage: &#39;취침&#39;}
 [continue]
 &lt;!--취침--&gt;
@@ -774,7 +812,7 @@ if(minute &gt;= 60){
     hour+=1;
 }
 [continued]</tw-passagedata><tw-passagedata pid="12" name="임시격리시설" tags="" position="1000,200" size="100,100">임시격리시설의 앞입니다.
-오른쪽에 차량을 청소하기위하여 높게 쌓여있는 콘크리트 구조물이 보여집니다.
+오른쪽에 차량을 청소하기 위하여 높게 쌓여있는 콘크리트 구조물이 보여집니다.
 
 [[안으로 들어간다-&gt;임시격리시설 내부]]
 
@@ -791,36 +829,36 @@ if(minute &gt;= 60){
 [continued]</tw-passagedata><tw-passagedata pid="13" name="통합공장" tags="" position="1000,300" size="100,100">[if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1130]
 정비병들이 주로 업무를 보는 통합공장의 앞입니다.&lt;br&gt;
 주황색 띠가 둘러져 있는 공장의 모습은 사회에서 본 여느 공장의 모습과 비슷해 보입니다.&lt;br&gt;
-앞에 샾차가 늘어져 있습니다.&lt;br&gt;
+앞에 샵차가 늘어서 있습니다.&lt;br&gt;
 통합정비공장에서 궤도반 병사들과 간부님들이 일하는 모습이 보이고 있습니다.
 [continue]
 [if hour*100+minute &gt;= 1130 &amp;&amp; hour*100+minute &lt; 1300]
 정비병들이 주로 업무를 보는 통합공장의 앞입니다.&lt;br&gt;
 주황색 띠가 둘러져 있는 공장의 모습은 사회에서 본 여느 공장의 모습과 비슷해 보입니다.&lt;br&gt;
-앞에 샾차가 늘어져 있습니다.
+앞에 샵차가 늘어서 있습니다.
 [continue]
 [if hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1600]
 정비병들이 주로 업무를 보는 통합공장의 앞입니다.&lt;br&gt;
 주황색 띠가 둘러져 있는 공장의 모습은 사회에서 본 여느 공장의 모습과 비슷해 보입니다.&lt;br&gt;
-앞에 샾차가 늘어져 있습니다.&lt;br&gt;
+앞에 샾차가 늘어서 있습니다.&lt;br&gt;
 통합정비공장에서 궤도반 병사들과 간부님들이 일하는 모습이 보이고 있습니다.
 [continue]
 [if hour*100+minute &gt;= 1600 &amp;&amp; hour*100+minute &lt; 1730]
 정비병들이 주로 업무를 보는 통합공장의 앞입니다.&lt;br&gt;
 주황색 띠가 둘러져 있는 공장의 모습은 사회에서 본 여느 공장의 모습과 비슷해 보입니다.&lt;br&gt;
-앞에 샾차가 늘어져 있습니다.&lt;br&gt;
+앞에 샵차가 늘어서 있습니다.&lt;br&gt;
 통합정비공장에서 일하던 병사와 간부분들의 모습은 보이지 않고&lt;br&gt;
 병사들이 배드민턴 치는 모습만 보여지고 있습니다.
 [continue]
 [if hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 2359]
 정비병들이 주로 업무를 보는 통합공장의 앞입니다.&lt;br&gt;
 주황색 띠가 둘러져 있는 공장의 모습은 사회에서 본 여느 공장의 모습과 비슷해 보입니다.&lt;br&gt;
-앞에 샾차가 늘어져 있습니다.
+앞에 샵차가 늘어서 있습니다.
 [continue]
 [if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 830]
 정비병들이 주로 업무를 보는 통합공장의 앞입니다.&lt;br&gt;
 주황색 띠가 둘러져 있는 공장의 모습은 사회에서 본 여느 공장의 모습과 비슷해 보입니다.&lt;br&gt;
-앞에 샾차가 늘어져 있습니다.
+앞에 샵차가 늘어서 있습니다.
 [continue]
 
 [[안으로 들어간다-&gt;통합공장 내부]]
@@ -850,6 +888,15 @@ if(minute &gt;= 60){
 
 *똑똑
 이병 짬찌 들어가도 되겠습니까?
+
+&lt;!--#################################################--&gt;
+[if hour*100+minute &lt; 1200]
+PM_work=false;
+[continue]
+[if hour*100+minute &gt;= 1200]
+AM_work=false;
+[continue]
+
 
 [if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1130]
 &quot;어~ 들어와&quot;
@@ -912,7 +959,7 @@ if(hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630){
 
 [[통신 사무실로간다-&gt;통신 사무실]]</tw-passagedata><tw-passagedata pid="20" name="야외쓰레기장" tags="" position="500,300" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 2040]
 대대의 모든 쓰레기가 모이는 야외 쓰레기장입니다.&lt;br&gt;
-많은수의 고양이들과 함께 쓰레기에서 나는 악취가 풍겨옵니다.
+많은 수의 고양이들과 함께 쓰레기에서 나는 악취가 풍겨옵니다.
 [continue]
 [if hour*100+minute &gt;= 2040 &amp;&amp; hour*100+minute &lt; 2100]
 대대의 모든 쓰레기가 모이는 야외 쓰레기장입니다.&lt;br&gt;
@@ -921,11 +968,11 @@ if(hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630){
 [continue]
 [if hour*100+minute &gt;= 2100 &amp;&amp; hour*100+minute &lt; 2359]
 대대의 모든 쓰레기가 모이는 야외 쓰레기장입니다.&lt;br&gt;
-많은수의 고양이들과 함께 쓰레기에서 나는 악취가 풍겨옵니다.
+많은 수의 고양이들과 함께 쓰레기에서 나는 악취가 풍겨옵니다.
 [continue]
 [if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
 대대의 모든 쓰레기가 모이는 야외 쓰레기장입니다.&lt;br&gt;
-많은수의 고양이들과 함께 쓰레기에서 나는 악취가 풍겨옵니다.
+많은 수의 고양이들과 함께 쓰레기에서 나는 악취가 풍겨옵니다.
 [continue]
 
 [[식당[00:01]-&gt;식당]]
@@ -946,7 +993,7 @@ if(minute &gt;= 60){
     hour+=1;
 }
 [continued]</tw-passagedata><tw-passagedata pid="21" name="공작반" tags="" position="1100,300" size="100,100">통합공장 옆에 붙어있는 공작반입니다.
-초록색으로 칠해진 플라스벽 안에서 용접을하고있는 간부와 병사의 모습이 보여집니다.
+초록색으로 칠해진 플라스틱 벽 안에서 용접을 하고 있는 간부와 병사의 모습이 보여집니다.
 
 [[안으로 들어간다-&gt;공작반 내부]]
 
@@ -1006,8 +1053,21 @@ if(minute &gt;= 60){
     hour+=1;
 }
 [continued]
-</tw-passagedata><tw-passagedata pid="24" name="운영과/지통실 내부" tags="" position="1200,100" size="100,100">운영과와 지휘통제실이 일자로 연결되어있는 모습이 보여집니다.
-운영과에서는 간부님들의 대대 업무를 보고 계시고 지휘통제실에서는 당식 사령님과 CCTV병이 보입니다.
+</tw-passagedata><tw-passagedata pid="24" name="운영과/지통실 내부" tags="" position="1200,100" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1730]
+운영과와 지휘통제실이 일자로 연결되어있는 모습이 보여집니다.
+운영과에서는 간부님들이 대대 업무를 보고계십니다.
+지휘통제실에서는 당직 사령님과 CCTV병이 보입니다.
+[continue]
+[if hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 2359]
+운영과와 지휘통제실이 일자로 연결되어있는 모습이 보여집니다.
+운영과에서는 간부님들이 모두 퇴근을 하셨는지 아무도 보이지 않습니다.
+지휘통제실에서는 당직 사령님과 CCTV병이 보입니다.
+[continue]
+[if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
+운영과와 지휘통제실이 일자로 연결되어있는 모습이 보여집니다.
+운영과에서는 간부님들이 모두 퇴근을 하셨는지 아무도 보이지 않습니다.
+지휘통제실에서는 당직 사령님과 CCTV병이 보입니다.
+[continue]
 
 [[나간다-&gt;운영과/지통실]]</tw-passagedata><tw-passagedata pid="25" name="임시격리시설 내부" tags="" position="1200,200" size="100,100">부대내 휴가복귀자,  밀접접촉자, 확진자들을 격리하기위한 시설입니다.
 1부터 10호실까지 철문이 늘어져있습니다.
@@ -1063,40 +1123,42 @@ if(minute &gt;= 60){
 
 [[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="29" name="총포정비공장" tags="" position="1000,600" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="30" name="일반장비정비공장" tags="" position="1000,700" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="31" name="일반장비정비 사무실" tags="" position="1400,500" size="100,100">[[나간다-&gt;통합공장 2층]]</tw-passagedata><tw-passagedata pid="32" name="공작반 내부" tags="" position="1100,400" size="100,100">[[공작반]]</tw-passagedata><tw-passagedata pid="33" name="수송부 내부" tags="" position="1200,400" size="100,100">[[수송부]]</tw-passagedata><tw-passagedata pid="34" name="차량반 내부" tags="" position="1300,400" size="100,100">[[차량반]]</tw-passagedata><tw-passagedata pid="35" name="2-1초소(위병소)" tags="" position="800,300" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
 우리대대의 위병소입니다.&lt;br&gt;
-경계병이 경계를 서고 있으며 옆에는 위병조장이 일을 하고 있는 위조실이 보여집니다.&lt;br&gt;
+경계병이 경계를 서고 있습니다.&lt;br&gt;
+옆에는 위병조장이 일을 하고 있는 위조실이 보입니다.&lt;br&gt;
 조기 기상해서 근무 투입을 해서 그런지 다들 피곤해 보입니다.
 [continue]
 [if hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830]
 우리대대의 위병소입니다.&lt;br&gt;
-경계병이 경계를 서고 있으며 옆에는 위병조장이 일을 하고 있는 위조실이 보여집니다.&lt;br&gt;
+경계병이 경계를 서고 있습니다.&lt;br&gt;
+옆에는 위병조장이 일을 하고 있는 위조실이 보입니다.&lt;br&gt;
 차가 오기 전까지 옆의 휴식 장소에서 잡담을 하고 있는 경계병들이 보입니다.
 [continue]
 [if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1730]
 우리대대의 위병소입니다.&lt;br&gt;
-경계병이 경계를 서고 있으며 옆에는 위병조장이 일을 하고 있는 위조실이 보여집니다.&lt;br&gt;
+경계병이 경계를 서고 있습니다.&lt;br&gt;
+옆에는 위병조장이 일을 하고 있는 위조실이 보입니다.&lt;br&gt;
 경계병들이 차단봉 옆에 서 있다가 당신을 보고 인사합니다.
 [continue]
 [if hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 1800]
 우리대대의 위병소입니다.&lt;br&gt;
-경계병이 경계를 서고 있으며 옆에는 위병조장이 일을 하고 있는 위조실이 보여집니다.&lt;br&gt;
+경계병이 경계를 서고 있습니다.&lt;br&gt;
+옆에는 위병조장이 일을 하고 있는 위조실이 보입니다.&lt;br&gt;
 경계병들은 퇴근하는 차량들을 받기 위해 분주해 보입니다.
 [continue]
 [if hour*100+minute &gt;= 1800 &amp;&amp; hour*100+minute &lt; 2000]
 우리대대의 위병소입니다.&lt;br&gt;
-야간 경계병이 경계를 서고 있으며 옆에는 위병조장이 일을 하고 있는 위조실이 보여집니다.&lt;br&gt;
-야간 경계병들은 원래같으면 휴대폰을 하고 있을 시간이라 그런지 조금 시무룩한 기색입니다.
-[continue]
-[if hour*100+minute &gt;= 1800 &amp;&amp; hour*100+minute &lt; 2000]
-우리대대의 위병소입니다.&lt;br&gt;
-야간 경계병이 경계를 서고 있으며 옆에는 위병조장이 일을 하고 있는 위조실이 보여집니다.&lt;br&gt;
+야간 경계병이 경계를 서고 있습니다.&lt;br&gt;
+옆에는 위병조장이 일을 하고 있는 위조실이 보입니다.&lt;br&gt;
 야간 경계병들은 원래같으면 휴대폰을 하고 있을 시간이라 그런지 조금 시무룩한 기색입니다.
 [continue]
 [if hour*100+minute &gt;= 2000 &amp;&amp; hour*100+minute &lt; 2359]
-경계병들과 위병조장은 전부 복귀했고 위병소는 잠겨 있습니다.&lt;br&gt;
+경계병들과 위병조장은 전부 복귀했습니다.&lt;br&gt;
+위병소는 잠겨 있습니다.&lt;br&gt;
 차가 다가오면 CCTV근무자가 뛰쳐나올 것입니다.
 [continue]
 [if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
-경계병들과 위병조장은 전부 복귀했고 위병소는 잠겨 있습니다.&lt;br&gt;
+경계병들과 위병조장은 전부 복귀했습니다.&lt;br&gt;
+위병소는 잠겨 있습니다.&lt;br&gt;
 차가 다가오면 CCTV근무자가 뛰쳐나올 것입니다.
 [continue]
 
@@ -1120,7 +1182,7 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="36" name="2-3초소(흡연장)" tags="" position="0,400" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="3-2초소(탄약고)" tags="" position="600,400" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="2-2초소(임시격리시설)" tags="" position="1300,200" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="PX" tags="" position="1100,0" size="100,100">군인에게있어 편의점이자 마트인 PX이다.
+[continued]</tw-passagedata><tw-passagedata pid="36" name="2-3초소(흡연장)" tags="" position="0,400" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="3-2초소(탄약고)" tags="" position="600,400" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="2-2초소(임시격리시설)" tags="" position="1300,200" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="PX" tags="" position="1100,0" size="100,100">군인에게있어 편의점이자 마트인 PX입니다.&lt;br&gt;
 많은사람들이 오가고 있으며 문앞에는 운영시간이 적혀있다.
 
 [[들어가기-&gt;PX 내부]]
@@ -1197,8 +1259,9 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="45" name="노래방" tags="" position="300,300" size="100,100">컨테이너 안에 노래를 부를 수 있도록 시설이 구비되어있다.
-보기에는 매우 열악하지만 노래방의 역할은 해낼 수 있다.
+[continued]</tw-passagedata><tw-passagedata pid="45" name="노래방" tags="" position="300,300" size="100,100">컨테이너 안에 노래를 부를 수 있도록 시설이 구비되어있습니다.
+방음이 잘 안되는 시설입니다.
+여기서 노래를 부르는 것은 장기자랑도 겸하는 것이나 다름없습니다.
 
 [[연병장[00:01]-&gt;연병장]]
 
@@ -1316,16 +1379,16 @@ Rooms:
 --
 You picked up the key!</tw-passagedata><tw-passagedata pid="55" name="풋살장" tags="" position="300,100" size="100,100">[if hour*100+minute &gt;= 1600 &amp;&amp; hour*100+minute &lt; 1730]
 인공잔디가 깔끔하게 깔려있는 풋살장입니다.&lt;br&gt;
-입구 옆에는 풋살 규칙등이 적혀 있습니다.&lt;br&gt;
+입구 옆에는 풋살 규칙 등이 적혀 있습니다.&lt;br&gt;
 다른 중대 병사들이 모두 섞여 풋살을 하고 있습니다.&lt;br&gt;
 탄식과 환호가 교차하고있습니다.
 [continue]
 [if hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 2359]
-인공잔디가 깔끔하게 깔려있는 풋살장입니다.
+인공잔디가 깔끔하게 깔려있는 풋살장입니다.&lt;br&gt;
 입구 옆에는 풋살 규칙등이 적혀 있습니다.
 [continue]
 [if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 1600]
-인공잔디가 깔끔하게 깔려있는 풋살장입니다.
+인공잔디가 깔끔하게 깔려있는 풋살장입니다.&lt;br&gt;
 입구 옆에는 풋살 규칙등이 적혀 있습니다.
 [continue]
 
@@ -1371,6 +1434,7 @@ minute: minute + 0
 처부 소대장님께서 내려가 체력단련을 준비하라고 하십니다.</tw-passagedata><tw-passagedata pid="59" name="시간보내기" tags="" position="100,700" size="100,100"></tw-passagedata><tw-passagedata pid="60" name="취침" tags="" position="300,700" size="100,100">day: day+1
 hour: 6
 minute: 30
+homedate: homedate + 1
 --
 </tw-passagedata></tw-storydata><script>!function(){"use strict";var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function t(e){if(e.__esModule)return e;var t=Object.defineProperty({},"__esModule",{value:!0});return Object.keys(e).forEach((function(n){var r=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,r.get?r:{enumerable:!0,get:function(){return e[n]}})})),t}var n="undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{};function r(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}var i=r,a=o;function s(e){if(i===setTimeout)return setTimeout(e,0);if((i===r||!i)&&setTimeout)return i=setTimeout,setTimeout(e,0);try{return i(e,0)}catch(t){try{return i.call(null,e,0)}catch(t){return i.call(this,e,0)}}}"function"==typeof n.setTimeout&&(i=setTimeout),"function"==typeof n.clearTimeout&&(a=clearTimeout);var c,l=[],u=!1,f=-1;function p(){u&&c&&(u=!1,c.length?l=c.concat(l):f=-1,l.length&&d())}function d(){if(!u){var e=s(p);u=!0;for(var t=l.length;t;){for(c=l,l=[];++f<t;)c&&c[f].run();f=-1,t=l.length}c=null,u=!1,function(e){if(a===clearTimeout)return clearTimeout(e);if((a===o||!a)&&clearTimeout)return a=clearTimeout,clearTimeout(e);try{a(e)}catch(t){try{return a.call(null,e)}catch(t){return a.call(this,e)}}}(e)}}function h(e,t){this.fun=e,this.array=t}h.prototype.run=function(){this.fun.apply(null,this.array)};function g(){}var m=g,b=g,v=g,y=g,w=g,k=g,x=g;var S=n.performance||{},_=S.now||S.mozNow||S.msNow||S.oNow||S.webkitNow||function(){return(new Date).getTime()};var E=new Date;var C={nextTick:function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];l.push(new h(e,t)),1!==l.length||u||s(d)},title:"browser",browser:!0,env:{},argv:[],version:"",versions:{},on:m,addListener:b,once:v,off:y,removeListener:w,removeAllListeners:k,emit:x,binding:function(e){throw new Error("process.binding is not supported")},cwd:function(){return"/"},chdir:function(e){throw new Error("process.chdir is not supported")},umask:function(){return 0},hrtime:function(e){var t=.001*_.call(S),n=Math.floor(t),r=Math.floor(t%1*1e9);return e&&(n-=e[0],(r-=e[1])<0&&(n--,r+=1e9)),[n,r]},platform:"browser",release:{},config:{},uptime:function(){return(new Date-E)/1e3}};function A(e){return null!=e&&(!!e._isBuffer||O(e)||function(e){return"function"==typeof e.readFloatLE&&"function"==typeof e.slice&&O(e.slice(0,0))}(e))}function O(e){return!!e.constructor&&"function"==typeof e.constructor.isBuffer&&e.constructor.isBuffer(e)}void 0===n.TYPED_ARRAY_SUPPORT||n.TYPED_ARRAY_SUPPORT;var T="function"==typeof Object.create?function(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}:function(e,t){e.super_=t;var n=function(){};n.prototype=t.prototype,e.prototype=new n,e.prototype.constructor=e};function j(e,t){var n={seen:[],stylize:L};return arguments.length>=3&&(n.depth=arguments[2]),arguments.length>=4&&(n.colors=arguments[3]),I(t)?n.showHidden=t:t&&J(n,t),R(n.showHidden)&&(n.showHidden=!1),R(n.depth)&&(n.depth=2),R(n.colors)&&(n.colors=!1),R(n.customInspect)&&(n.customInspect=!0),n.colors&&(n.stylize=z),N(n,e,n.depth)}function z(e,t){var n=j.styles[t];return n?"["+j.colors[n][0]+"m"+e+"["+j.colors[n][1]+"m":e}function L(e,t){return e}function N(e,t,n){if(e.customInspect&&t&&H(t.inspect)&&t.inspect!==j&&(!t.constructor||t.constructor.prototype!==t)){var r=t.inspect(n,e);return q(r)||(r=N(e,r,n)),r}var o=function(e,t){if(R(t))return e.stylize("undefined","undefined");if(q(t)){var n="'"+JSON.stringify(t).replace(/^"|"$/g,"").replace(/'/g,"\\'").replace(/\\"/g,'"')+"'";return e.stylize(n,"string")}if(r=t,"number"==typeof r)return e.stylize(""+t,"number");var r;if(I(t))return e.stylize(""+t,"boolean");if(P(t))return e.stylize("null","null")}(e,t);if(o)return o;var i=Object.keys(t),a=function(e){var t={};return e.forEach((function(e,n){t[e]=!0})),t}(i);if(e.showHidden&&(i=Object.getOwnPropertyNames(t)),U(t)&&(i.indexOf("message")>=0||i.indexOf("description")>=0))return $(t);if(0===i.length){if(H(t)){var s=t.name?": "+t.name:"";return e.stylize("[Function"+s+"]","special")}if(M(t))return e.stylize(RegExp.prototype.toString.call(t),"regexp");if(B(t))return e.stylize(Date.prototype.toString.call(t),"date");if(U(t))return $(t)}var c,l,u="",f=!1,p=["{","}"];(c=t,Array.isArray(c)&&(f=!0,p=["[","]"]),H(t))&&(u=" [Function"+(t.name?": "+t.name:"")+"]");return M(t)&&(u=" "+RegExp.prototype.toString.call(t)),B(t)&&(u=" "+Date.prototype.toUTCString.call(t)),U(t)&&(u=" "+$(t)),0!==i.length||f&&0!=t.length?n<0?M(t)?e.stylize(RegExp.prototype.toString.call(t),"regexp"):e.stylize("[Object]","special"):(e.seen.push(t),l=f?function(e,t,n,r,o){for(var i=[],a=0,s=t.length;a<s;++a)G(t,String(a))?i.push(D(e,t,n,r,String(a),!0)):i.push("");return o.forEach((function(o){o.match(/^\d+$/)||i.push(D(e,t,n,r,o,!0))})),i}(e,t,n,a,i):i.map((function(r){return D(e,t,n,a,r,f)})),e.seen.pop(),function(e,t,n){if(e.reduce((function(e,t){return t.indexOf("\n"),e+t.replace(/\u001b\[\d\d?m/g,"").length+1}),0)>60)return n[0]+(""===t?"":t+"\n ")+" "+e.join(",\n  ")+" "+n[1];return n[0]+t+" "+e.join(", ")+" "+n[1]}(l,u,p)):p[0]+u+p[1]}function $(e){return"["+Error.prototype.toString.call(e)+"]"}function D(e,t,n,r,o,i){var a,s,c;if((c=Object.getOwnPropertyDescriptor(t,o)||{value:t[o]}).get?s=c.set?e.stylize("[Getter/Setter]","special"):e.stylize("[Getter]","special"):c.set&&(s=e.stylize("[Setter]","special")),G(r,o)||(a="["+o+"]"),s||(e.seen.indexOf(c.value)<0?(s=P(n)?N(e,c.value,null):N(e,c.value,n-1)).indexOf("\n")>-1&&(s=i?s.split("\n").map((function(e){return"  "+e})).join("\n").substr(2):"\n"+s.split("\n").map((function(e){return"   "+e})).join("\n")):s=e.stylize("[Circular]","special")),R(a)){if(i&&o.match(/^\d+$/))return s;(a=JSON.stringify(""+o)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)?(a=a.substr(1,a.length-2),a=e.stylize(a,"name")):(a=a.replace(/'/g,"\\'").replace(/\\"/g,'"').replace(/(^"|"$)/g,"'"),a=e.stylize(a,"string"))}return a+": "+s}function I(e){return"boolean"==typeof e}function P(e){return null===e}function q(e){return"string"==typeof e}function R(e){return void 0===e}function M(e){return F(e)&&"[object RegExp]"===W(e)}function F(e){return"object"==typeof e&&null!==e}function B(e){return F(e)&&"[object Date]"===W(e)}function U(e){return F(e)&&("[object Error]"===W(e)||e instanceof Error)}function H(e){return"function"==typeof e}function Z(e){return null===e||"boolean"==typeof e||"number"==typeof e||"string"==typeof e||"symbol"==typeof e||void 0===e}function W(e){return Object.prototype.toString.call(e)}function J(e,t){if(!t||!F(t))return e;for(var n=Object.keys(t),r=n.length;r--;)e[n[r]]=t[n[r]];return e}function G(e,t){return Object.prototype.hasOwnProperty.call(e,t)}function V(e,t){if(e===t)return 0;for(var n=e.length,r=t.length,o=0,i=Math.min(n,r);o<i;++o)if(e[o]!==t[o]){n=e[o],r=t[o];break}return n<r?-1:r<n?1:0}j.colors={bold:[1,22],italic:[3,23],underline:[4,24],inverse:[7,27],white:[37,39],grey:[90,39],black:[30,39],blue:[34,39],cyan:[36,39],green:[32,39],magenta:[35,39],red:[31,39],yellow:[33,39]},j.styles={special:"cyan",number:"yellow",boolean:"yellow",undefined:"grey",null:"bold",string:"green",date:"magenta",regexp:"red"};var Y,X=Object.prototype.hasOwnProperty,K=Object.keys||function(e){var t=[];for(var n in e)X.call(e,n)&&t.push(n);return t},Q=Array.prototype.slice;function ee(){return void 0!==Y?Y:Y="foo"===function(){}.name}function te(e){return Object.prototype.toString.call(e)}function ne(e){return!A(e)&&("function"==typeof n.ArrayBuffer&&("function"==typeof ArrayBuffer.isView?ArrayBuffer.isView(e):!!e&&(e instanceof DataView||!!(e.buffer&&e.buffer instanceof ArrayBuffer))))}function re(e,t){e||le(e,!0,t,"==",ue)}var oe=/\s*function\s+([^\(\s]*)\s*/;function ie(e){if(H(e)){if(ee())return e.name;var t=e.toString().match(oe);return t&&t[1]}}function ae(e){this.name="AssertionError",this.actual=e.actual,this.expected=e.expected,this.operator=e.operator,e.message?(this.message=e.message,this.generatedMessage=!1):(this.message=function(e){return se(ce(e.actual),128)+" "+e.operator+" "+se(ce(e.expected),128)}(this),this.generatedMessage=!0);var t=e.stackStartFunction||le;if(Error.captureStackTrace)Error.captureStackTrace(this,t);else{var n=new Error;if(n.stack){var r=n.stack,o=ie(t),i=r.indexOf("\n"+o);if(i>=0){var a=r.indexOf("\n",i+1);r=r.substring(a+1)}this.stack=r}}}function se(e,t){return"string"==typeof e?e.length<t?e:e.slice(0,t):e}function ce(e){if(ee()||!H(e))return j(e);var t=ie(e);return"[Function"+(t?": "+t:"")+"]"}function le(e,t,n,r,o){throw new ae({message:n,actual:e,expected:t,operator:r,stackStartFunction:o})}function ue(e,t){e||le(e,!0,t,"==",ue)}function fe(e,t,n){e!=t&&le(e,t,n,"==",fe)}function pe(e,t,n){e==t&&le(e,t,n,"!=",pe)}function de(e,t,n){ge(e,t,!1)||le(e,t,n,"deepEqual",de)}function he(e,t,n){ge(e,t,!0)||le(e,t,n,"deepStrictEqual",he)}function ge(e,t,n,r){if(e===t)return!0;if(A(e)&&A(t))return 0===V(e,t);if(B(e)&&B(t))return e.getTime()===t.getTime();if(M(e)&&M(t))return e.source===t.source&&e.global===t.global&&e.multiline===t.multiline&&e.lastIndex===t.lastIndex&&e.ignoreCase===t.ignoreCase;if(null!==e&&"object"==typeof e||null!==t&&"object"==typeof t){if(ne(e)&&ne(t)&&te(e)===te(t)&&!(e instanceof Float32Array||e instanceof Float64Array))return 0===V(new Uint8Array(e.buffer),new Uint8Array(t.buffer));if(A(e)!==A(t))return!1;var o=(r=r||{actual:[],expected:[]}).actual.indexOf(e);return-1!==o&&o===r.expected.indexOf(t)||(r.actual.push(e),r.expected.push(t),function(e,t,n,r){if(null==e||null==t)return!1;if(Z(e)||Z(t))return e===t;if(n&&Object.getPrototypeOf(e)!==Object.getPrototypeOf(t))return!1;var o=me(e),i=me(t);if(o&&!i||!o&&i)return!1;if(o)return ge(e=Q.call(e),t=Q.call(t),n);var a,s,c=K(e),l=K(t);if(c.length!==l.length)return!1;for(c.sort(),l.sort(),s=c.length-1;s>=0;s--)if(c[s]!==l[s])return!1;for(s=c.length-1;s>=0;s--)if(!ge(e[a=c[s]],t[a],n,r))return!1;return!0}(e,t,n,r))}return n?e===t:e==t}function me(e){return"[object Arguments]"==Object.prototype.toString.call(e)}function be(e,t,n){ge(e,t,!1)&&le(e,t,n,"notDeepEqual",be)}function ve(e,t,n){ge(e,t,!0)&&le(e,t,n,"notDeepStrictEqual",ve)}function ye(e,t,n){e!==t&&le(e,t,n,"===",ye)}function we(e,t,n){e===t&&le(e,t,n,"!==",we)}function ke(e,t){if(!e||!t)return!1;if("[object RegExp]"==Object.prototype.toString.call(t))return t.test(e);try{if(e instanceof t)return!0}catch(e){}return!Error.isPrototypeOf(t)&&!0===t.call({},e)}function xe(e,t,n,r){var o;if("function"!=typeof t)throw new TypeError('"block" argument must be a function');"string"==typeof n&&(r=n,n=null),o=function(e){var t;try{e()}catch(e){t=e}return t}(t),r=(n&&n.name?" ("+n.name+").":".")+(r?" "+r:"."),e&&!o&&le(o,n,"Missing expected exception"+r);var i="string"==typeof r,a=!e&&o&&!n;if((!e&&U(o)&&i&&ke(o,n)||a)&&le(o,n,"Got unwanted exception"+r),e&&o&&n&&!ke(o,n)||!e&&o)throw o}function Se(e,t,n){xe(!0,e,t,n)}function _e(e,t,n){xe(!1,e,t,n)}function Ee(e){if(e)throw e}re.AssertionError=ae,T(ae,Error),re.fail=le,re.ok=ue,re.equal=fe,re.notEqual=pe,re.deepEqual=de,re.deepStrictEqual=he,re.notDeepEqual=be,re.notDeepStrictEqual=ve,re.strictEqual=ye,re.notStrictEqual=we,re.throws=Se,re.doesNotThrow=_e,re.ifError=Ee;var Ce=t(Object.freeze({__proto__:null,default:re,AssertionError:ae,fail:le,ok:ue,assert:ue,equal:fe,notEqual:pe,deepEqual:de,deepStrictEqual:he,notDeepEqual:be,notDeepStrictEqual:ve,strictEqual:ye,notStrictEqual:we,throws:Se,doesNotThrow:_e,ifError:Ee})),Ae=Ce,Oe="undefined"!=typeof window;function Te(e){this.hasWindow=e,this.hasIdle=this.hasWindow&&window.requestIdleCallback,this.method=this.hasIdle?window.requestIdleCallback.bind(window):this.setTimeout,this.scheduled=!1,this.queue=[]}Te.prototype.push=function(e){Ae.equal(typeof e,"function","nanoscheduler.push: cb should be type function"),this.queue.push(e),this.schedule()},Te.prototype.schedule=function(){if(!this.scheduled){this.scheduled=!0;var e=this;this.method((function(t){for(;e.queue.length&&t.timeRemaining()>0;)e.queue.shift()(t);e.scheduled=!1,e.queue.length&&e.schedule()}))}},Te.prototype.setTimeout=function(e){setTimeout(e,0,{timeRemaining:function(){return 1}})};var je,ze=function(){var e;return Oe?(window._nanoScheduler||(window._nanoScheduler=new Te(!0)),e=window._nanoScheduler):e=new Te,e},Le=ze(),Ne=Ce;De.disabled=!0;try{je=window.performance,De.disabled="true"===window.localStorage.DISABLE_NANOTIMING||!je.mark}catch(e){}var $e=De;function De(e){if(Ne.equal(typeof e,"string","nanotiming: name should be type string"),De.disabled)return Ie;var t=(1e4*je.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;je.mark(o),Le.push((function(){var i=null;try{var a=e+" ["+t+"]";je.measure(a,n,o),je.clearMarks(n),je.clearMarks(o)}catch(e){i=e}r&&r(i,e)}))}return je.mark(n),r.uuid=t,r}function Ie(e){e&&Le.push((function(){e(new Error("nanotiming: performance API unavailable"))}))}var Pe,qe=Ce;Re.disabled=!0;try{Pe=require("perf_hooks").performance,Re.disabled=C.env.DISABLE_NANOTIMING||!Pe.mark}catch(e){}function Re(e){if("undefined"!=typeof window)return $e(e);if(qe.equal(typeof e,"string","nanotiming: name should be type string"),Re.disabled)return Me;var t=(1e4*Pe.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;Pe.mark(o);var i=null;try{var a=e+" ["+t+"]";Pe.measure(a,n,o),Pe.clearMarks(n),Pe.clearMarks(o)}catch(e){i=e}r&&r(i,e)}return Pe.mark(n),r.uuid=t,r}function Me(e){e&&e(new Error("nanotiming: performance API unavailable"))}var Fe=function(e,t,n){var r,o=e.length;if(!(t>=o||0===n)){var i=o-(n=t+n>o?o-t:n);for(r=t;r<i;++r)e[r]=e[r+n];e.length=i}},Be=Re,Ue=Ce,He=Ze;function Ze(e){if(!(this instanceof Ze))return new Ze(e);this._name=e||"nanobus",this._starListeners=[],this._listeners={}}Ze.prototype.emit=function(e){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.emit: eventName should be type string or symbol");for(var t=[],n=1,r=arguments.length;n<r;n++)t.push(arguments[n]);var o=Be(this._name+"('"+e.toString()+"')"),i=this._listeners[e];return i&&i.length>0&&this._emit(this._listeners[e],t),this._starListeners.length>0&&this._emit(this._starListeners,e,t,o.uuid),o(),this},Ze.prototype.on=Ze.prototype.addListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.on: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.on: listener should be type function"),"*"===e?this._starListeners.push(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].push(t)),this},Ze.prototype.prependListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependListener: listener should be type function"),"*"===e?this._starListeners.unshift(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].unshift(t)),this},Ze.prototype.once=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.once: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.once: listener should be type function");var n=this;return this.on(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.prependOnceListener=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependOnceListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependOnceListener: listener should be type function");var n=this;return this.prependListener(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.removeListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.removeListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.removeListener: listener should be type function"),"*"===e?(this._starListeners=this._starListeners.slice(),n(this._starListeners,t)):(void 0!==this._listeners[e]&&(this._listeners[e]=this._listeners[e].slice()),n(this._listeners[e],t));function n(e,t){if(e){var n=e.indexOf(t);return-1!==n?(Fe(e,n,1),!0):void 0}}},Ze.prototype.removeAllListeners=function(e){return e?"*"===e?this._starListeners=[]:this._listeners[e]=[]:(this._starListeners=[],this._listeners={}),this},Ze.prototype.listeners=function(e){var t="*"!==e?this._listeners[e]:this._starListeners,n=[];if(t)for(var r=t.length,o=0;o<r;o++)n.push(t[o]);return n},Ze.prototype._emit=function(e,t,n,r){if(void 0!==e&&0!==e.length){void 0===n&&(n=t,t=null),t&&(n=void 0!==r?[t].concat(n,r):[t].concat(n));for(var o=e.length,i=0;i<o;i++){var a=e[i];a.apply(a,n)}}};var We=He();function Je(e){return Je="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Je(e)}function Ge(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function Ve(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function Ye(e,t,n){return t&&Ve(e.prototype,t),n&&Ve(e,n),Object.defineProperty(e,"prototype",{writable:!1}),e}function Xe(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&Qe(e,t)}function Ke(e){return Ke=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},Ke(e)}function Qe(e,t){return Qe=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},Qe(e,t)}function et(e,t){if(t&&("object"==typeof t||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e)}function tt(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}();return function(){var n,r=Ke(e);if(t){var o=Ke(this).constructor;n=Reflect.construct(r,arguments,o)}else n=r.apply(this,arguments);return et(this,n)}}function nt(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null==n)return;var r,o,i=[],a=!0,s=!1;try{for(n=n.call(e);!(a=(r=n.next()).done)&&(i.push(r.value),!t||i.length!==t);a=!0);}catch(e){s=!0,o=e}finally{try{a||null==n.return||n.return()}finally{if(s)throw o}}return i}(e,t)||ot(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}
 /*!
