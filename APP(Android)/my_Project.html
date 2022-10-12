@@ -613,20 +613,20 @@ if(minute &gt;= 60){
 &lt;!--취침--&gt;
 [if hour*100+minute &gt;= 2200 &amp;&amp; hour*100+minute &lt; 2205]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
-지금은 취침에 들어야 하는 시간입니다.
- {reveal link: &#39;취침하기&#39;, passage: &#39;취침&#39;}
+지금은 취침에 들어야 하는 시간입니다.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;day++;hour=6;minute=31;homedate++;&quot;&gt;취침하기&lt;/a&gt;&lt;/b&gt;
 [continue]
 &lt;!--취침--&gt;
 [if hour*100+minute &gt;= 2205 &amp;&amp; hour*100+minute &lt; 2359]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
-모두가 취침을 하고있습니다.
- {reveal link: &#39;취침하기&#39;, passage: &#39;취침&#39;}
+모두가 취침을 하고있습니다.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;day++;hour=6;minute=31;homedate++;&quot;&gt;취침하기&lt;/a&gt;&lt;/b&gt;
 [continue]
 &lt;!--취침--&gt;
 [if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
-모두가 취침을 하고있습니다.
- {reveal link: &#39;취침하기&#39;, passage: &#39;취침&#39;}
+모두가 취침을 하고있습니다.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;day++;hour=6;minute=31;homedate++;&quot;&gt;취침하기&lt;/a&gt;&lt;/b&gt;
 [continue]
 
 &lt;b&gt;[[행정반[00:01]-&gt;행정반]]&lt;/b&gt;
@@ -639,7 +639,7 @@ if(minute &gt;= 60){
 
 &lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
 
-&lt;b&gt;&lt;div onclick=&quot;minute+=5&quot;&gt;시간보내기(5분)&lt;/div&gt;&lt;/b&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;minute+=10;&quot;&gt;시간보내기(10분)&lt;/a&gt;&lt;/b&gt;
 [[새로고침-&gt;생활관]]
 
 [JavaScript]
@@ -1275,38 +1275,38 @@ if(minute &gt;= 60){
 }
 [continued]</tw-passagedata><tw-passagedata pid="46" name="정비실" tags="" position="300,400" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1130]
 에어컨, 냉동실, 냉장실, 전자레인지 구비되어있는 정비실입니다.&lt;br&gt;
-주로 취식물을 섭취하는데 쓰입니다.
+주로 음식물을 섭취하는데 쓰입니다.
 [continue]
 [if hour*100+minute &gt;= 1130 &amp;&amp; hour*100+minute &lt; 1300]
 에어컨, 냉동실, 냉장실, 전자레인지 구비되어있는 정비실입니다.&lt;br&gt;
-주로 취식물을 섭취하는데 쓰입니다.&lt;br&gt;
+주로 음식물을 섭취하는데 쓰입니다.&lt;br&gt;
 점심이 마음에 안들어서 조금만 먹고 내려와 냉동을 먹고있는 병사의 모습이 보여집니다.&lt;br&gt;
 라면냄새가 정비실 밖까지 나와서 군침을 돌게 만듭니다.
 [continue]
 [if hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1730]
 에어컨, 냉동실, 냉장실, 전자레인지 구비되어있는 정비실입니다.&lt;br&gt;
-주로 취식물을 섭취하는데 쓰입니다.
+주로 음식물을 섭취하는데 쓰입니다.
 [continue]
 [if hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 2040]
 에어컨, 냉동실, 냉장실, 전자레인지 구비되어있는 정비실입니다.&lt;br&gt;
-주로 취식물을 섭취하는데 쓰입니다.&lt;br&gt;
+주로 음식물을 섭취하는데 쓰입니다.&lt;br&gt;
 입이 심심하거나 배가고파 정비실로 와서 취식물을 먹는 병사들이 보여집니다.&lt;br&gt;
 점심보다 더 북적거립니다.
 [continue]
 [if hour*100+minute &gt;= 2040 &amp;&amp; hour*100+minute &lt; 2200]
 에어컨, 냉동실, 냉장실, 전자레인지 구비되어있는 정비실입니다.&lt;br&gt;
-주로 취식물을 섭취하는데 쓰입니다.
+주로 음식물을 섭취하는데 쓰입니다.
 [continue]
 [if hour*100+minute &gt;= 2200 &amp;&amp; hour*100+minute &lt; 2359]
 에어컨, 냉동실, 냉장실, 전자레인지 구비되어있는 정비실입니다.&lt;br&gt;
-주로 취식물을 섭취하는데 쓰입니다.&lt;br&gt;
+주로 음식물을 섭취하는데 쓰입니다.&lt;br&gt;
 근무자들이 근무를 끝낸 뒤 라면을 먹는모습이 보여집니다.&lt;br&gt;
 당직사관님께 허락을 받았는지 안받았는지는 식별이 되지 않지만&lt;br&gt;
 맛있어보입니다.
 [continue]
 [if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
 에어컨, 냉동실, 냉장실, 전자레인지 구비되어있는 정비실입니다.&lt;br&gt;
-주로 취식물을 섭취하는데 쓰입니다.&lt;br&gt;
+주로 음식물을 섭취하는데 쓰입니다.&lt;br&gt;
 근무자들이 근무를 끝낸 뒤 라면을 먹는모습이 보여집니다.&lt;br&gt;
 당직사관님께 허락을 받았는지 안받았는지는 식별이 되지 않지만&lt;br&gt;
 맛있어보입니다.
@@ -1322,9 +1322,9 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="47" name="2-4초소(탄약고 옆)" tags="" position="700,300" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="PX 내부" tags="" position="1200,0" size="100,100">문앞에 가판대에 앉아있는 PX병이 건성으로 말합니다.
-&quot;고생하십니다~&quot;
-우리가 아는 여느 편의점과 마트의 모습과 비슷한 내부구조를 보이고 있다.
+[continued]</tw-passagedata><tw-passagedata pid="47" name="2-4초소(탄약고 옆)" tags="" position="700,300" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="PX 내부" tags="" position="1200,0" size="100,100">문앞에 가판대에 앉아있는 PX병이 건성으로 말합니다.&lt;br&gt;
+&quot;고생하십니다~&quot;&lt;br&gt;
+여느 편의점과 마트의 모습과 비슷한 내부구조를 보이고 있다.
 
 [[PX]]</tw-passagedata><tw-passagedata pid="49" name="구현 상황" tags="" position="200,100" size="100,100">//장소 이동 시간변경 구현예정
  - 현재 장소가 어디인가에 따라 시간이 가도록 구현 = 이동을 하는 장소가 어디인가에 따라 걸리는 시간이 달라서 취소
