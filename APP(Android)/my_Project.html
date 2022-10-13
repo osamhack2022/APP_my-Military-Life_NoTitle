@@ -225,7 +225,20 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 
 &lt;b&gt;[[생활관]]&lt;/b&gt;
 
-&lt;b&gt;[[시작전]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="3" name="운영과/지통실" tags="" position="1000,100" size="100,100">운영과/지통실의 앞입니다.
+&lt;b&gt;[[시작전]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="3" name="운영과/지통실" tags="" position="1000,100" size="100,100">&lt;!--시간변화--&gt;
+[JavaScript]
+if(trail[trail.length-2]==&quot;임시격리시설&quot;){
+	minute += 1;
+}
+else if(trail[trail.length-2]==&quot;통합공장&quot; || trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;2-1초소(위병소)&quot;){
+	minute += 3;
+}
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+[continued]
+운영과/지통실의 앞입니다.
 총기수불대와 들어가는 문 두개가 보여지고 있습니다.
 하나는 운영과로 통하는 문, 다른 하나는 지휘통제실로 연결되는 문입니다.
 
@@ -239,20 +252,20 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 
 [[2-1초소(위병소)[00:03]-&gt;2-1초소(위병소)]]&lt;/b&gt;
 
-[[PX]]
-
+[[PX]]</tw-passagedata><tw-passagedata pid="4" name="연병장" tags="" position="300,200" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
-if(trail[trail.length-2]==&quot;임시격리시설&quot;){
+if(trail[trail.length-2]==&quot;생활관&quot; || trail[trail.length-2]==&quot;노래방&quot; || trail[trail.length-2]==&quot;식당&quot; || trail[trail.length-2]==&quot;사열대&quot; || trail[trail.length-2]==&quot;노래방&quot; || trail[trail.length-2]==&quot;풋살장&quot;){
 	minute += 1;
 }
-else if(trail[trail.length-2]==&quot;통합공장&quot; || trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;2-1초소(위병소)&quot;){
+else if(trail[trail.length-2]==&quot;운영과/지통실&quot;){
 	minute += 3;
 }
 if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="4" name="연병장" tags="" position="300,200" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
+[continued]
+[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
 병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 모두가 아침점호를 위해 중대별로 집합하고 있습니다.
 [if hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645]
@@ -366,21 +379,18 @@ if(hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 1735){
 
 &lt;b&gt;[[풋살장[00:01]-&gt;풋살장]]&lt;/b&gt;
 
-&lt;b&gt;[[운영과/지통실[00:03]-&gt;운영과/지통실]]&lt;/b&gt;
-
-
+&lt;b&gt;[[운영과/지통실[00:03]-&gt;운영과/지통실]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="5" name="식당" tags="" position="400,300" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
-if(trail[trail.length-2]==&quot;생활관&quot; || trail[trail.length-2]==&quot;노래방&quot; || trail[trail.length-2]==&quot;식당&quot; || trail[trail.length-2]==&quot;사열대&quot; || trail[trail.length-2]==&quot;노래방&quot; || trail[trail.length-2]==&quot;풋살장&quot;){
+if(trail[trail.length-2]==&quot;사열대&quot; || trail[trail.length-2]==&quot;야외쓰레기장&quot; || trail[trail.length-2]==&quot;연병장&quot;){
 	minute += 1;
-}
-else if(trail[trail.length-2]==&quot;운영과/지통실&quot;){
-	minute += 3;
 }
 if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="5" name="식당" tags="" position="400,300" size="100,100">[if hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830]
+[continued]
+
+[if hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830]
 당신의 끼니를 책임지는 취사병들이 있는 식당입니다.
 많은수의 파리가 걸려있는 끈끈이와 빽빽하게 앉아 식사를 하고있는 병사들의 모습이 보입니다.
 [continue]
@@ -414,24 +424,27 @@ if(minute &gt;= 60){
 [continue]
 
 [if !(eat) &amp;&amp; (hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830) || (hour*100+minute &gt;= 1100 &amp;&amp; hour*100+minute &lt; 1300) || (hour*100+minute &gt;= 1700 &amp;&amp; hour*100+minute &lt; 1830)]
-{reveal link: &#39;식사하기&#39;, passage: &#39;eat&#39;}
+&lt;b&gt;{reveal link: &#39;식사하기&#39;, passage: &#39;eat&#39;}&lt;/b&gt;
 [continue]
 
 &lt;b&gt;[[사열대[00:01]-&gt;사열대]]&lt;/b&gt;
 
 &lt;b&gt;[[야외쓰레기장[00:01]-&gt;야외쓰레기장]]&lt;/b&gt;
 
-&lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
-
+&lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="6" name="사열대" tags="" position="400,200" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
-if(trail[trail.length-2]==&quot;사열대&quot; || trail[trail.length-2]==&quot;야외쓰레기장&quot; || trail[trail.length-2]==&quot;연병장&quot;){
+if(trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;식당&quot;){
 	minute += 1;
+}
+else if(trail[trail.length-2]==&quot;야외쓰레기장&quot;){
+	minute += 3;
 }
 if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="6" name="사열대" tags="" position="400,200" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
+[continued]
+[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
 위에 플랜카드가 걸려있는 사열대의 모습이 보입니다.&lt;br&gt;
 아침점호를 위해 사열대 앞에 중대별로 정렬해 있는 전우들이 보입니다.&lt;br&gt;
 사열대 뒤 국기봉 옆에는 국기 게양을 위해 준비하고 있는 전우들도 보입니다.
@@ -484,20 +497,7 @@ if(hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645){
 
 &lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
 
-&lt;b&gt;[[야외쓰레기장[00:03]-&gt;야외쓰레기장]]&lt;/b&gt;
-
-[JavaScript]
-if(trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;식당&quot;){
-	minute += 1;
-}
-else if(trail[trail.length-2]==&quot;야외쓰레기장&quot;){
-	minute += 3;
-}
-if(minute &gt;= 60){
-	minute = minute-60;
-    hour+=1;
-}
-[continued]</tw-passagedata><tw-passagedata pid="7" name="생활관" tags="" position="100,400" size="100,100">&lt;!--시간계산--&gt;
+&lt;b&gt;[[야외쓰레기장[00:03]-&gt;야외쓰레기장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="7" name="생활관" tags="" position="100,400" size="100,100">&lt;!--시간계산--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;체단실&quot; || trail[trail.length-2]==&quot;정비실&quot; || trail[trail.length-2]==&quot;사지방&quot; || trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;행정반&quot;){
 	minute += 1;
@@ -651,7 +651,17 @@ if(hour*100+minute &gt;= 2400){
 &lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
 
 &lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;minute+=10;&quot;&gt;시간보내기(10분)&lt;/a&gt;&lt;/b&gt;
-[[새로고침-&gt;생활관]]</tw-passagedata><tw-passagedata pid="8" name="행정반" tags="" position="100,500" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 830]
+[[새로고침-&gt;생활관]]</tw-passagedata><tw-passagedata pid="8" name="행정반" tags="" position="100,500" size="100,100">&lt;!--시간변화--&gt;
+[JavaScript]
+if(trail[trail.length-2]==&quot;생활관&quot; || trail[trail.length-2]==&quot;중대장실&quot; || trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;행정보급관실&quot;){
+	minute += 1;
+}
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+[continued]
+[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 830]
 당신이 소속되어있는 중대의 행정반입니다.&lt;br&gt;
 당직 부사관과 당직 사관님께서 오전에 보고해야할 내용과 업무를 급하게 하시고 계십니다.
 [continue]
@@ -698,17 +708,17 @@ if(hour*100+minute &gt;= 2400){
 
 [[생활관[00:01]-&gt;생활관]]
 
-[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
-
+[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="9" name="중대장실" tags="" position="300,500" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
-if(trail[trail.length-2]==&quot;생활관&quot; || trail[trail.length-2]==&quot;중대장실&quot; || trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;행정보급관실&quot;){
+if(trail[trail.length-2]==&quot;행정반&quot;){
 	minute += 1;
 }
 if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="9" name="중대장실" tags="" position="300,500" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1130]
+[continued]
+[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1130]
 중대 깃발 뒤로 책상에 앉아 업무를 보고 계신는 중대장님의 모습이 보입니다.&lt;br&gt;
 중대장님께 용무가 있는 전우들이 오고가고 있습니다.&lt;br&gt;
 문앞에 있는 푯말은 [재중]으로 되어있습니다.
@@ -738,8 +748,7 @@ if(minute &gt;= 60){
 문앞에 있는 푯말은 [부재중]으로 되어있습니다.
 [continue]
 
-&lt;b&gt;[[행정반[00:01]-&gt;행정반]]&lt;/b&gt;
-
+&lt;b&gt;[[행정반[00:01]-&gt;행정반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="10" name="행정보급관실" tags="" position="200,500" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;행정반&quot;){
 	minute += 1;
@@ -748,7 +757,8 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="10" name="행정보급관실" tags="" position="200,500" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1130]
+[continued]
+[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1130]
 앞에있는 책상에 근엄하게 앉아서 업무를 보고있는 행보관님의 모습이 보이고 있습니다.&lt;br&gt;
 각 근무자들과 행보관님께 용무가 있는 전우들이 오고가고 있습니다.&lt;br&gt;
 문앞에 있는 푯말은 [재중]으로 되어있습니다.
@@ -780,23 +790,7 @@ if(minute &gt;= 60){
 문앞에 있는 푯말은 [부재중]으로 되어있습니다.
 [continue]
 
-&lt;b&gt;[[행정반[00:01]-&gt;행정반]]&lt;/b&gt;
-
-[JavaScript]
-if(trail[trail.length-2]==&quot;행정반&quot;){
-	minute += 1;
-}
-if(minute &gt;= 60){
-	minute = minute-60;
-    hour+=1;
-}
-[continued]</tw-passagedata><tw-passagedata pid="11" name="탄약고" tags="" position="600,300" size="100,100">대대의 핵심시설중 하나인 탄약고입니다.
-사람이 출입시 울리는 센서와 카메라가 보입니다.
-
-&lt;b&gt;[[야외쓰레기장[00:03]-&gt;야외쓰레기장]]
-
-[[차량반[00:05]-&gt;차량반]]&lt;/b&gt;
-
+&lt;b&gt;[[행정반[00:01]-&gt;행정반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="11" name="탄약고" tags="" position="600,300" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;야외쓰레기장&quot;){
 	minute += 3;
@@ -808,13 +802,13 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="12" name="임시격리시설" tags="" position="1000,200" size="100,100">임시격리시설의 앞입니다.&lt;br&gt;
-오른쪽에 차량을 청소하기 위하여 만들어진 콘크리트 구조밀이 보여집니다.
+[continued]
+대대의 핵심시설중 하나인 탄약고입니다.
+사람이 출입시 울리는 센서와 카메라가 보입니다.
 
-&lt;b&gt;[[안으로 들어간다-&gt;임시격리시설 내부]]
+&lt;b&gt;[[야외쓰레기장[00:03]-&gt;야외쓰레기장]]
 
-[[운영과/지통실[00:01]-&gt;운영과/지통실]]&lt;/b&gt;
-
+[[차량반[00:05]-&gt;차량반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="12" name="임시격리시설" tags="" position="1000,200" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;운영과/지통실&quot;){
 	minute += 1;
@@ -823,7 +817,28 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="13" name="통합공장" tags="" position="1000,300" size="100,100">[if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1130]
+[continued]
+임시격리시설의 앞입니다.&lt;br&gt;
+오른쪽에 차량을 청소하기 위하여 만들어진 콘크리트 구조밀이 보여집니다.
+
+&lt;b&gt;[[안으로 들어간다-&gt;임시격리시설 내부]]
+
+[[운영과/지통실[00:01]-&gt;운영과/지통실]]&lt;/b&gt;
+
+</tw-passagedata><tw-passagedata pid="13" name="통합공장" tags="" position="1000,300" size="100,100">&lt;!--시간변화--&gt;
+[JavaScript]
+if(trail[trail.length-2]==&quot;공작반&quot; || trail[trail.length-2]==&quot;수송부&quot;){
+	minute += 1;
+}
+else if(trail[trail.length-2]==&quot;운영과/지통실&quot; || trail[trail.length-2]==&quot;풋살장&quot; || trail[trail.length-2]==&quot;2-1초소(위병소)&quot;){
+	minute += 3;
+}
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+[continued]
+[if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1130]
 정비병들이 주로 업무를 보는 통합공장의 앞입니다.&lt;br&gt;
 주황색 띠가 둘러져 있는 공장의 모습은 사회에서 본 여느 공장의 모습과 비슷해 보입니다.&lt;br&gt;
 앞에 샵차가 늘어서 있습니다.&lt;br&gt;
@@ -868,20 +883,7 @@ if(minute &gt;= 60){
 
 [[풋살장[00:03]-&gt;풋살장]]
 
-[[2-1초소(위병소)[0:03]-&gt;2-1초소(위병소)]]&lt;/b&gt;
-
-[JavaScript]
-if(trail[trail.length-2]==&quot;공작반&quot; || trail[trail.length-2]==&quot;수송부&quot;){
-	minute += 1;
-}
-else if(trail[trail.length-2]==&quot;운영과/지통실&quot; || trail[trail.length-2]==&quot;풋살장&quot; || trail[trail.length-2]==&quot;2-1초소(위병소)&quot;){
-	minute += 3;
-}
-if(minute &gt;= 60){
-	minute = minute-60;
-    hour+=1;
-}
-[continued]</tw-passagedata><tw-passagedata pid="14" name="궤도 사무실" tags="" position="1400,700" size="100,100">[[나간다-&gt;통합공장 2층]]</tw-passagedata><tw-passagedata pid="15" name="샤워장" tags="" position="900,700" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="16" name="총포 사무실" tags="" position="1400,600" size="100,100">[[나간다-&gt;통합공장 2층]]</tw-passagedata><tw-passagedata pid="17" name="지원통제과" tags="" position="1200,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="18" name="통신 사무실" tags="" position="1400,800" size="100,100">당신은 노크를 한뒤 말했습니다.
+[[2-1초소(위병소)[0:03]-&gt;2-1초소(위병소)]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="14" name="궤도 사무실" tags="" position="1400,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="15" name="샤워장" tags="" position="900,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="16" name="총포 사무실" tags="" position="1400,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;.</tw-passagedata><tw-passagedata pid="17" name="지원통제과" tags="" position="1200,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="18" name="통신 사무실" tags="" position="1400,800" size="100,100">당신은 노크를 한뒤 말했습니다.
 
 *똑똑
 이병 짬찌 들어가도 되겠습니까?
@@ -954,9 +956,22 @@ if(hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630){
 
 &lt;b&gt;[[나간다-&gt;통합공장 2층]]
 
-[[통신 공장으로 간다-&gt;통신공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="19" name="통신공장" tags="" position="1200,600" size="100,100">[[나간다-&gt;통합공장 2층]]
+[[통신 공장으로 간다-&gt;통신공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="19" name="통신공장" tags="" position="1200,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]
 
-[[통신 사무실로간다-&gt;통신 사무실]]</tw-passagedata><tw-passagedata pid="20" name="야외쓰레기장" tags="" position="500,300" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 2040]
+[[통신 사무실로간다-&gt;통신 사무실]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="20" name="야외쓰레기장" tags="" position="500,300" size="100,100">&lt;!--시간변화--&gt;
+[JavaScript]
+if(trail[trail.length-2]==&quot;식당&quot;){
+	minute += 1;
+}
+else if(trail[trail.length-2]==&quot;탄약고&quot; || trail[trail.length-2]==&quot;사열대&quot;){
+	minute += 3;
+}
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+[continued]
+[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 2040]
 대대의 모든 쓰레기가 모이는 야외 쓰레기장입니다.&lt;br&gt;
 많은 수의 고양이들과 함께 쓰레기에서 나는 악취가 풍겨옵니다.
 [continue]
@@ -978,30 +993,7 @@ if(hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630){
 
 [[탄약고[00:03]-&gt;탄약고]]
 
-[[사열대[00:03]-&gt;사열대]]&lt;/b&gt;.
-
-[JavaScript]
-if(trail[trail.length-2]==&quot;식당&quot;){
-	minute += 1;
-}
-else if(trail[trail.length-2]==&quot;탄약고&quot; || trail[trail.length-2]==&quot;사열대&quot;){
-	minute += 3;
-}
-if(minute &gt;= 60){
-	minute = minute-60;
-    hour+=1;
-}
-[continued]</tw-passagedata><tw-passagedata pid="21" name="공작반" tags="" position="1100,300" size="100,100">통합공장 옆에 붙어있는 공작반입니다.
-초록색으로 칠해진 플라스틱 벽 안에서 용접을 하고 있는 간부와 병사의 모습이 보여집니다.
-
-&lt;b&gt;[[안으로 들어간다-&gt;공작반 내부]]
-
-[[통합공장[00:01]-&gt;통합공장]]
-
-[[수송부[00:01]-&gt;수송부]]
-
-[[차량반[00:03]-&gt;차량반]]&lt;/b&gt;
-
+[[사열대[00:03]-&gt;사열대]]&lt;/b&gt;.</tw-passagedata><tw-passagedata pid="21" name="공작반" tags="" position="1100,300" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;수송부&quot; || trail[trail.length-2]==&quot;통합공장&quot;){
 	minute += 1;
@@ -1013,14 +1005,17 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="22" name="차량반" tags="" position="1300,300" size="100,100">&lt;b&gt;[[안으로 들어간다.-&gt;차량반 내부]]
+[continued]
+통합공장 옆에 붙어있는 공작반입니다.
+초록색으로 칠해진 플라스틱 벽 안에서 용접을 하고 있는 간부와 병사의 모습이 보여집니다.
+
+&lt;b&gt;[[안으로 들어간다-&gt;공작반 내부]]
+
+[[통합공장[00:01]-&gt;통합공장]]
 
 [[수송부[00:01]-&gt;수송부]]
 
-[[공작반[00:03]-&gt;공작반]]
-
-[[탄약고[00:05]-&gt;탄약고]]&lt;/b&gt;
-
+[[차량반[00:03]-&gt;차량반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="22" name="차량반" tags="" position="1300,300" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;수송부&quot;){
 	minute += 1;
@@ -1035,14 +1030,14 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="23" name="수송부" tags="" position="1200,300" size="100,100">&lt;b&gt;[[안으로 들어간다.-&gt;수송부 내부]]
+[continued]
+&lt;b&gt;[[안으로 들어간다.-&gt;차량반 내부]]
 
-[[통합공장[00:01]-&gt;통합공장]]
+[[수송부[00:01]-&gt;수송부]]
 
-[[공작반[00:01]-&gt;공작반]]
+[[공작반[00:03]-&gt;공작반]]
 
-[[차량반[00:01]-&gt;차량반]]&lt;/b&gt;
-
+[[탄약고[00:05]-&gt;탄약고]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="23" name="수송부" tags="" position="1200,300" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;통합공장&quot; || trail[trail.length-2]==&quot;공작반&quot; || trail[trail.length-2]==&quot;차량반&quot;){
 	minute += 1;
@@ -1052,6 +1047,13 @@ if(minute &gt;= 60){
     hour+=1;
 }
 [continued]
+&lt;b&gt;[[안으로 들어간다.-&gt;수송부 내부]]
+
+[[통합공장[00:01]-&gt;통합공장]]
+
+[[공작반[00:01]-&gt;공작반]]
+
+[[차량반[00:01]-&gt;차량반]]&lt;/b&gt;
 </tw-passagedata><tw-passagedata pid="24" name="운영과/지통실 내부" tags="" position="1200,100" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1730]
 운영과와 지휘통제실이 일자로 연결되어있는 모습이 보여집니다.
 운영과에서는 간부님들이 대대 업무를 보고계십니다.
@@ -1120,7 +1122,7 @@ if(minute &gt;= 60){
 [continue]
 
 
-[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="29" name="총포정비공장" tags="" position="1000,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="30" name="일반장비정비공장" tags="" position="1000,700" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="31" name="일반장비정비 사무실" tags="" position="1400,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="32" name="공작반 내부" tags="" position="1100,400" size="100,100">&lt;b&gt;[[공작반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="33" name="수송부 내부" tags="" position="1200,400" size="100,100">&lt;b&gt;[[수송부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="34" name="차량반 내부" tags="" position="1300,400" size="100,100">&lt;b&gt;[[차량반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="35" name="2-1초소(위병소)" tags="" position="800,300" size="100,100">&lt;!-- 시간변화--&gt;
+&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="29" name="총포정비공장" tags="" position="1000,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="30" name="일반장비정비공장" tags="" position="1000,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="31" name="일반장비정비 사무실" tags="" position="1400,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="32" name="공작반 내부" tags="" position="1100,400" size="100,100">&lt;b&gt;[[공작반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="33" name="수송부 내부" tags="" position="1200,400" size="100,100">&lt;b&gt;[[수송부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="34" name="차량반 내부" tags="" position="1300,400" size="100,100">&lt;b&gt;[[차량반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="35" name="2-1초소(위병소)" tags="" position="800,300" size="100,100">&lt;!-- 시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;위조실&quot; || trail[trail.length-2]==&quot;풋살장&quot;){
 	minute += 1;
@@ -1180,13 +1182,7 @@ if(minute &gt;= 60){
 
 [[운영과/지통실[00:03]-&gt;운영과/지통실]]
 
-[[통합공장[00:03]-&gt;통합공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="36" name="2-3초소(흡연장)" tags="" position="0,400" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="3-2초소(탄약고)" tags="" position="600,400" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="2-2초소(임시격리시설)" tags="" position="1300,200" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="PX" tags="" position="1100,0" size="100,100">군인에게있어 편의점이자 마트인 PX입니다.&lt;br&gt;
-많은사람들이 오가고 있으며 문앞에는 운영시간이 적혀있다.
-
-&lt;b&gt;[[들어가기-&gt;PX 내부]]
-
-[[운영과/지통실[00:01]-&gt;운영과/지통실]]&lt;/b&gt;
-
+[[통합공장[00:03]-&gt;통합공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="36" name="2-3초소(흡연장)" tags="" position="0,400" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="3-2초소(탄약고)" tags="" position="600,400" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="2-2초소(임시격리시설)" tags="" position="1300,200" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="PX" tags="" position="1100,0" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;운영과/지통실&quot;){
 	minute += 1;
@@ -1195,7 +1191,23 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="40" name="사지방" tags="" position="200,400" size="100,100">[if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
+[continued]
+군인에게있어 편의점이자 마트인 PX입니다.&lt;br&gt;
+많은사람들이 오가고 있으며 문앞에는 운영시간이 적혀있다.
+
+&lt;b&gt;[[들어가기-&gt;PX 내부]]
+
+[[운영과/지통실[00:01]-&gt;운영과/지통실]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="40" name="사지방" tags="" position="200,400" size="100,100">&lt;!--시간변화--&gt;
+[JavaScript]
+if(trail[trail.length-2]==&quot;생활관&quot;){
+	minute += 1;
+}
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+[continued]
+[if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
 여러대의 컴퓨터가 설치되어있습니다.&lt;br&gt;
 웅웅 하는 기계음이 들리고 있으며 많은 제한이 걸려있습니다.&lt;br&gt;
 가끔 간부님들이 오고가고 있습니다.
@@ -1211,17 +1223,17 @@ if(minute &gt;= 60){
 사지방에서 야간연등을 하기 위하여 모여든 사람들로 차있습니다.
 [continue]
 
-&lt;b&gt;[[생활관[00:01]-&gt;생활관]]&lt;/b&gt;
-
+&lt;b&gt;[[생활관[00:01]-&gt;생활관]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="41" name="CP실" tags="" position="700,200" size="100,100"></tw-passagedata><tw-passagedata pid="42" name="위조실" tags="" position="800,400" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
-if(trail[trail.length-2]==&quot;생활관&quot;){
+if(trail[trail.length-2]==&quot;2-1초소(위병소)&quot;){
 	minute += 1;
 }
 if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="41" name="CP실" tags="" position="700,200" size="100,100"></tw-passagedata><tw-passagedata pid="42" name="위조실" tags="" position="800,400" size="100,100">[if hour*100+minute &gt;= 600 &amp;&amp; hour*100+minute &lt; 2000]
+[continued]
+[if hour*100+minute &gt;= 600 &amp;&amp; hour*100+minute &lt; 2000]
 들어가니 위병조장이 허둥댑니다.&lt;br&gt;
 컴퓨터화면에는 위병조장 업무를 위한 창들이 띄워져 있습니다.
 [continue]
@@ -1234,21 +1246,7 @@ if(minute &gt;= 60){
 위에 달려있는 새하얀 전자시계만 밝게 빛나고 있습니다.
 [continue]
 
-&lt;b&gt;[[2-1초소(위병소)[00:01]-&gt;2-1초소(위병소)]]&lt;/b&gt;
-
-[JavaScript]
-if(trail[trail.length-2]==&quot;2-1초소(위병소)&quot;){
-	minute += 1;
-}
-if(minute &gt;= 60){
-	minute = minute-60;
-    hour+=1;
-}
-[continued]</tw-passagedata><tw-passagedata pid="43" name="군수과" tags="" position="900,100" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="체단실" tags="" position="0,500" size="100,100">병사들이 체력을 단련할 수 있도록 시설이 구비되어있는 체력단련실이다.
-구비되어있는 기구들이 많지는 않지만, 최소한의 필요한 기구들은 모두 구비되어있다.
-
-&lt;b&gt;[[생활관[00:01]-&gt;생활관]]&lt;/b&gt;
-
+&lt;b&gt;[[2-1초소(위병소)[00:01]-&gt;2-1초소(위병소)]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="43" name="군수과" tags="" position="900,100" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="체단실" tags="" position="0,500" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;생활관&quot;){
 	minute += 1;
@@ -1257,12 +1255,13 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="45" name="노래방" tags="" position="300,300" size="100,100">컨테이너 안에 노래를 부를 수 있도록 시설이 구비되어있습니다.
-방음이 잘 안되는 시설입니다.
-여기서 노래를 부르는 것은 장기자랑도 겸하는 것이나 다름없습니다.
+[continued]
+병사들이 체력을 단련할 수 있도록 시설이 구비되어있는 체력단련실이다.
+구비되어있는 기구들이 많지는 않지만, 최소한의 필요한 기구들은 모두 구비되어있다.
 
-&lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
+&lt;b&gt;[[생활관[00:01]-&gt;생활관]]&lt;/b&gt;
 
+</tw-passagedata><tw-passagedata pid="45" name="노래방" tags="" position="300,300" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;연병장&quot;){
 	minute += 1;
@@ -1271,7 +1270,22 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="46" name="정비실" tags="" position="300,400" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1130]
+[continued]
+컨테이너 안에 노래를 부를 수 있도록 시설이 구비되어있습니다.
+방음이 잘 안되는 시설입니다.
+여기서 노래를 부르는 것은 장기자랑도 겸하는 것이나 다름없습니다.
+
+&lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="46" name="정비실" tags="" position="300,400" size="100,100">&lt;!--시간변화--&gt;
+[JavaScript]
+if(trail[trail.length-2]==&quot;생활관&quot;){
+	minute += 1;
+}
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+[continued]
+[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1130]
 에어컨, 냉동실, 냉장실, 전자레인지 구비되어있는 정비실입니다.&lt;br&gt;
 주로 음식물을 섭취하는데 쓰입니다.
 [continue]
@@ -1310,17 +1324,7 @@ if(minute &gt;= 60){
 맛있어보입니다.
 [continue]
 
-&lt;b&gt;[[생활관[00:01]-&gt;생활관]]&lt;/b&gt;
-
-[JavaScript]
-if(trail[trail.length-2]==&quot;생활관&quot;){
-	minute += 1;
-}
-if(minute &gt;= 60){
-	minute = minute-60;
-    hour+=1;
-}
-[continued]</tw-passagedata><tw-passagedata pid="47" name="2-4초소(탄약고 옆)" tags="" position="700,300" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="PX 내부" tags="" position="1200,0" size="100,100">문앞에 가판대에 앉아있는 PX병이 건성으로 말합니다.&lt;br&gt;
+&lt;b&gt;[[생활관[00:01]-&gt;생활관]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="47" name="2-4초소(탄약고 옆)" tags="" position="700,300" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="PX 내부" tags="" position="1200,0" size="100,100">문앞에 가판대에 앉아있는 PX병이 건성으로 말합니다.&lt;br&gt;
 &quot;고생하십니다~&quot;&lt;br&gt;
 여느 편의점과 마트의 모습과 비슷한 내부구조를 보이고 있다.
 
@@ -1375,7 +1379,20 @@ Rooms:
 
 [[Front Room]]</tw-passagedata><tw-passagedata pid="53" name="Exit" tags="" position="200,1400" size="100,100">You found the key and went through the door!</tw-passagedata><tw-passagedata pid="54" name="Key" tags="" position="400,1400" size="100,100">key: true
 --
-You picked up the key!</tw-passagedata><tw-passagedata pid="55" name="풋살장" tags="" position="300,100" size="100,100">[if hour*100+minute &gt;= 1600 &amp;&amp; hour*100+minute &lt; 1730]
+You picked up the key!</tw-passagedata><tw-passagedata pid="55" name="풋살장" tags="" position="300,100" size="100,100">&lt;!--시간이동--&gt;
+[JavaScript]
+if(trail[trail.length-2]==&quot;2-1초소(위병소)&quot; || trail[trail.length-2]==&quot;연병장&quot;){
+	minute += 1;
+}
+else if(trail[trail.length-2]==&quot;통합공장&quot;){
+	minute += 3;
+}
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+[continued]
+[if hour*100+minute &gt;= 1600 &amp;&amp; hour*100+minute &lt; 1730]
 인공잔디가 깔끔하게 깔려있는 풋살장입니다.&lt;br&gt;
 입구 옆에는 풋살 규칙 등이 적혀 있습니다.&lt;br&gt;
 다른 중대 병사들이 모두 섞여 풋살을 하고 있습니다.&lt;br&gt;
@@ -1394,20 +1411,7 @@ You picked up the key!</tw-passagedata><tw-passagedata pid="55" name="풋살장"
 
 [[연병장[00:01]-&gt;연병장]] 
 
-[[통합공장[00:03]-&gt;통합공장]] &lt;/b&gt;
-
-[JavaScript]
-if(trail[trail.length-2]==&quot;2-1초소(위병소)&quot; || trail[trail.length-2]==&quot;연병장&quot;){
-	minute += 1;
-}
-else if(trail[trail.length-2]==&quot;통합공장&quot;){
-	minute += 3;
-}
-if(minute &gt;= 60){
-	minute = minute-60;
-    hour+=1;
-}
-[continued]</tw-passagedata><tw-passagedata pid="56" name="eat" tags="" position="400,500" size="100,100">eat: true
+[[통합공장[00:03]-&gt;통합공장]] &lt;/b&gt;</tw-passagedata><tw-passagedata pid="56" name="eat" tags="" position="400,500" size="100,100">eat: true
 minute: minute+20
 --
 식사완료</tw-passagedata><tw-passagedata pid="57" name="오전일과" tags="" position="1300,1000" size="100,100">AM_work: false
