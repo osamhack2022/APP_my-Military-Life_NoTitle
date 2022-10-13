@@ -952,9 +952,9 @@ if(hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630){
 [continue]
 
 
-[[나간다-&gt;통합공장 2층]]
+&lt;b&gt;[[나간다-&gt;통합공장 2층]]
 
-[[통신 공장으로 간다-&gt;통신공장]]</tw-passagedata><tw-passagedata pid="19" name="통신공장" tags="" position="1200,600" size="100,100">[[나간다-&gt;통합공장 2층]]
+[[통신 공장으로 간다-&gt;통신공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="19" name="통신공장" tags="" position="1200,600" size="100,100">[[나간다-&gt;통합공장 2층]]
 
 [[통신 사무실로간다-&gt;통신 사무실]]</tw-passagedata><tw-passagedata pid="20" name="야외쓰레기장" tags="" position="500,300" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 2040]
 대대의 모든 쓰레기가 모이는 야외 쓰레기장입니다.&lt;br&gt;
@@ -1120,7 +1120,20 @@ if(minute &gt;= 60){
 [continue]
 
 
-[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="29" name="총포정비공장" tags="" position="1000,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="30" name="일반장비정비공장" tags="" position="1000,700" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="31" name="일반장비정비 사무실" tags="" position="1400,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="32" name="공작반 내부" tags="" position="1100,400" size="100,100">&lt;b&gt;[[공작반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="33" name="수송부 내부" tags="" position="1200,400" size="100,100">&lt;b&gt;[[수송부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="34" name="차량반 내부" tags="" position="1300,400" size="100,100">&lt;b&gt;[[차량반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="35" name="2-1초소(위병소)" tags="" position="800,300" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
+[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="29" name="총포정비공장" tags="" position="1000,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="30" name="일반장비정비공장" tags="" position="1000,700" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="31" name="일반장비정비 사무실" tags="" position="1400,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="32" name="공작반 내부" tags="" position="1100,400" size="100,100">&lt;b&gt;[[공작반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="33" name="수송부 내부" tags="" position="1200,400" size="100,100">&lt;b&gt;[[수송부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="34" name="차량반 내부" tags="" position="1300,400" size="100,100">&lt;b&gt;[[차량반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="35" name="2-1초소(위병소)" tags="" position="800,300" size="100,100">&lt;!-- 시간변화--&gt;
+[JavaScript]
+if(trail[trail.length-2]==&quot;위조실&quot; || trail[trail.length-2]==&quot;풋살장&quot;){
+	minute += 1;
+}
+else if(trail[trail.length-2]==&quot;운영과/지통실&quot; || trail[trail.length-2]==&quot;통합공장&quot;){
+	minute += 3;
+}
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+[continued]
+[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
 우리대대의 위병소입니다.&lt;br&gt;
 경계병이 경계를 서고 있습니다.&lt;br&gt;
 옆에는 위병조장이 일을 하고 있는 위조실이 보입니다.&lt;br&gt;
@@ -1167,21 +1180,7 @@ if(minute &gt;= 60){
 
 [[운영과/지통실[00:03]-&gt;운영과/지통실]]
 
-[[통합공장[00:03]-&gt;통합공장]]&lt;/b&gt;
-
-
-[JavaScript]
-if(trail[trail.length-2]==&quot;위조실&quot; || trail[trail.length-2]==&quot;풋살장&quot;){
-	minute += 1;
-}
-else if(trail[trail.length-2]==&quot;운영과/지통실&quot; || trail[trail.length-2]==&quot;통합공장&quot;){
-	minute += 3;
-}
-if(minute &gt;= 60){
-	minute = minute-60;
-    hour+=1;
-}
-[continued]</tw-passagedata><tw-passagedata pid="36" name="2-3초소(흡연장)" tags="" position="0,400" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="3-2초소(탄약고)" tags="" position="600,400" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="2-2초소(임시격리시설)" tags="" position="1300,200" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="PX" tags="" position="1100,0" size="100,100">군인에게있어 편의점이자 마트인 PX입니다.&lt;br&gt;
+[[통합공장[00:03]-&gt;통합공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="36" name="2-3초소(흡연장)" tags="" position="0,400" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="3-2초소(탄약고)" tags="" position="600,400" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="2-2초소(임시격리시설)" tags="" position="1300,200" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="PX" tags="" position="1100,0" size="100,100">군인에게있어 편의점이자 마트인 PX입니다.&lt;br&gt;
 많은사람들이 오가고 있으며 문앞에는 운영시간이 적혀있다.
 
 &lt;b&gt;[[들어가기-&gt;PX 내부]]
