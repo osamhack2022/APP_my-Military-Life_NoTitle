@@ -413,7 +413,7 @@ if(minute &gt;= 60){
 안에는 아무도 없는듯 소리가 메아리칩니다.
 [continue]
 
-[if !(eat)]
+[if !(eat) &amp;&amp; (hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830) || (hour*100+minute &gt;= 1100 &amp;&amp; hour*100+minute &lt; 1300) || (hour*100+minute &gt;= 1700 &amp;&amp; hour*100+minute &lt; 1830)]
 {reveal link: &#39;식사하기&#39;, passage: &#39;eat&#39;}
 [continue]
 
@@ -503,19 +503,19 @@ if(minute &gt;= 60){
 방금기상해서 대부분의 전우들이 졸려보이는 얼굴입니다.&lt;br&gt;
 모두가 아침점호를 준비하고 있습니다.
 &lt;!--계절이상 실내점호--&gt;
-[if (hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700) &amp;&amp; weather==&quot;비&quot; || weather==&quot;눈&quot;]
+[if (hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700) &amp;&amp; (weather==&quot;비&quot; || weather==&quot;눈&quot;)]
 &lt;br&gt;
 방송이 흘러나옵니다.&lt;br&gt;
-금일은 비가오는 관계로 실내 점호입니다.&lt;br&gt;
+금일은 기상 악화로 인해 실내 점호입니다.&lt;br&gt;
 각 생활관에서 환호성이 터져나온다.&lt;br&gt;
 몇몇 선임들은 다시 드러눕기도 한다.&lt;br&gt;
 [continue]
 &lt;!--통합점호--&gt;
 [if (hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700) &amp;&amp; weather==&quot;맑음&quot;]
 &lt;br&gt;
-방송이 흘러나옵니다.&lt;br&gt;
-금일은 통합점호입니다.&lt;br&gt;
-06시40분까지 행정반 앞으로 집합해주시길 바랍니다.&lt;br&gt;
+익숙한 나팔소리와 함께 방송이 나옵니다.&lt;br&gt;
+&quot;기상 기상, 금일은 통합 점호입니다.&quot;.&lt;br&gt;
+&quot;06시40분까지 행정반 앞으로 집합해주시길 바랍니다.&quot;&lt;br&gt;
 통합점호라는 말을 듣자 마자 주변에서 탄식소리가 흘러나온다.&lt;br&gt;&lt;br&gt;
 &lt;b&gt;[[행정반 앞으로 가기(연병장)-&gt;연병장]]&lt;/b&gt;&lt;br&gt;
 [continue]
@@ -808,8 +808,8 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="12" name="임시격리시설" tags="" position="1000,200" size="100,100">임시격리시설의 앞입니다.
-오른쪽에 차량을 청소하기 위하여 높게 쌓여있는 콘크리트 구조물이 보여집니다.
+[continued]</tw-passagedata><tw-passagedata pid="12" name="임시격리시설" tags="" position="1000,200" size="100,100">임시격리시설의 앞입니다.&lt;br&gt;
+오른쪽에 차량을 청소하기 위하여 만들어진 콘크리트 구조밀이 보여집니다.
 
 [[안으로 들어간다-&gt;임시격리시설 내부]]
 
