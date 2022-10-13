@@ -497,7 +497,27 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="7" name="생활관" tags="" position="100,400" size="100,100">&lt;!--아침 기본메세지--&gt;
+[continued]</tw-passagedata><tw-passagedata pid="7" name="생활관" tags="" position="100,400" size="100,100">&lt;!--시간계산--&gt;
+[JavaScript]
+if(trail[trail.length-2]==&quot;체단실&quot; || trail[trail.length-2]==&quot;정비실&quot; || trail[trail.length-2]==&quot;사지방&quot; || trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;행정반&quot;){
+	minute += 1;
+}
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+if(hour*100+minute &gt;= 2400){
+	hour = hour-24;
+    day+=1;
+}
+[continued]
+&lt;!--취침--&gt;
+[if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
+당신이 생활하고있는 생활관입니다.&lt;br&gt;
+모두가 취침을 하고있습니다.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;day++;hour=6;minute=30;homedate++;&quot;&gt;취침하기&lt;/a&gt;&lt;/b&gt;
+[continue]
+&lt;!--아침 기본메세지--&gt;
 [if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 방금기상해서 대부분의 전우들이 졸려보이는 얼굴입니다.&lt;br&gt;
@@ -611,19 +631,13 @@ if(minute &gt;= 60){
 [if hour*100+minute &gt;= 2200 &amp;&amp; hour*100+minute &lt; 2205]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 지금은 취침에 들어야 하는 시간입니다.&lt;br&gt;
-&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;day++;hour=6;minute=31;homedate++;&quot;&gt;취침하기&lt;/a&gt;&lt;/b&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;day++;hour=6;minute=30;homedate++;&quot;&gt;취침하기&lt;/a&gt;&lt;/b&gt;
 [continue]
 &lt;!--취침--&gt;
 [if hour*100+minute &gt;= 2205 &amp;&amp; hour*100+minute &lt; 2359]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 모두가 취침을 하고있습니다.&lt;br&gt;
-&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;day++;hour=6;minute=31;homedate++;&quot;&gt;취침하기&lt;/a&gt;&lt;/b&gt;
-[continue]
-&lt;!--취침--&gt;
-[if hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630]
-당신이 생활하고있는 생활관입니다.&lt;br&gt;
-모두가 취침을 하고있습니다.&lt;br&gt;
-&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;day++;hour=6;minute=31;homedate++;&quot;&gt;취침하기&lt;/a&gt;&lt;/b&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;day++;hour=6;minute=30;homedate++;&quot;&gt;취침하기&lt;/a&gt;&lt;/b&gt;
 [continue]
 
 &lt;b&gt;[[행정반[00:01]-&gt;행정반]]&lt;/b&gt;
@@ -637,21 +651,7 @@ if(minute &gt;= 60){
 &lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
 
 &lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;minute+=10;&quot;&gt;시간보내기(10분)&lt;/a&gt;&lt;/b&gt;
-[[새로고침-&gt;생활관]]
-
-[JavaScript]
-if(trail[trail.length-2]==&quot;체단실&quot; || trail[trail.length-2]==&quot;정비실&quot; || trail[trail.length-2]==&quot;사지방&quot; || trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;행정반&quot;){
-	minute += 1;
-}
-if(minute &gt;= 60){
-	minute = minute-60;
-    hour+=1;
-}
-if(hour &gt;=24){
-	hour = hour-24;
-    day+=1;
-}
-[continued]</tw-passagedata><tw-passagedata pid="8" name="행정반" tags="" position="100,500" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 830]
+[[새로고침-&gt;생활관]]</tw-passagedata><tw-passagedata pid="8" name="행정반" tags="" position="100,500" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 830]
 당신이 소속되어있는 중대의 행정반입니다.&lt;br&gt;
 당직 부사관과 당직 사관님께서 오전에 보고해야할 내용과 업무를 급하게 하시고 계십니다.
 [continue]
@@ -1389,11 +1389,11 @@ You picked up the key!</tw-passagedata><tw-passagedata pid="55" name="풋살장"
 입구 옆에는 풋살 규칙등이 적혀 있습니다.
 [continue]
 
-[[2-1초소(위병소)[00:01]-&gt;2-1초소(위병소)]] 
+&lt;b&gt;[[2-1초소(위병소)[00:01]-&gt;2-1초소(위병소)]] 
 
 [[연병장[00:01]-&gt;연병장]] 
 
-[[통합공장[00:03]-&gt;통합공장]] 
+[[통합공장[00:03]-&gt;통합공장]] &lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;2-1초소(위병소)&quot; || trail[trail.length-2]==&quot;연병장&quot;){
