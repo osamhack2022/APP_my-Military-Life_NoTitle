@@ -229,7 +229,7 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 총기수불대와 들어가는 문 두개가 보여지고 있습니다.
 하나는 운영과로 통하는 문, 다른 하나는 지휘통제실로 연결되는 문입니다.
 
-[[안으로 들어간다-&gt;운영과/지통실 내부]]
+&lt;b&gt;[[안으로 들어간다-&gt;운영과/지통실 내부]]
 
 [[임시격리시설[00:01]-&gt;임시격리시설]]
 
@@ -237,7 +237,7 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 
 [[연병장[00:03]-&gt;연병장]]
 
-[[2-1초소(위병소)[00:03]-&gt;2-1초소(위병소)]]
+[[2-1초소(위병소)[00:03]-&gt;2-1초소(위병소)]]&lt;/b&gt;
 
 [[PX]]
 
@@ -692,13 +692,13 @@ if(hour*100+minute &gt;= 2400){
 가끔 당직 사관님께서 주무시고 계시면 조용히 빠져나가 알아서 교대합니다.
 [continue]
 
-[[행정보급관실[00:01]-&gt;행정보급관실]]
+&lt;b&gt;[[행정보급관실[00:01]-&gt;행정보급관실]]
 
 [[중대장실[00:01]-&gt;중대장실]]
 
 [[생활관[00:01]-&gt;생활관]]
 
-[[연병장[00:01]-&gt;연병장]]
+[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;생활관&quot; || trail[trail.length-2]==&quot;중대장실&quot; || trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;행정보급관실&quot;){
@@ -738,7 +738,7 @@ if(minute &gt;= 60){
 문앞에 있는 푯말은 [부재중]으로 되어있습니다.
 [continue]
 
-[[행정반[00:01]-&gt;행정반]]
+&lt;b&gt;[[행정반[00:01]-&gt;행정반]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;행정반&quot;){
@@ -780,7 +780,7 @@ if(minute &gt;= 60){
 문앞에 있는 푯말은 [부재중]으로 되어있습니다.
 [continue]
 
-[[행정반[00:01]-&gt;행정반]]
+&lt;b&gt;[[행정반[00:01]-&gt;행정반]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;행정반&quot;){
@@ -793,9 +793,9 @@ if(minute &gt;= 60){
 [continued]</tw-passagedata><tw-passagedata pid="11" name="탄약고" tags="" position="600,300" size="100,100">대대의 핵심시설중 하나인 탄약고입니다.
 사람이 출입시 울리는 센서와 카메라가 보입니다.
 
-[[야외쓰레기장[00:03]-&gt;야외쓰레기장]]
+&lt;b&gt;[[야외쓰레기장[00:03]-&gt;야외쓰레기장]]
 
-[[차량반[00:05]-&gt;차량반]]
+[[차량반[00:05]-&gt;차량반]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;야외쓰레기장&quot;){
@@ -811,9 +811,9 @@ if(minute &gt;= 60){
 [continued]</tw-passagedata><tw-passagedata pid="12" name="임시격리시설" tags="" position="1000,200" size="100,100">임시격리시설의 앞입니다.&lt;br&gt;
 오른쪽에 차량을 청소하기 위하여 만들어진 콘크리트 구조밀이 보여집니다.
 
-[[안으로 들어간다-&gt;임시격리시설 내부]]
+&lt;b&gt;[[안으로 들어간다-&gt;임시격리시설 내부]]
 
-[[운영과/지통실[00:01]-&gt;운영과/지통실]]
+[[운영과/지통실[00:01]-&gt;운영과/지통실]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;운영과/지통실&quot;){
@@ -858,7 +858,7 @@ if(minute &gt;= 60){
 앞에 샵차가 늘어서 있습니다.
 [continue]
 
-[[안으로 들어간다-&gt;통합공장 내부]]
+&lt;b&gt;[[안으로 들어간다-&gt;통합공장 내부]]
 
 [[공작반[00:01]-&gt;공작반]]
 
@@ -868,7 +868,7 @@ if(minute &gt;= 60){
 
 [[풋살장[00:03]-&gt;풋살장]]
 
-[[2-1초소(위병소)[0:03]-&gt;2-1초소(위병소)]]
+[[2-1초소(위병소)[0:03]-&gt;2-1초소(위병소)]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;공작반&quot; || trail[trail.length-2]==&quot;수송부&quot;){
@@ -881,19 +881,21 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="14" name="궤도 사무실" tags="" position="1400,700" size="100,100">[[나간다-&gt;통합공장 2층]]</tw-passagedata><tw-passagedata pid="15" name="샤워장" tags="" position="900,700" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="16" name="총포 사무실" tags="" position="1400,600" size="100,100">[[나간다-&gt;통합공장 2층]]</tw-passagedata><tw-passagedata pid="17" name="지원통제과" tags="" position="1200,500" size="100,100">[[나간다-&gt;통합공장 2층]]</tw-passagedata><tw-passagedata pid="18" name="통신 사무실" tags="" position="1400,800" size="100,100">당신은 노크를 한뒤 말했습니다.
+[continued]</tw-passagedata><tw-passagedata pid="14" name="궤도 사무실" tags="" position="1400,700" size="100,100">[[나간다-&gt;통합공장 2층]]</tw-passagedata><tw-passagedata pid="15" name="샤워장" tags="" position="900,700" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="16" name="총포 사무실" tags="" position="1400,600" size="100,100">[[나간다-&gt;통합공장 2층]]</tw-passagedata><tw-passagedata pid="17" name="지원통제과" tags="" position="1200,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="18" name="통신 사무실" tags="" position="1400,800" size="100,100">당신은 노크를 한뒤 말했습니다.
 
 *똑똑
 이병 짬찌 들어가도 되겠습니까?
 
 &lt;!--#################################################--&gt;
-[if hour*100+minute &lt; 1200]
-PM_work=false;
-[continue]
-[if hour*100+minute &gt;= 1200]
-AM_work=false;
-[continue]
 
+[JavaScript]
+if(hour*100+minute &lt; 1200){
+	PM_work=false;
+}
+else if(hour*100+minute &gt;= 1200){
+	AM_work=false;
+}
+[continued]
 
 [if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 1130]
 &quot;어~ 들어와&quot;
@@ -972,11 +974,11 @@ if(hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630){
 많은 수의 고양이들과 함께 쓰레기에서 나는 악취가 풍겨옵니다.
 [continue]
 
-[[식당[00:01]-&gt;식당]]
+&lt;b&gt;[[식당[00:01]-&gt;식당]]
 
 [[탄약고[00:03]-&gt;탄약고]]
 
-[[사열대[00:03]-&gt;사열대]]
+[[사열대[00:03]-&gt;사열대]]&lt;/b&gt;.
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;식당&quot;){
@@ -992,13 +994,13 @@ if(minute &gt;= 60){
 [continued]</tw-passagedata><tw-passagedata pid="21" name="공작반" tags="" position="1100,300" size="100,100">통합공장 옆에 붙어있는 공작반입니다.
 초록색으로 칠해진 플라스틱 벽 안에서 용접을 하고 있는 간부와 병사의 모습이 보여집니다.
 
-[[안으로 들어간다-&gt;공작반 내부]]
+&lt;b&gt;[[안으로 들어간다-&gt;공작반 내부]]
 
 [[통합공장[00:01]-&gt;통합공장]]
 
 [[수송부[00:01]-&gt;수송부]]
 
-[[차량반[00:03]-&gt;차량반]]
+[[차량반[00:03]-&gt;차량반]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;수송부&quot; || trail[trail.length-2]==&quot;통합공장&quot;){
@@ -1011,13 +1013,13 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="22" name="차량반" tags="" position="1300,300" size="100,100">[[안으로 들어간다.-&gt;차량반 내부]]
+[continued]</tw-passagedata><tw-passagedata pid="22" name="차량반" tags="" position="1300,300" size="100,100">&lt;b&gt;[[안으로 들어간다.-&gt;차량반 내부]]
 
 [[수송부[00:01]-&gt;수송부]]
 
 [[공작반[00:03]-&gt;공작반]]
 
-[[탄약고[00:05]-&gt;탄약고]]
+[[탄약고[00:05]-&gt;탄약고]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;수송부&quot;){
@@ -1033,13 +1035,13 @@ if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
 }
-[continued]</tw-passagedata><tw-passagedata pid="23" name="수송부" tags="" position="1200,300" size="100,100">[[안으로 들어간다.-&gt;수송부 내부]]
+[continued]</tw-passagedata><tw-passagedata pid="23" name="수송부" tags="" position="1200,300" size="100,100">&lt;b&gt;[[안으로 들어간다.-&gt;수송부 내부]]
 
 [[통합공장[00:01]-&gt;통합공장]]
 
 [[공작반[00:01]-&gt;공작반]]
 
-[[차량반[00:01]-&gt;차량반]]
+[[차량반[00:01]-&gt;차량반]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;통합공장&quot; || trail[trail.length-2]==&quot;공작반&quot; || trail[trail.length-2]==&quot;차량반&quot;){
@@ -1066,10 +1068,10 @@ if(minute &gt;= 60){
 지휘통제실에서는 당직 사령님과 CCTV병이 보입니다.
 [continue]
 
-[[나간다-&gt;운영과/지통실]]</tw-passagedata><tw-passagedata pid="25" name="임시격리시설 내부" tags="" position="1200,200" size="100,100">부대내 휴가복귀자,  밀접접촉자, 확진자들을 격리하기위한 시설입니다.
+&lt;b&gt;[[나간다-&gt;운영과/지통실]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="25" name="임시격리시설 내부" tags="" position="1200,200" size="100,100">부대내 휴가복귀자,  밀접접촉자, 확진자들을 격리하기위한 시설입니다.
 1부터 10호실까지 철문이 늘어져있습니다.
 
-[[나간다-&gt;임시격리시설]]</tw-passagedata><tw-passagedata pid="26" name="통합공장 내부" tags="" position="1000,500" size="100,100">[[나간다-&gt;통합공장]]
+&lt;b&gt;[[나간다-&gt;임시격리시설]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="26" name="통합공장 내부" tags="" position="1000,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장]]
 
 [[2층으로 올라간다-&gt;통합공장 2층]]
 
@@ -1079,7 +1081,7 @@ if(minute &gt;= 60){
 
 [[들어간다(일반장비정비공장)-&gt;일반장비정비공장]]
 
-[[들어간다(통합정비공장)-&gt;통합정비공장]]</tw-passagedata><tw-passagedata pid="27" name="통합공장 2층" tags="" position="1300,500" size="100,100">[[1층으로 내려간다-&gt;통합공장 내부]]
+[[들어간다(통합정비공장)-&gt;통합정비공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="27" name="통합공장 2층" tags="" position="1300,500" size="100,100">&lt;b&gt;[[1층으로 내려간다-&gt;통합공장 내부]]
 
 [[들어간다(지원통제과)-&gt;지원통제과]]
 
@@ -1091,7 +1093,7 @@ if(minute &gt;= 60){
 
 [[들어간다(통신 사무실)-&gt;통신 사무실]]
 
-[[들어간다(통신공장)-&gt;통신공장]]</tw-passagedata><tw-passagedata pid="28" name="통합정비공장" tags="" position="1000,800" size="100,100">[if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1130]
+[[들어간다(통신공장)-&gt;통신공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="28" name="통합정비공장" tags="" position="1000,800" size="100,100">[if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1130]
 궤도반 병사들과 간부님들이 일하는 모습이 보이고 있습니다.&lt;br&gt;
 병사들은 일을 한다기 보다는 공구를 나르는 역할을 주로 하고 있는것 같습니다.
 [continue]
@@ -1118,7 +1120,7 @@ if(minute &gt;= 60){
 [continue]
 
 
-[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="29" name="총포정비공장" tags="" position="1000,600" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="30" name="일반장비정비공장" tags="" position="1000,700" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="31" name="일반장비정비 사무실" tags="" position="1400,500" size="100,100">[[나간다-&gt;통합공장 2층]]</tw-passagedata><tw-passagedata pid="32" name="공작반 내부" tags="" position="1100,400" size="100,100">[[공작반]]</tw-passagedata><tw-passagedata pid="33" name="수송부 내부" tags="" position="1200,400" size="100,100">[[수송부]]</tw-passagedata><tw-passagedata pid="34" name="차량반 내부" tags="" position="1300,400" size="100,100">[[차량반]]</tw-passagedata><tw-passagedata pid="35" name="2-1초소(위병소)" tags="" position="800,300" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
+[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="29" name="총포정비공장" tags="" position="1000,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="30" name="일반장비정비공장" tags="" position="1000,700" size="100,100">[[나간다-&gt;통합공장 내부]]</tw-passagedata><tw-passagedata pid="31" name="일반장비정비 사무실" tags="" position="1400,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="32" name="공작반 내부" tags="" position="1100,400" size="100,100">&lt;b&gt;[[공작반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="33" name="수송부 내부" tags="" position="1200,400" size="100,100">&lt;b&gt;[[수송부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="34" name="차량반 내부" tags="" position="1300,400" size="100,100">&lt;b&gt;[[차량반]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="35" name="2-1초소(위병소)" tags="" position="800,300" size="100,100">[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
 우리대대의 위병소입니다.&lt;br&gt;
 경계병이 경계를 서고 있습니다.&lt;br&gt;
 옆에는 위병조장이 일을 하고 있는 위조실이 보입니다.&lt;br&gt;
@@ -1159,13 +1161,13 @@ if(minute &gt;= 60){
 차가 다가오면 CCTV근무자가 뛰쳐나올 것입니다.
 [continue]
 
-[[위조실[00:01]-&gt;위조실]]
+&lt;b&gt;[[위조실[00:01]-&gt;위조실]]
 
 [[풋살장[00:01]-&gt;풋살장]]
 
 [[운영과/지통실[00:03]-&gt;운영과/지통실]]
 
-[[통합공장[00:03]-&gt;통합공장]]
+[[통합공장[00:03]-&gt;통합공장]]&lt;/b&gt;
 
 
 [JavaScript]
@@ -1182,9 +1184,9 @@ if(minute &gt;= 60){
 [continued]</tw-passagedata><tw-passagedata pid="36" name="2-3초소(흡연장)" tags="" position="0,400" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="3-2초소(탄약고)" tags="" position="600,400" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="2-2초소(임시격리시설)" tags="" position="1300,200" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="PX" tags="" position="1100,0" size="100,100">군인에게있어 편의점이자 마트인 PX입니다.&lt;br&gt;
 많은사람들이 오가고 있으며 문앞에는 운영시간이 적혀있다.
 
-[[들어가기-&gt;PX 내부]]
+&lt;b&gt;[[들어가기-&gt;PX 내부]]
 
-[[운영과/지통실[00:01]-&gt;운영과/지통실]]
+[[운영과/지통실[00:01]-&gt;운영과/지통실]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;운영과/지통실&quot;){
@@ -1210,7 +1212,7 @@ if(minute &gt;= 60){
 사지방에서 야간연등을 하기 위하여 모여든 사람들로 차있습니다.
 [continue]
 
-[[생활관[00:01]-&gt;생활관]]
+&lt;b&gt;[[생활관[00:01]-&gt;생활관]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;생활관&quot;){
@@ -1233,7 +1235,7 @@ if(minute &gt;= 60){
 위에 달려있는 새하얀 전자시계만 밝게 빛나고 있습니다.
 [continue]
 
-[[2-1초소(위병소)[00:01]-&gt;2-1초소(위병소)]]
+&lt;b&gt;[[2-1초소(위병소)[00:01]-&gt;2-1초소(위병소)]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;2-1초소(위병소)&quot;){
@@ -1246,7 +1248,7 @@ if(minute &gt;= 60){
 [continued]</tw-passagedata><tw-passagedata pid="43" name="군수과" tags="" position="900,100" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="체단실" tags="" position="0,500" size="100,100">병사들이 체력을 단련할 수 있도록 시설이 구비되어있는 체력단련실이다.
 구비되어있는 기구들이 많지는 않지만, 최소한의 필요한 기구들은 모두 구비되어있다.
 
-[[생활관[00:01]-&gt;생활관]]
+&lt;b&gt;[[생활관[00:01]-&gt;생활관]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;생활관&quot;){
@@ -1260,7 +1262,7 @@ if(minute &gt;= 60){
 방음이 잘 안되는 시설입니다.
 여기서 노래를 부르는 것은 장기자랑도 겸하는 것이나 다름없습니다.
 
-[[연병장[00:01]-&gt;연병장]]
+&lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;연병장&quot;){
@@ -1309,7 +1311,7 @@ if(minute &gt;= 60){
 맛있어보입니다.
 [continue]
 
-[[생활관[00:01]-&gt;생활관]]
+&lt;b&gt;[[생활관[00:01]-&gt;생활관]]&lt;/b&gt;
 
 [JavaScript]
 if(trail[trail.length-2]==&quot;생활관&quot;){
@@ -1323,7 +1325,7 @@ if(minute &gt;= 60){
 &quot;고생하십니다~&quot;&lt;br&gt;
 여느 편의점과 마트의 모습과 비슷한 내부구조를 보이고 있다.
 
-[[PX]]</tw-passagedata><tw-passagedata pid="49" name="구현 상황" tags="" position="200,100" size="100,100">//장소 이동 시간변경 구현예정
+&lt;b&gt;[[PX]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="49" name="구현 상황" tags="" position="200,100" size="100,100">//장소 이동 시간변경 구현예정
  - 현재 장소가 어디인가에 따라 시간이 가도록 구현 = 이동을 하는 장소가 어디인가에 따라 걸리는 시간이 달라서 취소
  - 이전 passage이름을 prev-passage에 저장한뒤 현재 passage이름을 now-passage에 넣어 비교하여 구현 = 현재 구현 및 테스트중 &lt;- &lt;div style=&quot;color:red;&quot;&gt;내부함수 문제로 보류&lt;/div&gt;
  - 리스트 trail(이동한 장소를 순서대로 저장)을 불러와서 trail[trail.length-2]위치로 전에 있던곳이 어디인가에 따라 시간이 이동되도록 구현 &lt;- **완료**
