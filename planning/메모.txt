@@ -9,5 +9,6 @@
 stress = stress+Math.round(((1+((military_discipline*-1)*0.1)))*10)/10;
 stamina_strength
 military_discipline
+reputation
 <b><div style="color:green;">평판↑</div></b>
 <b><div style="color:green;">군기↑</div></b>
