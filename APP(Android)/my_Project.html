@@ -53,15 +53,9 @@
 
 header .left{
   display:block;
+  border: solid 1px black;
   width:5vmax;
   font-family: 'HBIOS-SYS';
-}
-
-#left_up{
-  
-}
-#left_down{
-  
 }
 
 header .center{
@@ -71,9 +65,11 @@ header .center{
 }
 #str{
   background-color: red;
+  border: solid 1px black;
 }
 #strs{
   background-color: blue;
+  border: solid 1px black;
 }
 header .right{
   display:block;
@@ -81,24 +77,23 @@ header .right{
   font-family: 'HBIOS-SYS';
 }
 #md{
-  background-color: skyblue;
+  background-color: #4BA621;
+  border: solid 1px black;
   display:block;
 }
 #rep{
-  background-color: green;
+  background-color: #CFCFCF;
+  border: solid 1px black;
 }
 
 footer .left{
   font-family: 'HBIOS-SYS';
-  background-color: cyan;
 }
 footer .center{
   font-family: 'HBIOS-SYS';
-  background-color: magenta;
 }
 footer .right{
   font-family: 'HBIOS-SYS';
-  background-color: yellow;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">engine.state.set("milidate", 499);
 engine.state.set("homedate", 0);
 engine.state.set("go_home", 0);
@@ -111,6 +106,7 @@ engine.state.set("weather", "맑음");
 engine.state.set("noob", true);
 engine.state.set("miss", false);
 engine.state.set("prev", "");
+engine.state.set("now_position", "");
 //############################################################
 engine.state.set("faststart", false); //평판, 군기 내리고 빠르게 시작
 //############################################################
@@ -153,6 +149,7 @@ engine.state.set("calendar2021", [[],[[],['1','1'], ['1','2'], ['1','3'], ['1','
 
 window.onload = function(){
   playAlert = setInterval(function() {
+    now_position = trail[trail.length-1]
   }, 0.2);
 }</script><tw-passagedata pid="1" name="시작전" tags="" position="100,100" size="100,100">month: 08
 day : 02
@@ -161,8 +158,14 @@ minute: 30
 milidate: 499
 homedate: 0
 go_home: milidate - homedate
+stress:0
+stamina_strength:0
+military_discipline:0
+reputation:0
 
-config.header.left: &quot;&lt;div id=&#39;left_up&#39; onclick=&#39;left_up.innerHTML = {go_home}&#39;&gt;{month}월{day}일&amp;nbsp{hour}:{minute} | {weather}&lt;/div&gt;&lt;div id=&#39;left_down&#39;&gt;상태&lt;/div&gt;&quot;
+
+
+config.header.left: &quot;&lt;div id=&#39;left_up&#39; onclick=&#39;left_up.innerHTML = {go_home}&#39;&gt;{month}월{day}일&amp;nbsp{hour}:{minute} | {weather}&lt;/div&gt;&lt;div id=&#39;left_down&#39;&gt;현재 위치: {now_position}&lt;/div&gt;&quot;
 config.header.center:&quot;&lt;div id=&#39;str&#39;&gt;체력/근력: {stamina_strength}&lt;/div&gt;&lt;div style=&#39;color: white;&#39; id=&#39;strs&#39;&gt;스트레스: {stress}&lt;/div&gt;&quot;
 config.header.right:&quot;&lt;div id=&#39;md&#39;&gt; 군기: {military_discipline}&lt;/div&gt;&lt;div id=&#39;rep&#39;&gt;평판: {reputation}&lt;/div&gt;&quot;
 
@@ -187,7 +190,9 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 
 &lt;b&gt;[[구현 상황]]&lt;/b&gt;
 
-&lt;b&gt;[[room key test]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="2" name="새로운 시작" tags="" position="100,200" size="100,100">오~ 너가 신병인가?&lt;br&gt;
+&lt;b&gt;[[room key test]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="2" name="새로운 시작" tags="" position="100,200" size="100,100">config.header.left: &quot;&lt;div id=&#39;left_up&#39; onclick=&#39;left_up.innerHTML = {go_home}&#39;&gt;{month}월{day}일&amp;nbsp{hour}:{minute} | {weather}&lt;/div&gt;&lt;div id=&#39;left_down&#39;&gt;현재 위치: 튜토리얼&lt;/div&gt;&quot;
+--
+오~ 너가 신병인가?&lt;br&gt;
 머리 보니까 옛날생각나는구만~ &lt;br&gt;
 &lt;br&gt;
 응? 내가 누구냐고?&lt;br&gt;
@@ -199,7 +204,9 @@ config.style.page.font: &quot;Chosunilbo_myungjo&quot;
 
 [[따라가기-&gt;생활관(2주대기)]]
 
-[[다 아니까 굳이 안가르주셔도 됩니다.-&gt;새로운 시작2]]</tw-passagedata><tw-passagedata pid="3" name="운영과/지통실" tags="" position="1000,100" size="100,100">&lt;!--시간변화--&gt;
+[[다 아니까 굳이 안가르주셔도 됩니다.-&gt;새로운 시작2]]</tw-passagedata><tw-passagedata pid="3" name="운영과/지통실" tags="" position="1000,100" size="100,100">prev: trail[trail.length-2]
+--
+&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;임시격리시설&quot;){
 	minute += 1;
@@ -212,10 +219,22 @@ if(minute &gt;= 60){
     hour+=1;
 }
 [continued]
-운영과/지통실의 앞입니다.
-총기수불대와 들어가는 문 두개가 보여지고 있습니다.
-하나는 운영과로 통하는 문, 다른 하나는 지휘통제실로 연결되는 문입니다.
+운영과/지통실의 앞입니다.&lt;br&gt;
+총기수불대와 들어가는 문 두개가 보여지고 있습니다.&lt;br&gt;
+하나는 운영과로 통하는 문, 다른 하나는 지휘통제실로 연결되는 문입니다.&lt;br&gt;
 
+[if AM_work]
+[[통합공장]]
+[continue]
+[if !AM_work]
+[[연병장]]
+[continue]
+
+[if noob]
+당신은 아직 2주 대기라서 박유원씨와 함께 해야만 움직일 수 있습니다.&lt;br&gt;
+[[뒤로가기-&gt;{prev}]]
+[continue]
+[if !noob]
 &lt;b&gt;[[안으로 들어간다-&gt;운영과/지통실 내부]]
 
 [[임시격리시설[00:01]-&gt;임시격리시설]]
@@ -226,7 +245,8 @@ if(minute &gt;= 60){
 
 [[2-1초소(위병소)[00:03]-&gt;2-1초소(위병소)]]&lt;/b&gt;
 
-[[PX]]</tw-passagedata><tw-passagedata pid="4" name="연병장" tags="" position="300,200" size="100,100">prev: trail[trail.length-2]
+[[PX]]
+[continue]</tw-passagedata><tw-passagedata pid="4" name="연병장" tags="" position="300,200" size="100,100">prev: trail[trail.length-2]
 --
 &lt;!--시간변화--&gt;
 [JavaScript]
@@ -289,9 +309,10 @@ if(hour*100+minute &gt;= 645 &amp;&amp; hour*100+minute &lt; 650 &amp;&amp; !AM_
 당신은 일과집합을 늦지않고 완료했습니다.&lt;br&gt;
 중대의 소대장님이 나오셔서 인원을 체크하고 계십니다.&lt;br&gt;
 오늘은 다행히도 기분이 나쁘지 않으신거 같습니다.&lt;br&gt;
-특별한 사건없이 일과집합을 끝내고 일과를 시작합니다.
-
-08시40분까지 당신은 처부에 도착해야합니다.
+특별한 사건없이 일과집합을 끝내고 일과를 시작합니다.&lt;br&gt;
+&lt;br&gt;
+08시40분까지 당신은 처부에 도착해야합니다.&lt;br&gt;
+[[운영과/지통실]]
 [JavaScript]
 if(hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 835){
 	AM_work=true;
@@ -382,7 +403,9 @@ if(hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 1735){
 &lt;b&gt;[[풋살장[00:01]-&gt;풋살장]]&lt;/b&gt;
 
 &lt;b&gt;[[운영과/지통실[00:03]-&gt;운영과/지통실]]&lt;/b&gt;
-[continue]</tw-passagedata><tw-passagedata pid="5" name="식당" tags="" position="400,300" size="100,100">&lt;!--시간변화--&gt;
+[continue]</tw-passagedata><tw-passagedata pid="5" name="식당" tags="" position="400,300" size="100,100">prev: trail[trail.length-2]
+--
+&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;사열대&quot; || trail[trail.length-2]==&quot;야외쓰레기장&quot; || trail[trail.length-2]==&quot;연병장&quot;){
 	minute += 1;
@@ -426,14 +449,27 @@ if(minute &gt;= 60){
 [continue]
 
 [if !(eat) &amp;&amp; (hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830) || (hour*100+minute &gt;= 1100 &amp;&amp; hour*100+minute &lt; 1300) || (hour*100+minute &gt;= 1700 &amp;&amp; hour*100+minute &lt; 1830)]
-&lt;b&gt;{reveal link: &#39;식사하기&#39;, passage: &#39;eat&#39;}&lt;/b&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;식당&quot; onclick=&quot;eat=true;minute+=20;&quot;&gt;식사하기&lt;/a&gt;&lt;/b&gt;
+[continue]
+[if eat]
+식사완료&lt;br&gt;
+[[생활관]]
 [continue]
 
+[if noob]
+당신은 아직 2주 대기라서 박유원씨와 함께 해야만 움직일 수 있습니다.&lt;br&gt;
+[[뒤로가기-&gt;{prev}]]
+[continue]
+
+[if !noob]
 &lt;b&gt;[[사열대[00:01]-&gt;사열대]]&lt;/b&gt;
 
 &lt;b&gt;[[야외쓰레기장[00:01]-&gt;야외쓰레기장]]&lt;/b&gt;
 
-&lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="6" name="사열대" tags="" position="400,200" size="100,100">&lt;!--시간변화--&gt;
+&lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
+[continue]</tw-passagedata><tw-passagedata pid="6" name="사열대" tags="" position="400,200" size="100,100">prev: trail[trail.length-2]
+--
+&lt;!--시간변화--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;식당&quot;){
 	minute += 1;
@@ -446,17 +482,18 @@ if(minute &gt;= 60){
     hour+=1;
 }
 [continued]
-[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 700]
+[if hour*100+minute &gt;= 630 &amp;&amp; hour*100+minute &lt; 710]
 위에 플랜카드가 걸려있는 사열대의 모습이 보입니다.&lt;br&gt;
 아침점호를 위해 사열대 앞에 중대별로 정렬해 있는 전우들이 보입니다.&lt;br&gt;
 사열대 뒤 국기봉 옆에는 국기 게양을 위해 준비하고 있는 전우들도 보입니다.
+[continue]
 [if hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645]
-사열대에 전 중대가 집합을 완료하였습니다.
-당직사령님의 구호에 맞춰 사관님께서 신고를 드리고 있습니다.
-
-20분동안 애국가, 복무신조, 국군 도수체조 등 할일을 마쳤습니다.
-당직 사관님께서는 생활관에 가서 식사집합을 대기하라고 하십니다.
-
+사열대에 전 중대가 집합을 완료하였습니다.&lt;br&gt;
+당직사령님의 구호에 맞춰 사관님께서 신고를 드리고 있습니다.&lt;br&gt;
+&lt;br&gt;
+20분동안 애국가, 복무신조, 국군 도수체조 등 할일을 마쳤습니다.&lt;br&gt;
+당직 사관님께서는 생활관에 가서 식사집합을 대기하라고 하십니다.&lt;br&gt;
+&lt;b&gt;[[생활관]]&lt;/b&gt;
 [JavaScript]
 if(hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645){
 	minute += 20;
@@ -466,8 +503,9 @@ if(hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645){
       hour+=1;
     }
 }
+[continued]
 [continue]
-[if hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 1600]
+[if hour*100+minute &gt;= 710 &amp;&amp; hour*100+minute &lt; 1600]
 위에 플랜카드가 걸려있는 사열대의 모습이 보입니다.&lt;br&gt;
 주변에는 아무도 없고 그저 사열대 뒤에서 국기가 걸려있는 것만이 보입니다.
 [continue]
@@ -499,11 +537,21 @@ if(hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645){
 주변에는 아무도 없고 국기봉에도 아무것도 안 걸려 있습니다.
 [continue]
 
+[if noob]
+당신은 아직 2주 대기라서 박유원씨와 함께 해야만 움직일 수 있습니다.&lt;br&gt;
+[[뒤로가기-&gt;{prev}]]
+[continue]
+
+[if !noob]
 &lt;b&gt;[[식당[00:01]-&gt;식당]]&lt;/b&gt;
 
 &lt;b&gt;[[연병장[00:01]-&gt;연병장]]&lt;/b&gt;
 
-&lt;b&gt;[[야외쓰레기장[00:03]-&gt;야외쓰레기장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="7" name="생활관" tags="" position="100,400" size="100,100">&lt;!--일정확률로 PX병 호출 방송--&gt;
+&lt;b&gt;[[야외쓰레기장[00:03]-&gt;야외쓰레기장]]&lt;/b&gt;
+[continue]</tw-passagedata><tw-passagedata pid="7" name="생활관" tags="" position="100,400" size="100,100">prev: trail[trail.length-2]
+config.header.left: &quot;&lt;div id=&#39;left_up&#39; onclick=&#39;left_up.innerHTML = {go_home}&#39;&gt;{month}월{day}일&amp;nbsp{hour}:{minute} | {weather}&lt;/div&gt;&lt;div id=&#39;left_down&#39;&gt;현재 위치: {now_position}&lt;/div&gt;&quot;
+--
+&lt;!--일정확률로 PX병 호출 방송--&gt;
 &lt;!--시간계산--&gt;
 [JavaScript]
 if(trail[trail.length-2]==&quot;체단실&quot; || trail[trail.length-2]==&quot;정비실&quot; || trail[trail.length-2]==&quot;사지방&quot; || trail[trail.length-2]==&quot;연병장&quot; || trail[trail.length-2]==&quot;행정반&quot;){
@@ -536,7 +584,7 @@ if(noob &amp;&amp; hour*100+minute == 630){
 [continued]
 [if miss]
 너때문에 나까지 평판이 같이 안좋아지잖아 제대로 안할래?&lt;br&gt;
-당신은 당신이 한 잘못으로 인하여 박유원에게 닦였습니다&lt;br&gt;
+당신은 당신이 한 잘못으로 인하여 박유원에게 혼났습니다.&lt;br&gt;
 &lt;b&gt;&lt;div style=&quot;color:red;&quot;&gt;스트레스↑&lt;/div&gt;&lt;/b&gt;
 [continue]
 [JavaScript]
@@ -585,16 +633,18 @@ if(miss){
 [if (hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 725)]
 식사집합은 07시20분까지 라고 합니다.&lt;br&gt;
 늦지않게 행정반 앞으로 집합하여 식사를 해야 합니다.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;hour=7;minute=20;&quot;&gt;식집준비하기&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
 &lt;b&gt;[[행정반 앞으로 가기(연병장)-&gt;연병장]]&lt;/b&gt;&lt;br&gt;
 [continue]
 &lt;!--일과집합--&gt;
-[if (hour*100+minute &gt;= 725 &amp;&amp; hour*100+minute &lt; 830)]
+[if (hour*100+minute &gt;= 725 &amp;&amp; hour*100+minute &lt; 835)]
 오전 일과집합은 08시30분까지 라고 합니다.&lt;br&gt;
 늦지않게 행정반 앞으로 집합하여 해야합니다.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;hour=8;minute=30;&quot;&gt;일과집합준비하기&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
 &lt;b&gt;[[행정반 앞으로 가기(연병장)-&gt;연병장]]&lt;/b&gt;&lt;br&gt;
 [continue]
 &lt;!--일과중 기본메세지--&gt;
-[if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1130]
+[if hour*100+minute &gt;= 835 &amp;&amp; hour*100+minute &lt; 1130]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 다른 전우들은 일과를 보고있는지 거의 보이지 않습니다.
 [continue]
@@ -680,7 +730,8 @@ if(miss){
 
 
 [if noob]
-당신은 아직 2주대기라서 박유원씨와 함께 해야만 움직일 수 있습니다.
+당신은 아직 2주 대기라서 박유원씨와 함께 해야만 움직일 수 있습니다.&lt;br&gt;
+[[뒤로가기-&gt;{prev}]]
 [continue]
 
 
@@ -915,7 +966,17 @@ if(minute &gt;= 60){
 주황색 띠가 둘러져 있는 공장의 모습은 사회에서 본 여느 공장의 모습과 비슷해 보입니다.&lt;br&gt;
 앞에 샵차가 늘어서 있습니다.
 [continue]
-
+[if AM_work]
+[[안으로 들어간다-&gt;통합공장 내부]]
+[continue]
+[if !AM_work]
+[[운영과/지통실[00:03]-&gt;운영과/지통실]]
+[continue]
+[if noob]
+당신은 아직 2주 대기라서 박유원씨와 함께 해야만 움직일 수 있습니다.&lt;br&gt;
+[[뒤로가기-&gt;{prev}]]
+[continue]
+[if !noob]
 &lt;b&gt;[[안으로 들어간다-&gt;통합공장 내부]]
 
 [[공작반[00:01]-&gt;공작반]]
@@ -926,7 +987,8 @@ if(minute &gt;= 60){
 
 [[풋살장[00:03]-&gt;풋살장]]
 
-[[2-1초소(위병소)[0:03]-&gt;2-1초소(위병소)]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="14" name="궤도 사무실" tags="" position="1400,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="15" name="샤워장" tags="" position="900,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="16" name="총포 사무실" tags="" position="1400,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;.</tw-passagedata><tw-passagedata pid="17" name="지원통제과" tags="" position="1200,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="18" name="통신 사무실" tags="" position="1400,800" size="100,100">당신은 노크를 한뒤 말했습니다.
+[[2-1초소(위병소)[0:03]-&gt;2-1초소(위병소)]]&lt;/b&gt;
+[continue]</tw-passagedata><tw-passagedata pid="14" name="궤도 사무실" tags="" position="1400,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="15" name="샤워장" tags="" position="900,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="16" name="총포 사무실" tags="" position="1400,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;.</tw-passagedata><tw-passagedata pid="17" name="지원통제과" tags="" position="1200,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="18" name="통신 사무실" tags="" position="1400,800" size="100,100">당신은 노크를 한뒤 말했습니다.
 
 *똑똑
 이병 짬찌 들어가도 되겠습니까?
@@ -1116,7 +1178,24 @@ if(minute &gt;= 60){
 &lt;b&gt;[[나간다-&gt;운영과/지통실]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="25" name="임시격리시설 내부" tags="" position="1200,200" size="100,100">부대내 휴가복귀자,  밀접접촉자, 확진자들을 격리하기위한 시설입니다.
 1부터 10호실까지 철문이 늘어져있습니다.
 
-&lt;b&gt;[[나간다-&gt;임시격리시설]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="26" name="통합공장 내부" tags="" position="1000,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장]]
+&lt;b&gt;[[나간다-&gt;임시격리시설]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="26" name="통합공장 내부" tags="" position="1000,500" size="100,100">prev: trail[trail.length-2]
+--
+통합공장의 내부입니다.&lt;br&gt;
+1층과 2층으로 나누어져 있습니다.&lt;br&gt;
+모든 사무실은 2층에 위치해있습니다.
+[if AM_work]
+[[처부로 가기-&gt;통신 사무실]]
+[continue]
+[if !AM_work]
+[[나간다-&gt;통합공장]]
+[continue]
+[if noob]
+당신은 아직 2주 대기라서 박유원씨와 함께 해야만 움직일 수 있습니다.&lt;br&gt;
+[[뒤로가기-&gt;{prev}]]
+[continue]
+
+[if !noob]
+&lt;b&gt;[[나간다-&gt;통합공장]]
 
 [[2층으로 올라간다-&gt;통합공장 2층]]
 
@@ -1126,7 +1205,12 @@ if(minute &gt;= 60){
 
 [[들어간다(일반장비정비공장)-&gt;일반장비정비공장]]
 
-[[들어간다(통합정비공장)-&gt;통합정비공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="27" name="통합공장 2층" tags="" position="1300,500" size="100,100">&lt;b&gt;[[1층으로 내려간다-&gt;통합공장 내부]]
+[[들어간다(통합정비공장)-&gt;통합정비공장]]&lt;/b&gt;
+[continue]</tw-passagedata><tw-passagedata pid="27" name="통합공장 2층" tags="" position="1300,500" size="100,100">통합공장 2층입니다.&lt;br&gt;
+다양한 사무실이 줄지어져 있으며 끝에는 통신 공장이 크게 자리잡고 있습니다.
+
+[if !noob]
+&lt;b&gt;[[1층으로 내려간다-&gt;통합공장 내부]]
 
 [[들어간다(지원통제과)-&gt;지원통제과]]
 
@@ -1138,7 +1222,8 @@ if(minute &gt;= 60){
 
 [[들어간다(통신 사무실)-&gt;통신 사무실]]
 
-[[들어간다(통신공장)-&gt;통신공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="28" name="통합정비공장" tags="" position="1000,800" size="100,100">[if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1130]
+[[들어간다(통신공장)-&gt;통신공장]]&lt;/b&gt;
+[continue]</tw-passagedata><tw-passagedata pid="28" name="통합정비공장" tags="" position="1000,800" size="100,100">[if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 1130]
 궤도반 병사들과 간부님들이 일하는 모습이 보이고 있습니다.&lt;br&gt;
 병사들은 일을 한다기 보다는 공구를 나르는 역할을 주로 하고 있는것 같습니다.
 [continue]
@@ -1472,10 +1557,7 @@ if(minute &gt;= 60){
 
 [[연병장[00:01]-&gt;연병장]] 
 
-[[통합공장[00:03]-&gt;통합공장]] &lt;/b&gt;</tw-passagedata><tw-passagedata pid="56" name="eat" tags="" position="400,500" size="100,100">eat: true
-minute: minute+20
---
-식사완료</tw-passagedata><tw-passagedata pid="57" name="오전일과" tags="" position="1300,1000" size="100,100">AM_work: false
+[[통합공장[00:03]-&gt;통합공장]] &lt;/b&gt;</tw-passagedata><tw-passagedata pid="56" name="오전일과" tags="" position="1300,1000" size="100,100">AM_work: false
 hour: hour + 2
 minute: minute + 50
 eat:false
@@ -1489,12 +1571,12 @@ if(minute &gt;= 60){
 [continued]
 
 오전일과를 모두 보았습니다.
-처부 소대장님께서 중대로 내려가 점심을 먹으라고 하십니다.</tw-passagedata><tw-passagedata pid="58" name="오후일과" tags="" position="1400,1000" size="100,100">PM_work: false
+처부 소대장님께서 중대로 내려가 점심을 먹으라고 하십니다.</tw-passagedata><tw-passagedata pid="57" name="오후일과" tags="" position="1400,1000" size="100,100">PM_work: false
 hour: hour + 3
 minute: minute + 0
 --
 오후일과를 모두 보았습니다.
-처부 소대장님께서 내려가 체력단련을 준비하라고 하십니다.</tw-passagedata><tw-passagedata pid="59" name="취침" tags="" position="300,700" size="100,100">day: day+1
+처부 소대장님께서 내려가 체력단련을 준비하라고 하십니다.</tw-passagedata><tw-passagedata pid="58" name="취침" tags="" position="300,700" size="100,100">day: day+1
 hour: 6
 minute: 30
 homedate: homedate + 1
@@ -1503,14 +1585,14 @@ homedate: homedate + 1
 [JavaScript]
 //00시 이후에 취침시 하루가 지나지 않도록 수정
 [continued]
-</tw-passagedata><tw-passagedata pid="60" name="생활관(2주대기)" tags="" position="1800,400" size="100,100">minute: minute+1
+</tw-passagedata><tw-passagedata pid="59" name="생활관(2주대기)" tags="" position="1800,400" size="100,100">minute: minute+1
 --
 여기가 앞으로 너가 생활을 하게될 생활관이야&lt;br&gt;
 밖에서는 왠 컨테이너가 줄지어져있나 했겠지만 우리가 살곳이야...&lt;br&gt;
 그래도 보기보다 잘되어있지?&lt;br&gt;
 다 사람사는곳이다 이말이야~&lt;br&gt;
 
-[[따라가기-&gt;연병장(2주대기)]]</tw-passagedata><tw-passagedata pid="61" name="연병장(2주대기)" tags="" position="1800,600" size="100,100">minute: minute+1
+[[따라가기-&gt;연병장(2주대기)]]</tw-passagedata><tw-passagedata pid="60" name="연병장(2주대기)" tags="" position="1800,600" size="100,100">minute: minute+1
 --
 여기가 우리부대 연병장이야&lt;br&gt;
 밑에 깔려있는 인조잔디가 왤캐 조잡하냐고?&lt;br&gt;
@@ -1518,7 +1600,7 @@ homedate: homedate + 1
 처음에 인조잔디 가져오길래 설마설마 했는데 우리보고 하라 하더라고&lt;br&gt;
 너는 다 깔리고 나서 온걸 축복이라고 여겨야돼&lt;br&gt;
 
-[[따라가기-&gt;식당(2주대기)]]</tw-passagedata><tw-passagedata pid="62" name="식당(2주대기)" tags="" position="1800,800" size="100,100">minute: minute+1
+[[따라가기-&gt;식당(2주대기)]]</tw-passagedata><tw-passagedata pid="61" name="식당(2주대기)" tags="" position="1800,800" size="100,100">minute: minute+1
 --
 여긴 딱보면 알겠지만 식당이야&lt;br&gt;
 훈련소식당만 보다가 왔으니까 적응 안되겠네&lt;br&gt;
@@ -1529,7 +1611,7 @@ homedate: homedate + 1
 응? 아니라고?&lt;br&gt;
 말대꾸하지말고.. 다음으로 가자
 
-[[따라가기-&gt;사열대(2주대기)]]</tw-passagedata><tw-passagedata pid="63" name="사열대(2주대기)" tags="" position="1800,1000" size="100,100">minute: minute+1
+[[따라가기-&gt;사열대(2주대기)]]</tw-passagedata><tw-passagedata pid="62" name="사열대(2주대기)" tags="" position="1800,1000" size="100,100">minute: minute+1
 --
 여긴 사열대야&lt;br&gt;
 사열대가 무슨뜻이냐고?&lt;br&gt;
@@ -1544,7 +1626,7 @@ homedate: homedate + 1
 점호받는곳 정도?&lt;br&gt;
 다음으로가자&lt;br&gt;
 
-[[따라가기-&gt;운영과/지통실(2주대기)]]</tw-passagedata><tw-passagedata pid="64" name="운영과/지통실(2주대기)" tags="" position="1800,1200" size="100,100">minute: minute+3
+[[따라가기-&gt;운영과/지통실(2주대기)]]</tw-passagedata><tw-passagedata pid="63" name="운영과/지통실(2주대기)" tags="" position="1800,1200" size="100,100">minute: minute+3
 --
 너가 우리부대 처음오고 가장먼저 온곳이 여기였지?&lt;br&gt;
 &lt;br&gt;
@@ -1554,7 +1636,7 @@ homedate: homedate + 1
 &lt;br&gt;
 여기는 너가 근무때문이라도 자주 오게될태니까 잘 기억해놔&lt;br&gt;
 &lt;br&gt;
-[[따라가기-&gt;위병소(2주대기)]]</tw-passagedata><tw-passagedata pid="65" name="위병소(2주대기)" tags="" position="2000,1200" size="100,100">minute: minute+3
+[[따라가기-&gt;위병소(2주대기)]]</tw-passagedata><tw-passagedata pid="64" name="위병소(2주대기)" tags="" position="2000,1200" size="100,100">minute: minute+3
 --
 여기는 위병소야&lt;br&gt;
 저기 앞에 병사 두 명 보이지?&lt;br&gt;
@@ -1565,7 +1647,7 @@ homedate: homedate + 1
 나중에 직접 몸으로 체험해봐&lt;br&gt;
 &lt;br&gt;
 이번엔 옆에있는 위병조장실로 가볼까?&lt;br&gt;
-[[따라가기-&gt;위병조장실(2주대기)]]</tw-passagedata><tw-passagedata pid="66" name="위병조장실(2주대기)" tags="" position="2000,1000" size="100,100">minute: minute+1
+[[따라가기-&gt;위병조장실(2주대기)]]</tw-passagedata><tw-passagedata pid="65" name="위병조장실(2주대기)" tags="" position="2000,1000" size="100,100">minute: minute+1
 --
 여기가 위병조장실이야&lt;br&gt;
 너가 위병조장을 달지 않는이상 들어올일은 거의 없겠지만...&lt;br&gt;
@@ -1573,13 +1655,13 @@ homedate: homedate + 1
 그리고 웬만하면 위병조장실 안에 있는 사람은 너보다 선임일태니까 말조심하고&lt;br&gt;
 다음은 저기 보이는 통합공장 가자&lt;br&gt;
 &lt;br&gt;
-[[따라가기-&gt;통합공장(2주대기)]]</tw-passagedata><tw-passagedata pid="67" name="통합공장(2주대기)" tags="" position="2000,800" size="100,100">minute: minute+3
+[[따라가기-&gt;통합공장(2주대기)]]</tw-passagedata><tw-passagedata pid="66" name="통합공장(2주대기)" tags="" position="2000,800" size="100,100">minute: minute+3
 --
 통합공장은 이름 그대로 처부별 공장이 모여있는곳이야&lt;br&gt;
 정비병들은 대부분 여기서 일과를 본다고 보면 돼&lt;br&gt;
 여기도 다 둘러보고 싶지만 지금은 시간이 없으니까 일단 다음으로 가자&lt;br&gt;
 &lt;br&gt;
-[[따라가기-&gt; 수송부(2주대기)]]</tw-passagedata><tw-passagedata pid="68" name=" 수송부(2주대기)" tags="" position="2000,600" size="100,100">minute: minute+1
+[[따라가기-&gt; 수송부(2주대기)]]</tw-passagedata><tw-passagedata pid="67" name=" 수송부(2주대기)" tags="" position="2000,600" size="100,100">minute: minute+1
 --
 여기는 수송부야&lt;br&gt;
 우리대대의 차량하고 관련되 거의 모든업무는 여기서 처리된다고 보면돼&lt;br&gt;
@@ -1587,7 +1669,7 @@ homedate: homedate + 1
 운전병이 아니면 많이 올일이 없을꺼야&lt;br&gt;
 이제 저기 뒤로 가보자&lt;br&gt;
 &lt;br&gt;
-[[따라가기-&gt;야외쓰레기장(2주대기)]]</tw-passagedata><tw-passagedata pid="69" name="야외쓰레기장(2주대기)" tags="" position="2000,400" size="100,100">minute: minute+3
+[[따라가기-&gt;야외쓰레기장(2주대기)]]</tw-passagedata><tw-passagedata pid="68" name="야외쓰레기장(2주대기)" tags="" position="2000,400" size="100,100">minute: minute+3
 --
 여기는 우리대대에서 나오는 모든 쓰레기들이 모이는 야외쓰레기장이야&lt;br&gt;
 줄여서 야쓰장이라고 하는데 어감 이상하지?&lt;br&gt;
@@ -1596,7 +1678,7 @@ homedate: homedate + 1
 &lt;br&gt;
 대충 둘러봤으니까 생활관 앞으로 가자&lt;br&gt;
 &lt;br&gt;
-[[따라가기-&gt;생활관2(2주대기)]]</tw-passagedata><tw-passagedata pid="70" name="생활관2(2주대기)" tags="" position="2200,400" size="100,100">minute: minute+3
+[[따라가기-&gt;생활관2(2주대기)]]</tw-passagedata><tw-passagedata pid="69" name="생활관2(2주대기)" tags="" position="2200,400" size="100,100">minute: minute+3
 --
 일단 지금 당장은 이정도만 알려줄태니까 잊지말고 기억해놔&lt;br&gt;
 어처피 2주대기동안은 내가 붙어다닐꺼니까 너무 걱정하지 말고&lt;br&gt;
@@ -1604,14 +1686,14 @@ homedate: homedate + 1
 &lt;br&gt;
 장소 소개 끝났으니까 이제 행정반으로 가서 면담 대기하고 있자.&lt;br&gt;
 &lt;br&gt;
-[[행정반으로 가기-&gt;행정반(2주대기)]]</tw-passagedata><tw-passagedata pid="71" name="행정반(2주대기)" tags="" position="2200,600" size="100,100">minute: minute+1
+[[행정반으로 가기-&gt;행정반(2주대기)]]</tw-passagedata><tw-passagedata pid="70" name="행정반(2주대기)" tags="" position="2200,600" size="100,100">minute: minute+1
 --
 &quot;오 너가 이번에 온 신병인가?&quot;&lt;br&gt;
 행보관님께서 말하셨다.&lt;br&gt;
 &quot;너무 움추러져 있지 말고 편하게 있어&quot;&lt;br&gt;
 &quot;그럼 바로 행보관실로 올래?&quot;&lt;br&gt;
 &lt;br&gt;
-[[행정보급관실로-&gt;행정보급관실(2주대기)]]</tw-passagedata><tw-passagedata pid="72" name="행정보급관실(2주대기)" tags="" position="2200,800" size="100,100">minute: minute+30
+[[행정보급관실로-&gt;행정보급관실(2주대기)]]</tw-passagedata><tw-passagedata pid="71" name="행정보급관실(2주대기)" tags="" position="2200,800" size="100,100">minute: minute+30
 --
 [JavaScript]
 if(minute &gt;= 60){
@@ -1632,7 +1714,7 @@ if(minute &gt;= 60){
 &quot;라고 하고 들어오라고 하실때 들어가면 돼&quot;&lt;br&gt;
 &quot;지금은 그냥 가도 되지만 잊으면안된다.&quot;&lt;br&gt;
 &lt;br&gt;
-[[중대장실로 가기-&gt;중대장실(2주대기)]]</tw-passagedata><tw-passagedata pid="73" name="중대장실(2주대기)" tags="" position="2200,1000" size="100,100">minute: minute+40
+[[중대장실로 가기-&gt;중대장실(2주대기)]]</tw-passagedata><tw-passagedata pid="72" name="중대장실(2주대기)" tags="" position="2200,1000" size="100,100">minute: minute+40
 --
 [JavaScript]
 if(minute &gt;= 60){
@@ -1651,7 +1733,7 @@ if(minute &gt;= 60){
 이말을 듣자 내안의 또다른내가 &quot;한번 해봐?&quot;라고 소리치는게 들렸지만 일단 생활을 해보고 결정하기로 하였다.&lt;br&gt;
 &quot;오늘 당장 할꺼는 일단 끝났으니까 유원이 따라다니면서 일하는거 구경해&quot;&lt;br&gt;
 &lt;br&gt;
-[[박유원 일병에게 가기-&gt;생활관3(2주대기)]]</tw-passagedata><tw-passagedata pid="74" name="생활관3(2주대기)" tags="" position="2200,1200" size="100,100">minute: minute+1
+[[박유원 일병에게 가기-&gt;생활관3(2주대기)]]</tw-passagedata><tw-passagedata pid="73" name="생활관3(2주대기)" tags="" position="2200,1200" size="100,100">minute: minute+1
 --
 [JavaScript]
 if(minute &gt;= 60){
@@ -1671,7 +1753,7 @@ if(minute &gt;= 60){
 그럼 다시한번 우리대대에 온걸 환영하고&lt;br&gt;
 지금 당장은 할꺼 없으니까 PX나 가자&lt;br&gt;
 [[PX(2주대기)]]
-[continue]</tw-passagedata><tw-passagedata pid="75" name="새로운 시작2" tags="" position="100,300" size="100,100">faststart: true
+[continue]</tw-passagedata><tw-passagedata pid="74" name="새로운 시작2" tags="" position="100,300" size="100,100">faststart: true
 reputation: reputation-1
 military_discipline: military_discipline-1
 --
@@ -1687,7 +1769,7 @@ military_discipline: military_discipline-1
 &lt;b&gt;&lt;div style=&quot;color:red;&quot;&gt;평판↓&lt;/div&gt;
 &lt;div style=&quot;color:red;&quot;&gt;군기↓&lt;/div&gt;&lt;/b&gt;
 
-[[면담하러가기-&gt;행정보급관실(2주대기)]]</tw-passagedata><tw-passagedata pid="76" name="PX(2주대기)" tags="" position="2400,1200" size="100,100">reputation: reputation+1
+[[면담하러가기-&gt;행정보급관실(2주대기)]]</tw-passagedata><tw-passagedata pid="75" name="PX(2주대기)" tags="" position="2400,1200" size="100,100">reputation: reputation+1
 military_discipline: military_discipline+1
 minute: minute+3
 --
@@ -1705,7 +1787,7 @@ minute: minute+3
 &lt;b&gt;&lt;div style=&quot;color:green;&quot;&gt;평판↑&lt;/div&gt;
 &lt;div style=&quot;color:green;&quot;&gt;군기↑&lt;/div&gt;&lt;/b&gt;
 
-&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관4(2주대기)&quot; onclick=&quot;minute+=30;&quot;&gt;따라가기&lt;/a&gt;&lt;/b&gt;</tw-passagedata><tw-passagedata pid="77" name="생활관4(2주대기)" tags="" position="2400,1000" size="100,100">minute: minute+3
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관4(2주대기)&quot; onclick=&quot;minute+=30;&quot;&gt;따라가기&lt;/a&gt;&lt;/b&gt;</tw-passagedata><tw-passagedata pid="76" name="생활관4(2주대기)" tags="" position="2400,1000" size="100,100">minute: minute+3
 reputation: Math.round((reputation+(1+(military_discipline*0.1)))*10)/10
 --
 [JavaScript]
@@ -1740,7 +1822,7 @@ PX도 다녀왔고 이제 너의 동기소개를 시켜줄께&lt;br&gt;
 
 &lt;b&gt;&lt;div style=&quot;color:green;&quot;&gt;평판↑&lt;/div&gt;&lt;/b&gt;
 
-[[집합-&gt;연병장2(2주대기)]]</tw-passagedata><tw-passagedata pid="78" name="연병장2(2주대기)" tags="" position="2400,800" size="100,100">minute: 0
+[[집합-&gt;연병장2(2주대기)]]</tw-passagedata><tw-passagedata pid="77" name="연병장2(2주대기)" tags="" position="2400,800" size="100,100">minute: 0
 hour: 16
 --
 당신은 체력단련 집합 방송을 듣고&lt;br&gt;
@@ -1749,7 +1831,7 @@ hour: 16
 &lt;br&gt;
 집합이 완료되자 사열대 앞으로 이동하였습니다.&lt;br&gt;
 
-[[사열대 앞으로-&gt;사열대2(2주대기)]]</tw-passagedata><tw-passagedata pid="79" name="사열대2(2주대기)" tags="" position="2400,600" size="100,100">stress: Math.round((stress+(1+(military_discipline*0.1)))*10)/10
+[[사열대 앞으로-&gt;사열대2(2주대기)]]</tw-passagedata><tw-passagedata pid="78" name="사열대2(2주대기)" tags="" position="2400,600" size="100,100">stress: Math.round((stress+(1+(military_discipline*0.1)))*10)/10
 stamina_strength: stamina_strength+1
 --
 사열대 위에는 장교가 서서 병력을 지휘하고 있습니다.&lt;br&gt;
@@ -1763,7 +1845,7 @@ stamina_strength: stamina_strength+1
 &lt;b&gt;&lt;div style=&quot;color:red;&quot;&gt;스트레스↑&lt;/div&gt;
 &lt;b&gt;&lt;div style=&quot;color:red;&quot;&gt;체력/근력↑&lt;/div&gt;&lt;/b&gt;
 
-[[체력단련 끝-&gt;생활관5(2주대기)]]</tw-passagedata><tw-passagedata pid="80" name="생활관5(2주대기)" tags="" position="2400,400" size="100,100">hour: 17
+[[체력단련 끝-&gt;생활관5(2주대기)]]</tw-passagedata><tw-passagedata pid="79" name="생활관5(2주대기)" tags="" position="2400,400" size="100,100">hour: 17
 minute: 30
 tlrtk:true
 --
@@ -1772,7 +1854,7 @@ tlrtk:true
 생활관에 복귀하자마자 식사집합을 하라는 방송이 나옵니다.
 당신은 방송을 듣고 박유원 일병과 함께 행정반 앞으로 나와 집합을 하고 식당으로 출발을 합니다.
 
-[[식당으로 가기-&gt;식당2(2주대기)]]</tw-passagedata><tw-passagedata pid="81" name="식당2(2주대기)" tags="" position="2600,400" size="100,100">[JavaScript]
+[[식당으로 가기-&gt;식당2(2주대기)]]</tw-passagedata><tw-passagedata pid="80" name="식당2(2주대기)" tags="" position="2600,400" size="100,100">[JavaScript]
 if(minute &gt;= 60){
 	minute = minute-60;
     hour+=1;
@@ -1790,7 +1872,7 @@ if(minute &gt;= 60){
 
 [[생활관으로 가기-&gt;생활관6(2주대기)]]
 [continue]
-</tw-passagedata><tw-passagedata pid="82" name="생활관6(2주대기)" tags="" position="2600,600" size="100,100">dpazltm: false
+</tw-passagedata><tw-passagedata pid="81" name="생활관6(2주대기)" tags="" position="2600,600" size="100,100">dpazltm: false
 wjsurwjagh: true
 --
 자 이제 기다리고 기다리던 핸드폰받고 쉬는시간이다!
@@ -1806,7 +1888,7 @@ wjsurwjagh: true
 어디 가야될때는 나한태 꼭 말하고 알았지?
 
 [[생활관에서 핸드폰하기]]
-[[동기들 만나서 친목하기]]</tw-passagedata><tw-passagedata pid="83" name="생활관에서 핸드폰하기" tags="" position="2600,800" size="100,100">hour: 20
+[[동기들 만나서 친목하기]]</tw-passagedata><tw-passagedata pid="82" name="생활관에서 핸드폰하기" tags="" position="2600,800" size="100,100">hour: 20
 minute: 40
 stress: Math.round((stress-1)*10)/10
 --
@@ -1814,7 +1896,7 @@ stress: Math.round((stress-1)*10)/10
 
 &lt;b&gt;&lt;div style=&quot;color:green;&quot;&gt;스트레스↓&lt;/div&gt;&lt;/b&gt;
 
-[[개인임무 분담제 하러가기-&gt;생활관(튜토리얼 마지막)]]</tw-passagedata><tw-passagedata pid="84" name="동기들 만나서 친목하기" tags="" position="2700,800" size="100,100">hour: 20
+[[개인임무 분담제 하러가기-&gt;생활관(튜토리얼 마지막)]]</tw-passagedata><tw-passagedata pid="83" name="동기들 만나서 친목하기" tags="" position="2700,800" size="100,100">hour: 20
 minute: 40
 reputation: Math.round((reputation+(1+(military_discipline*0.1)))*10)/10
 --
@@ -1823,7 +1905,7 @@ reputation: Math.round((reputation+(1+(military_discipline*0.1)))*10)/10
 
 &lt;b&gt;&lt;div style=&quot;color:green;&quot;&gt;평판↑&lt;/div&gt;&lt;/b&gt;
 
-[[개인임무 분담제 하러가기-&gt;생활관(튜토리얼 마지막)]]</tw-passagedata><tw-passagedata pid="85" name="생활관(튜토리얼 마지막)" tags="" position="2600,1000" size="100,100">hour: 21
+[[개인임무 분담제 하러가기-&gt;생활관(튜토리얼 마지막)]]</tw-passagedata><tw-passagedata pid="84" name="생활관(튜토리얼 마지막)" tags="" position="2600,1000" size="100,100">hour: 21
 minute: 00
 --
 당신은  박유원일병에게 들었던 내용을 기억하고 개인임무 분담제 시간에 무사히 청소를 마쳤습니다.
@@ -1845,7 +1927,7 @@ minute: 00
 취침이 들면 튜토리얼이 끝나고 본 스토리로 들어가게 됩니다.&lt;br&gt;
 본 스토리는 2주대기 2일차부터 시작되며, 스테이터스가 모두 초기화됩니다.&lt;br&gt;
 &lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;stress=0;reputation=0;stamina_strength=0;military_discipline=0;day+=1;hour=6;minute=30;&quot;&gt;다음날로(튜토리얼끝)&lt;/a&gt;&lt;/b&gt;
-[continue]</tw-passagedata><tw-passagedata pid="86" name="{prev}" tags="" position="425,700" size="100,100"></tw-passagedata></tw-storydata><script>!function(){"use strict";var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function t(e){if(e.__esModule)return e;var t=Object.defineProperty({},"__esModule",{value:!0});return Object.keys(e).forEach((function(n){var r=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,r.get?r:{enumerable:!0,get:function(){return e[n]}})})),t}var n="undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{};function r(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}var i=r,a=o;function s(e){if(i===setTimeout)return setTimeout(e,0);if((i===r||!i)&&setTimeout)return i=setTimeout,setTimeout(e,0);try{return i(e,0)}catch(t){try{return i.call(null,e,0)}catch(t){return i.call(this,e,0)}}}"function"==typeof n.setTimeout&&(i=setTimeout),"function"==typeof n.clearTimeout&&(a=clearTimeout);var c,l=[],u=!1,f=-1;function p(){u&&c&&(u=!1,c.length?l=c.concat(l):f=-1,l.length&&d())}function d(){if(!u){var e=s(p);u=!0;for(var t=l.length;t;){for(c=l,l=[];++f<t;)c&&c[f].run();f=-1,t=l.length}c=null,u=!1,function(e){if(a===clearTimeout)return clearTimeout(e);if((a===o||!a)&&clearTimeout)return a=clearTimeout,clearTimeout(e);try{a(e)}catch(t){try{return a.call(null,e)}catch(t){return a.call(this,e)}}}(e)}}function h(e,t){this.fun=e,this.array=t}h.prototype.run=function(){this.fun.apply(null,this.array)};function g(){}var m=g,b=g,v=g,y=g,w=g,k=g,x=g;var S=n.performance||{},_=S.now||S.mozNow||S.msNow||S.oNow||S.webkitNow||function(){return(new Date).getTime()};var E=new Date;var C={nextTick:function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];l.push(new h(e,t)),1!==l.length||u||s(d)},title:"browser",browser:!0,env:{},argv:[],version:"",versions:{},on:m,addListener:b,once:v,off:y,removeListener:w,removeAllListeners:k,emit:x,binding:function(e){throw new Error("process.binding is not supported")},cwd:function(){return"/"},chdir:function(e){throw new Error("process.chdir is not supported")},umask:function(){return 0},hrtime:function(e){var t=.001*_.call(S),n=Math.floor(t),r=Math.floor(t%1*1e9);return e&&(n-=e[0],(r-=e[1])<0&&(n--,r+=1e9)),[n,r]},platform:"browser",release:{},config:{},uptime:function(){return(new Date-E)/1e3}};function A(e){return null!=e&&(!!e._isBuffer||O(e)||function(e){return"function"==typeof e.readFloatLE&&"function"==typeof e.slice&&O(e.slice(0,0))}(e))}function O(e){return!!e.constructor&&"function"==typeof e.constructor.isBuffer&&e.constructor.isBuffer(e)}void 0===n.TYPED_ARRAY_SUPPORT||n.TYPED_ARRAY_SUPPORT;var T="function"==typeof Object.create?function(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}:function(e,t){e.super_=t;var n=function(){};n.prototype=t.prototype,e.prototype=new n,e.prototype.constructor=e};function j(e,t){var n={seen:[],stylize:L};return arguments.length>=3&&(n.depth=arguments[2]),arguments.length>=4&&(n.colors=arguments[3]),I(t)?n.showHidden=t:t&&J(n,t),R(n.showHidden)&&(n.showHidden=!1),R(n.depth)&&(n.depth=2),R(n.colors)&&(n.colors=!1),R(n.customInspect)&&(n.customInspect=!0),n.colors&&(n.stylize=z),N(n,e,n.depth)}function z(e,t){var n=j.styles[t];return n?"["+j.colors[n][0]+"m"+e+"["+j.colors[n][1]+"m":e}function L(e,t){return e}function N(e,t,n){if(e.customInspect&&t&&H(t.inspect)&&t.inspect!==j&&(!t.constructor||t.constructor.prototype!==t)){var r=t.inspect(n,e);return q(r)||(r=N(e,r,n)),r}var o=function(e,t){if(R(t))return e.stylize("undefined","undefined");if(q(t)){var n="'"+JSON.stringify(t).replace(/^"|"$/g,"").replace(/'/g,"\\'").replace(/\\"/g,'"')+"'";return e.stylize(n,"string")}if(r=t,"number"==typeof r)return e.stylize(""+t,"number");var r;if(I(t))return e.stylize(""+t,"boolean");if(P(t))return e.stylize("null","null")}(e,t);if(o)return o;var i=Object.keys(t),a=function(e){var t={};return e.forEach((function(e,n){t[e]=!0})),t}(i);if(e.showHidden&&(i=Object.getOwnPropertyNames(t)),U(t)&&(i.indexOf("message")>=0||i.indexOf("description")>=0))return $(t);if(0===i.length){if(H(t)){var s=t.name?": "+t.name:"";return e.stylize("[Function"+s+"]","special")}if(M(t))return e.stylize(RegExp.prototype.toString.call(t),"regexp");if(B(t))return e.stylize(Date.prototype.toString.call(t),"date");if(U(t))return $(t)}var c,l,u="",f=!1,p=["{","}"];(c=t,Array.isArray(c)&&(f=!0,p=["[","]"]),H(t))&&(u=" [Function"+(t.name?": "+t.name:"")+"]");return M(t)&&(u=" "+RegExp.prototype.toString.call(t)),B(t)&&(u=" "+Date.prototype.toUTCString.call(t)),U(t)&&(u=" "+$(t)),0!==i.length||f&&0!=t.length?n<0?M(t)?e.stylize(RegExp.prototype.toString.call(t),"regexp"):e.stylize("[Object]","special"):(e.seen.push(t),l=f?function(e,t,n,r,o){for(var i=[],a=0,s=t.length;a<s;++a)G(t,String(a))?i.push(D(e,t,n,r,String(a),!0)):i.push("");return o.forEach((function(o){o.match(/^\d+$/)||i.push(D(e,t,n,r,o,!0))})),i}(e,t,n,a,i):i.map((function(r){return D(e,t,n,a,r,f)})),e.seen.pop(),function(e,t,n){if(e.reduce((function(e,t){return t.indexOf("\n"),e+t.replace(/\u001b\[\d\d?m/g,"").length+1}),0)>60)return n[0]+(""===t?"":t+"\n ")+" "+e.join(",\n  ")+" "+n[1];return n[0]+t+" "+e.join(", ")+" "+n[1]}(l,u,p)):p[0]+u+p[1]}function $(e){return"["+Error.prototype.toString.call(e)+"]"}function D(e,t,n,r,o,i){var a,s,c;if((c=Object.getOwnPropertyDescriptor(t,o)||{value:t[o]}).get?s=c.set?e.stylize("[Getter/Setter]","special"):e.stylize("[Getter]","special"):c.set&&(s=e.stylize("[Setter]","special")),G(r,o)||(a="["+o+"]"),s||(e.seen.indexOf(c.value)<0?(s=P(n)?N(e,c.value,null):N(e,c.value,n-1)).indexOf("\n")>-1&&(s=i?s.split("\n").map((function(e){return"  "+e})).join("\n").substr(2):"\n"+s.split("\n").map((function(e){return"   "+e})).join("\n")):s=e.stylize("[Circular]","special")),R(a)){if(i&&o.match(/^\d+$/))return s;(a=JSON.stringify(""+o)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)?(a=a.substr(1,a.length-2),a=e.stylize(a,"name")):(a=a.replace(/'/g,"\\'").replace(/\\"/g,'"').replace(/(^"|"$)/g,"'"),a=e.stylize(a,"string"))}return a+": "+s}function I(e){return"boolean"==typeof e}function P(e){return null===e}function q(e){return"string"==typeof e}function R(e){return void 0===e}function M(e){return F(e)&&"[object RegExp]"===W(e)}function F(e){return"object"==typeof e&&null!==e}function B(e){return F(e)&&"[object Date]"===W(e)}function U(e){return F(e)&&("[object Error]"===W(e)||e instanceof Error)}function H(e){return"function"==typeof e}function Z(e){return null===e||"boolean"==typeof e||"number"==typeof e||"string"==typeof e||"symbol"==typeof e||void 0===e}function W(e){return Object.prototype.toString.call(e)}function J(e,t){if(!t||!F(t))return e;for(var n=Object.keys(t),r=n.length;r--;)e[n[r]]=t[n[r]];return e}function G(e,t){return Object.prototype.hasOwnProperty.call(e,t)}function V(e,t){if(e===t)return 0;for(var n=e.length,r=t.length,o=0,i=Math.min(n,r);o<i;++o)if(e[o]!==t[o]){n=e[o],r=t[o];break}return n<r?-1:r<n?1:0}j.colors={bold:[1,22],italic:[3,23],underline:[4,24],inverse:[7,27],white:[37,39],grey:[90,39],black:[30,39],blue:[34,39],cyan:[36,39],green:[32,39],magenta:[35,39],red:[31,39],yellow:[33,39]},j.styles={special:"cyan",number:"yellow",boolean:"yellow",undefined:"grey",null:"bold",string:"green",date:"magenta",regexp:"red"};var Y,X=Object.prototype.hasOwnProperty,K=Object.keys||function(e){var t=[];for(var n in e)X.call(e,n)&&t.push(n);return t},Q=Array.prototype.slice;function ee(){return void 0!==Y?Y:Y="foo"===function(){}.name}function te(e){return Object.prototype.toString.call(e)}function ne(e){return!A(e)&&("function"==typeof n.ArrayBuffer&&("function"==typeof ArrayBuffer.isView?ArrayBuffer.isView(e):!!e&&(e instanceof DataView||!!(e.buffer&&e.buffer instanceof ArrayBuffer))))}function re(e,t){e||le(e,!0,t,"==",ue)}var oe=/\s*function\s+([^\(\s]*)\s*/;function ie(e){if(H(e)){if(ee())return e.name;var t=e.toString().match(oe);return t&&t[1]}}function ae(e){this.name="AssertionError",this.actual=e.actual,this.expected=e.expected,this.operator=e.operator,e.message?(this.message=e.message,this.generatedMessage=!1):(this.message=function(e){return se(ce(e.actual),128)+" "+e.operator+" "+se(ce(e.expected),128)}(this),this.generatedMessage=!0);var t=e.stackStartFunction||le;if(Error.captureStackTrace)Error.captureStackTrace(this,t);else{var n=new Error;if(n.stack){var r=n.stack,o=ie(t),i=r.indexOf("\n"+o);if(i>=0){var a=r.indexOf("\n",i+1);r=r.substring(a+1)}this.stack=r}}}function se(e,t){return"string"==typeof e?e.length<t?e:e.slice(0,t):e}function ce(e){if(ee()||!H(e))return j(e);var t=ie(e);return"[Function"+(t?": "+t:"")+"]"}function le(e,t,n,r,o){throw new ae({message:n,actual:e,expected:t,operator:r,stackStartFunction:o})}function ue(e,t){e||le(e,!0,t,"==",ue)}function fe(e,t,n){e!=t&&le(e,t,n,"==",fe)}function pe(e,t,n){e==t&&le(e,t,n,"!=",pe)}function de(e,t,n){ge(e,t,!1)||le(e,t,n,"deepEqual",de)}function he(e,t,n){ge(e,t,!0)||le(e,t,n,"deepStrictEqual",he)}function ge(e,t,n,r){if(e===t)return!0;if(A(e)&&A(t))return 0===V(e,t);if(B(e)&&B(t))return e.getTime()===t.getTime();if(M(e)&&M(t))return e.source===t.source&&e.global===t.global&&e.multiline===t.multiline&&e.lastIndex===t.lastIndex&&e.ignoreCase===t.ignoreCase;if(null!==e&&"object"==typeof e||null!==t&&"object"==typeof t){if(ne(e)&&ne(t)&&te(e)===te(t)&&!(e instanceof Float32Array||e instanceof Float64Array))return 0===V(new Uint8Array(e.buffer),new Uint8Array(t.buffer));if(A(e)!==A(t))return!1;var o=(r=r||{actual:[],expected:[]}).actual.indexOf(e);return-1!==o&&o===r.expected.indexOf(t)||(r.actual.push(e),r.expected.push(t),function(e,t,n,r){if(null==e||null==t)return!1;if(Z(e)||Z(t))return e===t;if(n&&Object.getPrototypeOf(e)!==Object.getPrototypeOf(t))return!1;var o=me(e),i=me(t);if(o&&!i||!o&&i)return!1;if(o)return ge(e=Q.call(e),t=Q.call(t),n);var a,s,c=K(e),l=K(t);if(c.length!==l.length)return!1;for(c.sort(),l.sort(),s=c.length-1;s>=0;s--)if(c[s]!==l[s])return!1;for(s=c.length-1;s>=0;s--)if(!ge(e[a=c[s]],t[a],n,r))return!1;return!0}(e,t,n,r))}return n?e===t:e==t}function me(e){return"[object Arguments]"==Object.prototype.toString.call(e)}function be(e,t,n){ge(e,t,!1)&&le(e,t,n,"notDeepEqual",be)}function ve(e,t,n){ge(e,t,!0)&&le(e,t,n,"notDeepStrictEqual",ve)}function ye(e,t,n){e!==t&&le(e,t,n,"===",ye)}function we(e,t,n){e===t&&le(e,t,n,"!==",we)}function ke(e,t){if(!e||!t)return!1;if("[object RegExp]"==Object.prototype.toString.call(t))return t.test(e);try{if(e instanceof t)return!0}catch(e){}return!Error.isPrototypeOf(t)&&!0===t.call({},e)}function xe(e,t,n,r){var o;if("function"!=typeof t)throw new TypeError('"block" argument must be a function');"string"==typeof n&&(r=n,n=null),o=function(e){var t;try{e()}catch(e){t=e}return t}(t),r=(n&&n.name?" ("+n.name+").":".")+(r?" "+r:"."),e&&!o&&le(o,n,"Missing expected exception"+r);var i="string"==typeof r,a=!e&&o&&!n;if((!e&&U(o)&&i&&ke(o,n)||a)&&le(o,n,"Got unwanted exception"+r),e&&o&&n&&!ke(o,n)||!e&&o)throw o}function Se(e,t,n){xe(!0,e,t,n)}function _e(e,t,n){xe(!1,e,t,n)}function Ee(e){if(e)throw e}re.AssertionError=ae,T(ae,Error),re.fail=le,re.ok=ue,re.equal=fe,re.notEqual=pe,re.deepEqual=de,re.deepStrictEqual=he,re.notDeepEqual=be,re.notDeepStrictEqual=ve,re.strictEqual=ye,re.notStrictEqual=we,re.throws=Se,re.doesNotThrow=_e,re.ifError=Ee;var Ce=t(Object.freeze({__proto__:null,default:re,AssertionError:ae,fail:le,ok:ue,assert:ue,equal:fe,notEqual:pe,deepEqual:de,deepStrictEqual:he,notDeepEqual:be,notDeepStrictEqual:ve,strictEqual:ye,notStrictEqual:we,throws:Se,doesNotThrow:_e,ifError:Ee})),Ae=Ce,Oe="undefined"!=typeof window;function Te(e){this.hasWindow=e,this.hasIdle=this.hasWindow&&window.requestIdleCallback,this.method=this.hasIdle?window.requestIdleCallback.bind(window):this.setTimeout,this.scheduled=!1,this.queue=[]}Te.prototype.push=function(e){Ae.equal(typeof e,"function","nanoscheduler.push: cb should be type function"),this.queue.push(e),this.schedule()},Te.prototype.schedule=function(){if(!this.scheduled){this.scheduled=!0;var e=this;this.method((function(t){for(;e.queue.length&&t.timeRemaining()>0;)e.queue.shift()(t);e.scheduled=!1,e.queue.length&&e.schedule()}))}},Te.prototype.setTimeout=function(e){setTimeout(e,0,{timeRemaining:function(){return 1}})};var je,ze=function(){var e;return Oe?(window._nanoScheduler||(window._nanoScheduler=new Te(!0)),e=window._nanoScheduler):e=new Te,e},Le=ze(),Ne=Ce;De.disabled=!0;try{je=window.performance,De.disabled="true"===window.localStorage.DISABLE_NANOTIMING||!je.mark}catch(e){}var $e=De;function De(e){if(Ne.equal(typeof e,"string","nanotiming: name should be type string"),De.disabled)return Ie;var t=(1e4*je.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;je.mark(o),Le.push((function(){var i=null;try{var a=e+" ["+t+"]";je.measure(a,n,o),je.clearMarks(n),je.clearMarks(o)}catch(e){i=e}r&&r(i,e)}))}return je.mark(n),r.uuid=t,r}function Ie(e){e&&Le.push((function(){e(new Error("nanotiming: performance API unavailable"))}))}var Pe,qe=Ce;Re.disabled=!0;try{Pe=require("perf_hooks").performance,Re.disabled=C.env.DISABLE_NANOTIMING||!Pe.mark}catch(e){}function Re(e){if("undefined"!=typeof window)return $e(e);if(qe.equal(typeof e,"string","nanotiming: name should be type string"),Re.disabled)return Me;var t=(1e4*Pe.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;Pe.mark(o);var i=null;try{var a=e+" ["+t+"]";Pe.measure(a,n,o),Pe.clearMarks(n),Pe.clearMarks(o)}catch(e){i=e}r&&r(i,e)}return Pe.mark(n),r.uuid=t,r}function Me(e){e&&e(new Error("nanotiming: performance API unavailable"))}var Fe=function(e,t,n){var r,o=e.length;if(!(t>=o||0===n)){var i=o-(n=t+n>o?o-t:n);for(r=t;r<i;++r)e[r]=e[r+n];e.length=i}},Be=Re,Ue=Ce,He=Ze;function Ze(e){if(!(this instanceof Ze))return new Ze(e);this._name=e||"nanobus",this._starListeners=[],this._listeners={}}Ze.prototype.emit=function(e){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.emit: eventName should be type string or symbol");for(var t=[],n=1,r=arguments.length;n<r;n++)t.push(arguments[n]);var o=Be(this._name+"('"+e.toString()+"')"),i=this._listeners[e];return i&&i.length>0&&this._emit(this._listeners[e],t),this._starListeners.length>0&&this._emit(this._starListeners,e,t,o.uuid),o(),this},Ze.prototype.on=Ze.prototype.addListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.on: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.on: listener should be type function"),"*"===e?this._starListeners.push(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].push(t)),this},Ze.prototype.prependListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependListener: listener should be type function"),"*"===e?this._starListeners.unshift(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].unshift(t)),this},Ze.prototype.once=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.once: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.once: listener should be type function");var n=this;return this.on(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.prependOnceListener=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependOnceListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependOnceListener: listener should be type function");var n=this;return this.prependListener(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.removeListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.removeListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.removeListener: listener should be type function"),"*"===e?(this._starListeners=this._starListeners.slice(),n(this._starListeners,t)):(void 0!==this._listeners[e]&&(this._listeners[e]=this._listeners[e].slice()),n(this._listeners[e],t));function n(e,t){if(e){var n=e.indexOf(t);return-1!==n?(Fe(e,n,1),!0):void 0}}},Ze.prototype.removeAllListeners=function(e){return e?"*"===e?this._starListeners=[]:this._listeners[e]=[]:(this._starListeners=[],this._listeners={}),this},Ze.prototype.listeners=function(e){var t="*"!==e?this._listeners[e]:this._starListeners,n=[];if(t)for(var r=t.length,o=0;o<r;o++)n.push(t[o]);return n},Ze.prototype._emit=function(e,t,n,r){if(void 0!==e&&0!==e.length){void 0===n&&(n=t,t=null),t&&(n=void 0!==r?[t].concat(n,r):[t].concat(n));for(var o=e.length,i=0;i<o;i++){var a=e[i];a.apply(a,n)}}};var We=He();function Je(e){return Je="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Je(e)}function Ge(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function Ve(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function Ye(e,t,n){return t&&Ve(e.prototype,t),n&&Ve(e,n),Object.defineProperty(e,"prototype",{writable:!1}),e}function Xe(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&Qe(e,t)}function Ke(e){return Ke=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},Ke(e)}function Qe(e,t){return Qe=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},Qe(e,t)}function et(e,t){if(t&&("object"==typeof t||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e)}function tt(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}();return function(){var n,r=Ke(e);if(t){var o=Ke(this).constructor;n=Reflect.construct(r,arguments,o)}else n=r.apply(this,arguments);return et(this,n)}}function nt(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null==n)return;var r,o,i=[],a=!0,s=!1;try{for(n=n.call(e);!(a=(r=n.next()).done)&&(i.push(r.value),!t||i.length!==t);a=!0);}catch(e){s=!0,o=e}finally{try{a||null==n.return||n.return()}finally{if(s)throw o}}return i}(e,t)||ot(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}
+[continue]</tw-passagedata><tw-passagedata pid="85" name="{prev}" tags="" position="425,700" size="100,100"></tw-passagedata></tw-storydata><script>!function(){"use strict";var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function t(e){if(e.__esModule)return e;var t=Object.defineProperty({},"__esModule",{value:!0});return Object.keys(e).forEach((function(n){var r=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,r.get?r:{enumerable:!0,get:function(){return e[n]}})})),t}var n="undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{};function r(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}var i=r,a=o;function s(e){if(i===setTimeout)return setTimeout(e,0);if((i===r||!i)&&setTimeout)return i=setTimeout,setTimeout(e,0);try{return i(e,0)}catch(t){try{return i.call(null,e,0)}catch(t){return i.call(this,e,0)}}}"function"==typeof n.setTimeout&&(i=setTimeout),"function"==typeof n.clearTimeout&&(a=clearTimeout);var c,l=[],u=!1,f=-1;function p(){u&&c&&(u=!1,c.length?l=c.concat(l):f=-1,l.length&&d())}function d(){if(!u){var e=s(p);u=!0;for(var t=l.length;t;){for(c=l,l=[];++f<t;)c&&c[f].run();f=-1,t=l.length}c=null,u=!1,function(e){if(a===clearTimeout)return clearTimeout(e);if((a===o||!a)&&clearTimeout)return a=clearTimeout,clearTimeout(e);try{a(e)}catch(t){try{return a.call(null,e)}catch(t){return a.call(this,e)}}}(e)}}function h(e,t){this.fun=e,this.array=t}h.prototype.run=function(){this.fun.apply(null,this.array)};function g(){}var m=g,b=g,v=g,y=g,w=g,k=g,x=g;var S=n.performance||{},_=S.now||S.mozNow||S.msNow||S.oNow||S.webkitNow||function(){return(new Date).getTime()};var E=new Date;var C={nextTick:function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];l.push(new h(e,t)),1!==l.length||u||s(d)},title:"browser",browser:!0,env:{},argv:[],version:"",versions:{},on:m,addListener:b,once:v,off:y,removeListener:w,removeAllListeners:k,emit:x,binding:function(e){throw new Error("process.binding is not supported")},cwd:function(){return"/"},chdir:function(e){throw new Error("process.chdir is not supported")},umask:function(){return 0},hrtime:function(e){var t=.001*_.call(S),n=Math.floor(t),r=Math.floor(t%1*1e9);return e&&(n-=e[0],(r-=e[1])<0&&(n--,r+=1e9)),[n,r]},platform:"browser",release:{},config:{},uptime:function(){return(new Date-E)/1e3}};function A(e){return null!=e&&(!!e._isBuffer||O(e)||function(e){return"function"==typeof e.readFloatLE&&"function"==typeof e.slice&&O(e.slice(0,0))}(e))}function O(e){return!!e.constructor&&"function"==typeof e.constructor.isBuffer&&e.constructor.isBuffer(e)}void 0===n.TYPED_ARRAY_SUPPORT||n.TYPED_ARRAY_SUPPORT;var T="function"==typeof Object.create?function(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}:function(e,t){e.super_=t;var n=function(){};n.prototype=t.prototype,e.prototype=new n,e.prototype.constructor=e};function j(e,t){var n={seen:[],stylize:L};return arguments.length>=3&&(n.depth=arguments[2]),arguments.length>=4&&(n.colors=arguments[3]),I(t)?n.showHidden=t:t&&J(n,t),R(n.showHidden)&&(n.showHidden=!1),R(n.depth)&&(n.depth=2),R(n.colors)&&(n.colors=!1),R(n.customInspect)&&(n.customInspect=!0),n.colors&&(n.stylize=z),N(n,e,n.depth)}function z(e,t){var n=j.styles[t];return n?"["+j.colors[n][0]+"m"+e+"["+j.colors[n][1]+"m":e}function L(e,t){return e}function N(e,t,n){if(e.customInspect&&t&&H(t.inspect)&&t.inspect!==j&&(!t.constructor||t.constructor.prototype!==t)){var r=t.inspect(n,e);return q(r)||(r=N(e,r,n)),r}var o=function(e,t){if(R(t))return e.stylize("undefined","undefined");if(q(t)){var n="'"+JSON.stringify(t).replace(/^"|"$/g,"").replace(/'/g,"\\'").replace(/\\"/g,'"')+"'";return e.stylize(n,"string")}if(r=t,"number"==typeof r)return e.stylize(""+t,"number");var r;if(I(t))return e.stylize(""+t,"boolean");if(P(t))return e.stylize("null","null")}(e,t);if(o)return o;var i=Object.keys(t),a=function(e){var t={};return e.forEach((function(e,n){t[e]=!0})),t}(i);if(e.showHidden&&(i=Object.getOwnPropertyNames(t)),U(t)&&(i.indexOf("message")>=0||i.indexOf("description")>=0))return $(t);if(0===i.length){if(H(t)){var s=t.name?": "+t.name:"";return e.stylize("[Function"+s+"]","special")}if(M(t))return e.stylize(RegExp.prototype.toString.call(t),"regexp");if(B(t))return e.stylize(Date.prototype.toString.call(t),"date");if(U(t))return $(t)}var c,l,u="",f=!1,p=["{","}"];(c=t,Array.isArray(c)&&(f=!0,p=["[","]"]),H(t))&&(u=" [Function"+(t.name?": "+t.name:"")+"]");return M(t)&&(u=" "+RegExp.prototype.toString.call(t)),B(t)&&(u=" "+Date.prototype.toUTCString.call(t)),U(t)&&(u=" "+$(t)),0!==i.length||f&&0!=t.length?n<0?M(t)?e.stylize(RegExp.prototype.toString.call(t),"regexp"):e.stylize("[Object]","special"):(e.seen.push(t),l=f?function(e,t,n,r,o){for(var i=[],a=0,s=t.length;a<s;++a)G(t,String(a))?i.push(D(e,t,n,r,String(a),!0)):i.push("");return o.forEach((function(o){o.match(/^\d+$/)||i.push(D(e,t,n,r,o,!0))})),i}(e,t,n,a,i):i.map((function(r){return D(e,t,n,a,r,f)})),e.seen.pop(),function(e,t,n){if(e.reduce((function(e,t){return t.indexOf("\n"),e+t.replace(/\u001b\[\d\d?m/g,"").length+1}),0)>60)return n[0]+(""===t?"":t+"\n ")+" "+e.join(",\n  ")+" "+n[1];return n[0]+t+" "+e.join(", ")+" "+n[1]}(l,u,p)):p[0]+u+p[1]}function $(e){return"["+Error.prototype.toString.call(e)+"]"}function D(e,t,n,r,o,i){var a,s,c;if((c=Object.getOwnPropertyDescriptor(t,o)||{value:t[o]}).get?s=c.set?e.stylize("[Getter/Setter]","special"):e.stylize("[Getter]","special"):c.set&&(s=e.stylize("[Setter]","special")),G(r,o)||(a="["+o+"]"),s||(e.seen.indexOf(c.value)<0?(s=P(n)?N(e,c.value,null):N(e,c.value,n-1)).indexOf("\n")>-1&&(s=i?s.split("\n").map((function(e){return"  "+e})).join("\n").substr(2):"\n"+s.split("\n").map((function(e){return"   "+e})).join("\n")):s=e.stylize("[Circular]","special")),R(a)){if(i&&o.match(/^\d+$/))return s;(a=JSON.stringify(""+o)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)?(a=a.substr(1,a.length-2),a=e.stylize(a,"name")):(a=a.replace(/'/g,"\\'").replace(/\\"/g,'"').replace(/(^"|"$)/g,"'"),a=e.stylize(a,"string"))}return a+": "+s}function I(e){return"boolean"==typeof e}function P(e){return null===e}function q(e){return"string"==typeof e}function R(e){return void 0===e}function M(e){return F(e)&&"[object RegExp]"===W(e)}function F(e){return"object"==typeof e&&null!==e}function B(e){return F(e)&&"[object Date]"===W(e)}function U(e){return F(e)&&("[object Error]"===W(e)||e instanceof Error)}function H(e){return"function"==typeof e}function Z(e){return null===e||"boolean"==typeof e||"number"==typeof e||"string"==typeof e||"symbol"==typeof e||void 0===e}function W(e){return Object.prototype.toString.call(e)}function J(e,t){if(!t||!F(t))return e;for(var n=Object.keys(t),r=n.length;r--;)e[n[r]]=t[n[r]];return e}function G(e,t){return Object.prototype.hasOwnProperty.call(e,t)}function V(e,t){if(e===t)return 0;for(var n=e.length,r=t.length,o=0,i=Math.min(n,r);o<i;++o)if(e[o]!==t[o]){n=e[o],r=t[o];break}return n<r?-1:r<n?1:0}j.colors={bold:[1,22],italic:[3,23],underline:[4,24],inverse:[7,27],white:[37,39],grey:[90,39],black:[30,39],blue:[34,39],cyan:[36,39],green:[32,39],magenta:[35,39],red:[31,39],yellow:[33,39]},j.styles={special:"cyan",number:"yellow",boolean:"yellow",undefined:"grey",null:"bold",string:"green",date:"magenta",regexp:"red"};var Y,X=Object.prototype.hasOwnProperty,K=Object.keys||function(e){var t=[];for(var n in e)X.call(e,n)&&t.push(n);return t},Q=Array.prototype.slice;function ee(){return void 0!==Y?Y:Y="foo"===function(){}.name}function te(e){return Object.prototype.toString.call(e)}function ne(e){return!A(e)&&("function"==typeof n.ArrayBuffer&&("function"==typeof ArrayBuffer.isView?ArrayBuffer.isView(e):!!e&&(e instanceof DataView||!!(e.buffer&&e.buffer instanceof ArrayBuffer))))}function re(e,t){e||le(e,!0,t,"==",ue)}var oe=/\s*function\s+([^\(\s]*)\s*/;function ie(e){if(H(e)){if(ee())return e.name;var t=e.toString().match(oe);return t&&t[1]}}function ae(e){this.name="AssertionError",this.actual=e.actual,this.expected=e.expected,this.operator=e.operator,e.message?(this.message=e.message,this.generatedMessage=!1):(this.message=function(e){return se(ce(e.actual),128)+" "+e.operator+" "+se(ce(e.expected),128)}(this),this.generatedMessage=!0);var t=e.stackStartFunction||le;if(Error.captureStackTrace)Error.captureStackTrace(this,t);else{var n=new Error;if(n.stack){var r=n.stack,o=ie(t),i=r.indexOf("\n"+o);if(i>=0){var a=r.indexOf("\n",i+1);r=r.substring(a+1)}this.stack=r}}}function se(e,t){return"string"==typeof e?e.length<t?e:e.slice(0,t):e}function ce(e){if(ee()||!H(e))return j(e);var t=ie(e);return"[Function"+(t?": "+t:"")+"]"}function le(e,t,n,r,o){throw new ae({message:n,actual:e,expected:t,operator:r,stackStartFunction:o})}function ue(e,t){e||le(e,!0,t,"==",ue)}function fe(e,t,n){e!=t&&le(e,t,n,"==",fe)}function pe(e,t,n){e==t&&le(e,t,n,"!=",pe)}function de(e,t,n){ge(e,t,!1)||le(e,t,n,"deepEqual",de)}function he(e,t,n){ge(e,t,!0)||le(e,t,n,"deepStrictEqual",he)}function ge(e,t,n,r){if(e===t)return!0;if(A(e)&&A(t))return 0===V(e,t);if(B(e)&&B(t))return e.getTime()===t.getTime();if(M(e)&&M(t))return e.source===t.source&&e.global===t.global&&e.multiline===t.multiline&&e.lastIndex===t.lastIndex&&e.ignoreCase===t.ignoreCase;if(null!==e&&"object"==typeof e||null!==t&&"object"==typeof t){if(ne(e)&&ne(t)&&te(e)===te(t)&&!(e instanceof Float32Array||e instanceof Float64Array))return 0===V(new Uint8Array(e.buffer),new Uint8Array(t.buffer));if(A(e)!==A(t))return!1;var o=(r=r||{actual:[],expected:[]}).actual.indexOf(e);return-1!==o&&o===r.expected.indexOf(t)||(r.actual.push(e),r.expected.push(t),function(e,t,n,r){if(null==e||null==t)return!1;if(Z(e)||Z(t))return e===t;if(n&&Object.getPrototypeOf(e)!==Object.getPrototypeOf(t))return!1;var o=me(e),i=me(t);if(o&&!i||!o&&i)return!1;if(o)return ge(e=Q.call(e),t=Q.call(t),n);var a,s,c=K(e),l=K(t);if(c.length!==l.length)return!1;for(c.sort(),l.sort(),s=c.length-1;s>=0;s--)if(c[s]!==l[s])return!1;for(s=c.length-1;s>=0;s--)if(!ge(e[a=c[s]],t[a],n,r))return!1;return!0}(e,t,n,r))}return n?e===t:e==t}function me(e){return"[object Arguments]"==Object.prototype.toString.call(e)}function be(e,t,n){ge(e,t,!1)&&le(e,t,n,"notDeepEqual",be)}function ve(e,t,n){ge(e,t,!0)&&le(e,t,n,"notDeepStrictEqual",ve)}function ye(e,t,n){e!==t&&le(e,t,n,"===",ye)}function we(e,t,n){e===t&&le(e,t,n,"!==",we)}function ke(e,t){if(!e||!t)return!1;if("[object RegExp]"==Object.prototype.toString.call(t))return t.test(e);try{if(e instanceof t)return!0}catch(e){}return!Error.isPrototypeOf(t)&&!0===t.call({},e)}function xe(e,t,n,r){var o;if("function"!=typeof t)throw new TypeError('"block" argument must be a function');"string"==typeof n&&(r=n,n=null),o=function(e){var t;try{e()}catch(e){t=e}return t}(t),r=(n&&n.name?" ("+n.name+").":".")+(r?" "+r:"."),e&&!o&&le(o,n,"Missing expected exception"+r);var i="string"==typeof r,a=!e&&o&&!n;if((!e&&U(o)&&i&&ke(o,n)||a)&&le(o,n,"Got unwanted exception"+r),e&&o&&n&&!ke(o,n)||!e&&o)throw o}function Se(e,t,n){xe(!0,e,t,n)}function _e(e,t,n){xe(!1,e,t,n)}function Ee(e){if(e)throw e}re.AssertionError=ae,T(ae,Error),re.fail=le,re.ok=ue,re.equal=fe,re.notEqual=pe,re.deepEqual=de,re.deepStrictEqual=he,re.notDeepEqual=be,re.notDeepStrictEqual=ve,re.strictEqual=ye,re.notStrictEqual=we,re.throws=Se,re.doesNotThrow=_e,re.ifError=Ee;var Ce=t(Object.freeze({__proto__:null,default:re,AssertionError:ae,fail:le,ok:ue,assert:ue,equal:fe,notEqual:pe,deepEqual:de,deepStrictEqual:he,notDeepEqual:be,notDeepStrictEqual:ve,strictEqual:ye,notStrictEqual:we,throws:Se,doesNotThrow:_e,ifError:Ee})),Ae=Ce,Oe="undefined"!=typeof window;function Te(e){this.hasWindow=e,this.hasIdle=this.hasWindow&&window.requestIdleCallback,this.method=this.hasIdle?window.requestIdleCallback.bind(window):this.setTimeout,this.scheduled=!1,this.queue=[]}Te.prototype.push=function(e){Ae.equal(typeof e,"function","nanoscheduler.push: cb should be type function"),this.queue.push(e),this.schedule()},Te.prototype.schedule=function(){if(!this.scheduled){this.scheduled=!0;var e=this;this.method((function(t){for(;e.queue.length&&t.timeRemaining()>0;)e.queue.shift()(t);e.scheduled=!1,e.queue.length&&e.schedule()}))}},Te.prototype.setTimeout=function(e){setTimeout(e,0,{timeRemaining:function(){return 1}})};var je,ze=function(){var e;return Oe?(window._nanoScheduler||(window._nanoScheduler=new Te(!0)),e=window._nanoScheduler):e=new Te,e},Le=ze(),Ne=Ce;De.disabled=!0;try{je=window.performance,De.disabled="true"===window.localStorage.DISABLE_NANOTIMING||!je.mark}catch(e){}var $e=De;function De(e){if(Ne.equal(typeof e,"string","nanotiming: name should be type string"),De.disabled)return Ie;var t=(1e4*je.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;je.mark(o),Le.push((function(){var i=null;try{var a=e+" ["+t+"]";je.measure(a,n,o),je.clearMarks(n),je.clearMarks(o)}catch(e){i=e}r&&r(i,e)}))}return je.mark(n),r.uuid=t,r}function Ie(e){e&&Le.push((function(){e(new Error("nanotiming: performance API unavailable"))}))}var Pe,qe=Ce;Re.disabled=!0;try{Pe=require("perf_hooks").performance,Re.disabled=C.env.DISABLE_NANOTIMING||!Pe.mark}catch(e){}function Re(e){if("undefined"!=typeof window)return $e(e);if(qe.equal(typeof e,"string","nanotiming: name should be type string"),Re.disabled)return Me;var t=(1e4*Pe.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;Pe.mark(o);var i=null;try{var a=e+" ["+t+"]";Pe.measure(a,n,o),Pe.clearMarks(n),Pe.clearMarks(o)}catch(e){i=e}r&&r(i,e)}return Pe.mark(n),r.uuid=t,r}function Me(e){e&&e(new Error("nanotiming: performance API unavailable"))}var Fe=function(e,t,n){var r,o=e.length;if(!(t>=o||0===n)){var i=o-(n=t+n>o?o-t:n);for(r=t;r<i;++r)e[r]=e[r+n];e.length=i}},Be=Re,Ue=Ce,He=Ze;function Ze(e){if(!(this instanceof Ze))return new Ze(e);this._name=e||"nanobus",this._starListeners=[],this._listeners={}}Ze.prototype.emit=function(e){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.emit: eventName should be type string or symbol");for(var t=[],n=1,r=arguments.length;n<r;n++)t.push(arguments[n]);var o=Be(this._name+"('"+e.toString()+"')"),i=this._listeners[e];return i&&i.length>0&&this._emit(this._listeners[e],t),this._starListeners.length>0&&this._emit(this._starListeners,e,t,o.uuid),o(),this},Ze.prototype.on=Ze.prototype.addListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.on: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.on: listener should be type function"),"*"===e?this._starListeners.push(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].push(t)),this},Ze.prototype.prependListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependListener: listener should be type function"),"*"===e?this._starListeners.unshift(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].unshift(t)),this},Ze.prototype.once=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.once: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.once: listener should be type function");var n=this;return this.on(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.prependOnceListener=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependOnceListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependOnceListener: listener should be type function");var n=this;return this.prependListener(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.removeListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.removeListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.removeListener: listener should be type function"),"*"===e?(this._starListeners=this._starListeners.slice(),n(this._starListeners,t)):(void 0!==this._listeners[e]&&(this._listeners[e]=this._listeners[e].slice()),n(this._listeners[e],t));function n(e,t){if(e){var n=e.indexOf(t);return-1!==n?(Fe(e,n,1),!0):void 0}}},Ze.prototype.removeAllListeners=function(e){return e?"*"===e?this._starListeners=[]:this._listeners[e]=[]:(this._starListeners=[],this._listeners={}),this},Ze.prototype.listeners=function(e){var t="*"!==e?this._listeners[e]:this._starListeners,n=[];if(t)for(var r=t.length,o=0;o<r;o++)n.push(t[o]);return n},Ze.prototype._emit=function(e,t,n,r){if(void 0!==e&&0!==e.length){void 0===n&&(n=t,t=null),t&&(n=void 0!==r?[t].concat(n,r):[t].concat(n));for(var o=e.length,i=0;i<o;i++){var a=e[i];a.apply(a,n)}}};var We=He();function Je(e){return Je="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Je(e)}function Ge(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function Ve(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function Ye(e,t,n){return t&&Ve(e.prototype,t),n&&Ve(e,n),Object.defineProperty(e,"prototype",{writable:!1}),e}function Xe(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&Qe(e,t)}function Ke(e){return Ke=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},Ke(e)}function Qe(e,t){return Qe=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},Qe(e,t)}function et(e,t){if(t&&("object"==typeof t||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e)}function tt(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}();return function(){var n,r=Ke(e);if(t){var o=Ke(this).constructor;n=Reflect.construct(r,arguments,o)}else n=r.apply(this,arguments);return et(this,n)}}function nt(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null==n)return;var r,o,i=[],a=!0,s=!1;try{for(n=n.call(e);!(a=(r=n.next()).done)&&(i.push(r.value),!t||i.length!==t);a=!0);}catch(e){s=!0,o=e}finally{try{a||null==n.return||n.return()}finally{if(s)throw o}}return i}(e,t)||ot(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}
 /*!
 	 * isobject <https://github.com/jonschlinkert/isobject>
 	 *
