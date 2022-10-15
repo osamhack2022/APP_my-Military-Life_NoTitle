@@ -1,0 +1,11 @@
+15:14~15:39
+일병 박지문, 일병 백종은, 일병 전지후, 일병 이선우, 일병 김재욱
+
+스트레스
+평판
+근력/체력
+군기
+
+Math.round((reputation+(1+(military_discipline*0.1)))*10)/10
+Math.round((stress-1)*10)/10
+
