@@ -54,45 +54,55 @@
 header .left{
   display:block;
   border: solid 1px black;
-  width:5vmax;
+  width:7vmax;
+  font-size: 13px;
   font-family: 'HBIOS-SYS';
 }
 
 header .center{
   display:block;
-  width:5vmax;
+  width:7vmax;
+  font-size: 13px;
   font-family: 'HBIOS-SYS';
 }
 #str{
   background-color: red;
+  font-size: 13px;
   border: solid 1px black;
 }
 #strs{
   background-color: blue;
+  font-size: 13px;
   border: solid 1px black;
 }
 header .right{
   display:block;
   width:1vmax;
+  font-size: 13px;
   font-family: 'HBIOS-SYS';
 }
 #md{
   background-color: #4BA621;
+  font-size: 13px;
   border: solid 1px black;
   display:block;
 }
 #rep{
   background-color: #CFCFCF;
+  font-size: 13px;
   border: solid 1px black;
 }
 
 footer .left{
+  font-size: 13px;
   font-family: 'HBIOS-SYS';
 }
 footer .center{
+  font-size: 13px;
   font-family: 'HBIOS-SYS';
 }
 footer .right{
+  font-size: 13px;
   font-family: 'HBIOS-SYS';
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">engine.state.set("milidate", 499);
 engine.state.set("homedate", 0);
@@ -121,6 +131,11 @@ engine.state.set("stress", 0); //스트레스 -100~100 0 시작
 engine.state.set("reputation", 0); //평판 -100~100 0 시작
 engine.state.set("stamina_strength", 0); //체력/근력 -100~100 0 시작
 engine.state.set("military_discipline", 0); //군기 -100~100 0 시작
+engine.state.set("pjm_favorability", 0); //박지문 호감도
+engine.state.set("bje_favorability", 0); //백종은 호감도
+engine.state.set("jjh_favorability", 0); //전지후 호감도
+engine.state.set("lsw_favorability", 0); //이선우 호감도
+engine.state.set("kjw_favorability", 0); //김재욱 호감도
 //############################################################
 engine.state.set("calendar2021", [[],[[],['1','1'], ['1','2'], ['1','3'], ['1','4'], ['1','5'], ['1','6'], ['1','7'], ['1','8'], ['1','9'], ['1','10'], ['1','11'], ['1','12'], ['1','13'], ['1','14'], ['1','15'], ['1','16'], ['1','17'], ['1','18'], ['1','19'], ['1','20'], ['1','21'], ['1','22'], ['1','23'], ['1','24'], ['1','25'], ['1','26'], ['1','27'], ['1','28'], ['1','29'], ['1','30'], ['1','31']], 
 
@@ -136,7 +151,7 @@ engine.state.set("calendar2021", [[],[[],['1','1'], ['1','2'], ['1','3'], ['1','
                   
 [[],['7','1'], ['7','2'], ['7','3'], ['7','4'], ['7','5'], ['7','6'], ['7','7'], ['7','8'], ['7','9'], ['7','10'], ['7','11'], ['7','12'], ['7','13'], ['7','14'], ['7','15'], ['7','16'], ['7','17'], ['7','18'], ['7','19'], ['7','20'], ['7','21'], ['7','22'], ['7','23'], ['7','24'], ['7','25'], ['7','26'], ['7','27'], ['7','28'], ['7','29'], ['7','30'], ['7','31']], 
                   
-[[],['8','1'], ['8','2',"2주대기"], ['8','3',"2주대기"], ['8','4',"2주대기"], ['8','5',"2주대기"], ['8','6',"2주대기"], ['8','7',"2주대기"], ['8','8',"2주대기"], ['8','9',"2주대기"], ['8','10',"2주대기"], ['8','11',"2주대기"], ['8','12',"2주대기"], ['8','13',"2주대기"], ['8','14',"2주대기"], ['8','15',"2주대기"], ['8','16',"2주대기"], ['8','17'], ['8','18'], ['8','19'], ['8','20'], ['8','21'], ['8','22'], ['8','23'], ['8','24'], ['8','25'], ['8','26'], ['8','27'], ['8','28'], ['8','29'], ['8','30'], ['8','31']], 
+[[],['8','1'], ['8','2',"2주대기"], ['8','3',"2주대기"], ['8','4',"2주대기"], ['8','5',"2주대기"], ['8','6',"2주대기"], ['8','7',"2주대기"], ['8','8',"2주대기"], ['8','9',"2주대기"], ['8','10',"2주대기"], ['8','11',"2주대기"], ['8','12',"2주대기"], ['8','13',"2주대기"], ['8','14',"2주대기"], ['8','15',"2주대기"], ['8','16'], ['8','17'], ['8','18'], ['8','19'], ['8','20'], ['8','21'], ['8','22'], ['8','23'], ['8','24'], ['8','25'], ['8','26'], ['8','27'], ['8','28'], ['8','29'], ['8','30'], ['8','31']], 
                   
 [[],['9','1'], ['9','2'], ['9','3'], ['9','4'], ['9','5'], ['9','6'], ['9','7'], ['9','8'], ['9','9'], ['9','10'], ['9','11'], ['9','12'], ['9','13'], ['9','14'], ['9','15'], ['9','16'], ['9','17'], ['9','18'], ['9','19'], ['9','20'], ['9','21'], ['9','22'], ['9','23'], ['9','24'], ['9','25'], ['9','26'], ['9','27'], ['9','28'], ['9','29'], ['9','30']], 
                   
@@ -165,7 +180,7 @@ reputation:0
 
 
 
-config.header.left: &quot;&lt;div id=&#39;left_up&#39; onclick=&#39;left_up.innerHTML = {go_home}&#39;&gt;{month}월{day}일&amp;nbsp{hour}:{minute} | {weather}&lt;/div&gt;&lt;div id=&#39;left_down&#39;&gt;현재 위치: {now_position}&lt;/div&gt;&quot;
+config.header.left: &quot;&lt;div id=&#39;left_up&#39; onclick=&#39;left_up.innerHTML = {go_home}&#39;&gt;{month}월{day}일&amp;nbsp{hour}:{minute} | {weather}&lt;/div&gt;&lt;div id=&#39;left_down&#39;&gt;현재 위치:{now_position}&lt;/div&gt;&quot;
 config.header.center:&quot;&lt;div id=&#39;str&#39;&gt;체력/근력: {stamina_strength}&lt;/div&gt;&lt;div style=&#39;color: white;&#39; id=&#39;strs&#39;&gt;스트레스: {stress}&lt;/div&gt;&quot;
 config.header.right:&quot;&lt;div id=&#39;md&#39;&gt; 군기: {military_discipline}&lt;/div&gt;&lt;div id=&#39;rep&#39;&gt;평판: {reputation}&lt;/div&gt;&quot;
 
@@ -223,10 +238,10 @@ if(minute &gt;= 60){
 총기수불대와 들어가는 문 두개가 보여지고 있습니다.&lt;br&gt;
 하나는 운영과로 통하는 문, 다른 하나는 지휘통제실로 연결되는 문입니다.&lt;br&gt;
 
-[if AM_work]
+[if AM_work || PM_work]
 [[통합공장]]
 [continue]
-[if !AM_work]
+[if !AM_work &amp;&amp; !PM_work]
 [[연병장]]
 [continue]
 
@@ -305,6 +320,10 @@ if(hour*100+minute &gt;= 645 &amp;&amp; hour*100+minute &lt; 650 &amp;&amp; !AM_
 병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 작업을 위해 도구들을 들고 이동하고 있는 전우들이 보입니다.&lt;br&gt;
 그 외에는 일과를 보러갔는지 거의 보이지 않습니다.
+[if hour*100+minute &gt;= 1100 &amp;&amp; hour*100+minute &lt; 1130 &amp;&amp; noob]
+[[생활관]]
+[continue]
+[continue]
 [if hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 835]
 당신은 일과집합을 늦지않고 완료했습니다.&lt;br&gt;
 중대의 소대장님이 나오셔서 인원을 체크하고 계십니다.&lt;br&gt;
@@ -326,35 +345,39 @@ if(hour*100+minute &gt;= 830 &amp;&amp; hour*100+minute &lt; 835){
 당신과 전우들은 식사집합을 늦지않게 완료하였습니다.&lt;br&gt;
 집합이 완료되자 당직 사관님께서 식당으로 가라고 하십니다.&lt;br&gt;&lt;br&gt;
 &lt;b&gt;[[밥먹으러 가기(식당)-&gt;식당]]&lt;/b&gt;&lt;br&gt;
-[if hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1305]
-당신은 일과집합을 늦지않고 완료했습니다.&lt;br&gt;
-중대의 소대장님이 나오셔서 인원을 체크하고 계십니다.&lt;br&gt;
-오전과는 집합해있는 인원이 조금 달라보입니다.&lt;br&gt;
-하지만 연명부와 비교했을 때 이상이 없는지 해치라고 하십니다.
-
-13시10분까지 당신은 처부에 도착해야합니다.
-[JavaScript]
-if(hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1305){
-	PM_work=true;
-}
-[continue]
 [if hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1530]
 병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 작업을 위해 도구들을 들고 이동하고 있는 전우들이 보입니다.&lt;br&gt;
 그 외에는 일과를 보러갔는지 거의 보이지 않습니다.
 [continue]
-[if hour*100+minute &gt;= 1530 &amp;&amp; hour*100+minute &lt; 1620]
+[if hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1305]
+당신은 일과집합을 늦지않고 완료했습니다.&lt;br&gt;
+중대의 소대장님이 나오셔서 인원을 체크하고 계십니다.&lt;br&gt;
+오전과는 집합해있는 인원이 조금 달라보입니다.&lt;br&gt;
+하지만 연명부와 비교했을 때 이상이 없는지 해치라고 하십니다.&lt;br&gt;
+&lt;br&gt;
+13시10분까지 당신은 처부에 도착해야합니다.&lt;br&gt;
+[[운영과/지통실]]
+[JavaScript]
+if(hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1305){
+	PM_work=true;
+}
+[continue]
+[if hour*100+minute &gt;= 1530 &amp;&amp; hour*100+minute &lt; 1600]
 병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
 처부일을 마무리하고 생활관으로 복귀하는 전우들이 보입니다.
+[if hour*100+minute &gt;= 1530 &amp;&amp; hour*100+minute &lt; 1600 &amp;&amp; noob]
+[[생활관]]
+[continue]
+[continue]
+[if hour*100+minute &gt;= 1600 &amp;&amp; hour*100+minute &lt; 1730]
+병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
+대부분이 밖에서 체력단련을 진행하고 있습니다.
 [continue]
 [if hour*100+minute &gt;= 1600 &amp;&amp; hour*100+minute &lt; 1605]
 당신과 전우들은 체단집합을 늦지않게 완료하였습니다.&lt;br&gt;
 집합이 완료되자 당직 사관님께서 사열대로 가라고 하십니다.&lt;br&gt;&lt;br&gt;
 &lt;b&gt;[[체단 준비하러 사열대가기-&gt;사열대]]&lt;/b&gt;
-[continue]
-[if hour*100+minute &gt;= 1620 &amp;&amp; hour*100+minute &lt; 1730]
-병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
-대부분이 밖에서 체력단련을 진행하고 있습니다.
 [continue]
 [if hour*100+minute &gt;= 1730 &amp;&amp; hour*100+minute &lt; 2040]
 병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다.&lt;br&gt;
@@ -448,7 +471,7 @@ if(minute &gt;= 60){
 문은 닫혀있고 조명 또한 전부 꺼져 있습니다.
 [continue]
 
-[if !(eat) &amp;&amp; (hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830) || (hour*100+minute &gt;= 1100 &amp;&amp; hour*100+minute &lt; 1300) || (hour*100+minute &gt;= 1700 &amp;&amp; hour*100+minute &lt; 1830)]
+[if !(eat) &amp;&amp; ((hour*100+minute &gt;= 700 &amp;&amp; hour*100+minute &lt; 830) || (hour*100+minute &gt;= 1100 &amp;&amp; hour*100+minute &lt; 1300) || (hour*100+minute &gt;= 1700 &amp;&amp; hour*100+minute &lt; 1830))]
 &lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;식당&quot; onclick=&quot;eat=true;minute+=20;&quot;&gt;식사하기&lt;/a&gt;&lt;/b&gt;
 [continue]
 [if eat]
@@ -510,12 +533,11 @@ if(hour*100+minute &gt;= 640 &amp;&amp; hour*100+minute &lt; 645){
 주변에는 아무도 없고 그저 사열대 뒤에서 국기가 걸려있는 것만이 보입니다.
 [continue]
 [if hour*100+minute &gt;= 1600 &amp;&amp; hour*100+minute &lt; 1605]
-사열대에 전 중대가 집합을 완료하였습니다.
-국군도수체조를 마친 뒤 각 중대별로 체력단련을 실시하기 시작했습니다.
-&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;사열대&quot; onclick=&quot;minute+=15&quot;&gt;도수체조하기&lt;/a&gt;
-//테스트 이벤트 - 자율체단 으로 적용됩니다.
+사열대에 전 중대가 집합을 완료하였습니다.&lt;br&gt;
+국군도수체조를 마친 뒤 각 중대별로 체력단련을 실시하기 시작했습니다.&lt;br&gt;
+{reveal link: &#39;도수체조하기&#39;, passage: &#39;도수체조&#39;}
 [continue]
-[if hour*100+minute &gt;= 1620 &amp;&amp; hour*100+minute &lt; 1730]
+[if hour*100+minute &gt;= 1605 &amp;&amp; hour*100+minute &lt; 1730]
 병사들의 피땀으로 만들어진 인공잔디가 깔려있는 연병장입니다&lt;br&gt;
 대부분이 밖에서 체력단련을 진행하고 있습니다.
 [continue]
@@ -653,17 +675,19 @@ if(miss){
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 점심을 먹기 위하여 거의 모든 전우들이 내려와 있습니다.&lt;br&gt;
 저마다의 방식으로 휴식을 취하며 식사집합을 기다리고 있습니다.
-[if (hour*100+minute &gt;= 1130 &amp;&amp; hour*100+minute &lt; 1135)]
+[if (hour*100+minute &gt;= 1110 &amp;&amp; hour*100+minute &lt; 1135)]
 식사집합은 11시30분까지 라고 합니다.&lt;br&gt;
 늦지않게 행정반 앞으로 집합하여 식사를 해야 합니다.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;hour=11;minute=30;&quot;&gt;식집준비하기&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
 &lt;b&gt;[[행정반 앞으로 가기(연병장)-&gt;연병장]]&lt;/b&gt;&lt;br&gt;
-[if (hour*100+minute &gt;= 1135 &amp;&amp; hour*100+minute &lt; 1300)]
+[if (hour*100+minute &gt;= 1135 &amp;&amp; hour*100+minute &lt; 1305)]
 오후 일과집합은 13시00분까지 라고 합니다.&lt;br&gt;
 늦지않게 행정반 앞으로 집합하여 해야합니다.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;hour=13;minute=00;&quot;&gt;일과집합준비하기&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
 &lt;b&gt;[[행정반 앞으로 가기(연병장)-&gt;연병장]]&lt;/b&gt;&lt;br&gt;
 [continue]
 &lt;!--일과중 기본메세지--&gt;
-[if hour*100+minute &gt;= 1300 &amp;&amp; hour*100+minute &lt; 1530]
+[if hour*100+minute &gt;= 1305 &amp;&amp; hour*100+minute &lt; 1530]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 다른 전우들은 일과를 보고있는지 거의 보이지 않습니다.
 [continue]
@@ -672,10 +696,11 @@ if(miss){
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 16시에 있는 체력단련을 위하여 전우들이 준비를 하고 있습니다.
 늦지않게 행정반 앞으로 집합하여 해야합니다.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;hour=16;minute=00;&quot;&gt;체단집합준비하기&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
 &lt;b&gt;[[행정반 앞으로 가기(연병장)-&gt;연병장]]&lt;/b&gt;&lt;br&gt;
 [continue]
 &lt;!--체단시간 기본메세지--&gt;
-[if hour*100+minute &gt;= 1600 &amp;&amp; hour*100+minute &lt; 1730]
+[if hour*100+minute &gt;= 1605 &amp;&amp; hour*100+minute &lt; 1730]
 당신이 생활하고있는 생활관입니다.&lt;br&gt;
 체력단련을 열외받는 전우들 외에는 거의 모두 밖에서 체력단련을 진행하고 있습니다.
 [if (hour*100+minute &gt;= 1630 &amp;&amp; hour*100+minute &lt; 1735)]
@@ -966,12 +991,15 @@ if(minute &gt;= 60){
 주황색 띠가 둘러져 있는 공장의 모습은 사회에서 본 여느 공장의 모습과 비슷해 보입니다.&lt;br&gt;
 앞에 샵차가 늘어서 있습니다.
 [continue]
-[if AM_work]
+
+[if AM_work || PM_work]
 [[안으로 들어간다-&gt;통합공장 내부]]
 [continue]
-[if !AM_work]
-[[운영과/지통실[00:03]-&gt;운영과/지통실]]
+[if !AM_work &amp;&amp; !PM_work]
+[[운영과/지통실]]
 [continue]
+
+
 [if noob]
 당신은 아직 2주 대기라서 박유원씨와 함께 해야만 움직일 수 있습니다.&lt;br&gt;
 [[뒤로가기-&gt;{prev}]]
@@ -988,10 +1016,9 @@ if(minute &gt;= 60){
 [[풋살장[00:03]-&gt;풋살장]]
 
 [[2-1초소(위병소)[0:03]-&gt;2-1초소(위병소)]]&lt;/b&gt;
-[continue]</tw-passagedata><tw-passagedata pid="14" name="궤도 사무실" tags="" position="1400,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="15" name="샤워장" tags="" position="900,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="16" name="총포 사무실" tags="" position="1400,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;.</tw-passagedata><tw-passagedata pid="17" name="지원통제과" tags="" position="1200,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="18" name="통신 사무실" tags="" position="1400,800" size="100,100">당신은 노크를 한뒤 말했습니다.
+[continue]</tw-passagedata><tw-passagedata pid="14" name="궤도 사무실" tags="" position="1400,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="15" name="샤워장" tags="" position="900,700" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 내부]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="16" name="총포 사무실" tags="" position="1400,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;.</tw-passagedata><tw-passagedata pid="17" name="지원통제과" tags="" position="1200,500" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="18" name="통신 사무실" tags="" position="1400,800" size="100,100">당신은 노크를 했습니다.
 
 *똑똑
-이병 짬찌 들어가도 되겠습니까?
 
 &lt;!--#################################################--&gt;
 
@@ -1057,11 +1084,15 @@ if(hour*100+minute &gt;= 0 &amp;&amp; hour*100+minute &lt; 630){
 [if !tongsin_so]
 문이 잠겨있다.
 [continue]
-
-
+[if noob]
+당신은 아직 2주 대기라서 박유원씨와 함께 해야만 움직일 수 있습니다.&lt;br&gt;
+[[뒤로가기-&gt;{prev}]]
+[continue]
+[if !noob]
 &lt;b&gt;[[나간다-&gt;통합공장 2층]]
 
-[[통신 공장으로 간다-&gt;통신공장]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="19" name="통신공장" tags="" position="1200,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]
+[[통신 공장으로 간다-&gt;통신공장]]&lt;/b&gt;
+[continue]</tw-passagedata><tw-passagedata pid="19" name="통신공장" tags="" position="1200,600" size="100,100">&lt;b&gt;[[나간다-&gt;통합공장 2층]]
 
 [[통신 사무실로간다-&gt;통신 사무실]]&lt;/b&gt;</tw-passagedata><tw-passagedata pid="20" name="야외쓰레기장" tags="" position="500,300" size="100,100">&lt;!--시간변화--&gt;
 [JavaScript]
@@ -1183,10 +1214,10 @@ if(minute &gt;= 60){
 통합공장의 내부입니다.&lt;br&gt;
 1층과 2층으로 나누어져 있습니다.&lt;br&gt;
 모든 사무실은 2층에 위치해있습니다.
-[if AM_work]
+[if AM_work || PM_work]
 [[처부로 가기-&gt;통신 사무실]]
 [continue]
-[if !AM_work]
+[if !AM_work &amp;&amp; !PM_work]
 [[나간다-&gt;통합공장]]
 [continue]
 [if noob]
@@ -1559,7 +1590,7 @@ if(minute &gt;= 60){
 
 [[통합공장[00:03]-&gt;통합공장]] &lt;/b&gt;</tw-passagedata><tw-passagedata pid="56" name="오전일과" tags="" position="1300,1000" size="100,100">AM_work: false
 hour: hour + 2
-minute: minute + 50
+minute: minute + 30
 eat:false
 --
 
@@ -1570,13 +1601,29 @@ if(minute &gt;= 60){
 }
 [continued]
 
-오전일과를 모두 보았습니다.
-처부 소대장님께서 중대로 내려가 점심을 먹으라고 하십니다.</tw-passagedata><tw-passagedata pid="57" name="오후일과" tags="" position="1400,1000" size="100,100">PM_work: false
-hour: hour + 3
-minute: minute + 0
+오전일과를 모두 보았습니다.&lt;br&gt;
+처부 소대장님께서 중대로 내려가 점심을 먹으라고 하십니다.&lt;br&gt;
+
+[if noob]
+[[통합공장]]
+[continue]</tw-passagedata><tw-passagedata pid="57" name="오후일과" tags="" position="1400,1000" size="100,100">PM_work: false
+hour: hour + 2
+minute: minute + 40
+eat:false
 --
+
+[JavaScript]
+if(minute &gt;= 60){
+	minute = minute-60;
+    hour+=1;
+}
+[continued]
 오후일과를 모두 보았습니다.
-처부 소대장님께서 내려가 체력단련을 준비하라고 하십니다.</tw-passagedata><tw-passagedata pid="58" name="취침" tags="" position="300,700" size="100,100">day: day+1
+처부 소대장님께서 내려가 체력단련을 준비하라고 하십니다.
+
+[if noob]
+[[통합공장]]
+[continue]</tw-passagedata><tw-passagedata pid="58" name="취침" tags="" position="300,700" size="100,100">day: day+1
 hour: 6
 minute: 30
 homedate: homedate + 1
@@ -1925,9 +1972,45 @@ minute: 00
 &lt;b&gt;저녁점호 - 완료&lt;/b&gt;&lt;br&gt;
 이제 잠이들 시간입니다.&lt;br&gt;
 취침이 들면 튜토리얼이 끝나고 본 스토리로 들어가게 됩니다.&lt;br&gt;
-본 스토리는 2주대기 2일차부터 시작되며, 스테이터스가 모두 초기화됩니다.&lt;br&gt;
-&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;stress=0;reputation=0;stamina_strength=0;military_discipline=0;day+=1;hour=6;minute=30;&quot;&gt;다음날로(튜토리얼끝)&lt;/a&gt;&lt;/b&gt;
-[continue]</tw-passagedata><tw-passagedata pid="85" name="{prev}" tags="" position="425,700" size="100,100"></tw-passagedata></tw-storydata><script>!function(){"use strict";var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function t(e){if(e.__esModule)return e;var t=Object.defineProperty({},"__esModule",{value:!0});return Object.keys(e).forEach((function(n){var r=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,r.get?r:{enumerable:!0,get:function(){return e[n]}})})),t}var n="undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{};function r(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}var i=r,a=o;function s(e){if(i===setTimeout)return setTimeout(e,0);if((i===r||!i)&&setTimeout)return i=setTimeout,setTimeout(e,0);try{return i(e,0)}catch(t){try{return i.call(null,e,0)}catch(t){return i.call(this,e,0)}}}"function"==typeof n.setTimeout&&(i=setTimeout),"function"==typeof n.clearTimeout&&(a=clearTimeout);var c,l=[],u=!1,f=-1;function p(){u&&c&&(u=!1,c.length?l=c.concat(l):f=-1,l.length&&d())}function d(){if(!u){var e=s(p);u=!0;for(var t=l.length;t;){for(c=l,l=[];++f<t;)c&&c[f].run();f=-1,t=l.length}c=null,u=!1,function(e){if(a===clearTimeout)return clearTimeout(e);if((a===o||!a)&&clearTimeout)return a=clearTimeout,clearTimeout(e);try{a(e)}catch(t){try{return a.call(null,e)}catch(t){return a.call(this,e)}}}(e)}}function h(e,t){this.fun=e,this.array=t}h.prototype.run=function(){this.fun.apply(null,this.array)};function g(){}var m=g,b=g,v=g,y=g,w=g,k=g,x=g;var S=n.performance||{},_=S.now||S.mozNow||S.msNow||S.oNow||S.webkitNow||function(){return(new Date).getTime()};var E=new Date;var C={nextTick:function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];l.push(new h(e,t)),1!==l.length||u||s(d)},title:"browser",browser:!0,env:{},argv:[],version:"",versions:{},on:m,addListener:b,once:v,off:y,removeListener:w,removeAllListeners:k,emit:x,binding:function(e){throw new Error("process.binding is not supported")},cwd:function(){return"/"},chdir:function(e){throw new Error("process.chdir is not supported")},umask:function(){return 0},hrtime:function(e){var t=.001*_.call(S),n=Math.floor(t),r=Math.floor(t%1*1e9);return e&&(n-=e[0],(r-=e[1])<0&&(n--,r+=1e9)),[n,r]},platform:"browser",release:{},config:{},uptime:function(){return(new Date-E)/1e3}};function A(e){return null!=e&&(!!e._isBuffer||O(e)||function(e){return"function"==typeof e.readFloatLE&&"function"==typeof e.slice&&O(e.slice(0,0))}(e))}function O(e){return!!e.constructor&&"function"==typeof e.constructor.isBuffer&&e.constructor.isBuffer(e)}void 0===n.TYPED_ARRAY_SUPPORT||n.TYPED_ARRAY_SUPPORT;var T="function"==typeof Object.create?function(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}:function(e,t){e.super_=t;var n=function(){};n.prototype=t.prototype,e.prototype=new n,e.prototype.constructor=e};function j(e,t){var n={seen:[],stylize:L};return arguments.length>=3&&(n.depth=arguments[2]),arguments.length>=4&&(n.colors=arguments[3]),I(t)?n.showHidden=t:t&&J(n,t),R(n.showHidden)&&(n.showHidden=!1),R(n.depth)&&(n.depth=2),R(n.colors)&&(n.colors=!1),R(n.customInspect)&&(n.customInspect=!0),n.colors&&(n.stylize=z),N(n,e,n.depth)}function z(e,t){var n=j.styles[t];return n?"["+j.colors[n][0]+"m"+e+"["+j.colors[n][1]+"m":e}function L(e,t){return e}function N(e,t,n){if(e.customInspect&&t&&H(t.inspect)&&t.inspect!==j&&(!t.constructor||t.constructor.prototype!==t)){var r=t.inspect(n,e);return q(r)||(r=N(e,r,n)),r}var o=function(e,t){if(R(t))return e.stylize("undefined","undefined");if(q(t)){var n="'"+JSON.stringify(t).replace(/^"|"$/g,"").replace(/'/g,"\\'").replace(/\\"/g,'"')+"'";return e.stylize(n,"string")}if(r=t,"number"==typeof r)return e.stylize(""+t,"number");var r;if(I(t))return e.stylize(""+t,"boolean");if(P(t))return e.stylize("null","null")}(e,t);if(o)return o;var i=Object.keys(t),a=function(e){var t={};return e.forEach((function(e,n){t[e]=!0})),t}(i);if(e.showHidden&&(i=Object.getOwnPropertyNames(t)),U(t)&&(i.indexOf("message")>=0||i.indexOf("description")>=0))return $(t);if(0===i.length){if(H(t)){var s=t.name?": "+t.name:"";return e.stylize("[Function"+s+"]","special")}if(M(t))return e.stylize(RegExp.prototype.toString.call(t),"regexp");if(B(t))return e.stylize(Date.prototype.toString.call(t),"date");if(U(t))return $(t)}var c,l,u="",f=!1,p=["{","}"];(c=t,Array.isArray(c)&&(f=!0,p=["[","]"]),H(t))&&(u=" [Function"+(t.name?": "+t.name:"")+"]");return M(t)&&(u=" "+RegExp.prototype.toString.call(t)),B(t)&&(u=" "+Date.prototype.toUTCString.call(t)),U(t)&&(u=" "+$(t)),0!==i.length||f&&0!=t.length?n<0?M(t)?e.stylize(RegExp.prototype.toString.call(t),"regexp"):e.stylize("[Object]","special"):(e.seen.push(t),l=f?function(e,t,n,r,o){for(var i=[],a=0,s=t.length;a<s;++a)G(t,String(a))?i.push(D(e,t,n,r,String(a),!0)):i.push("");return o.forEach((function(o){o.match(/^\d+$/)||i.push(D(e,t,n,r,o,!0))})),i}(e,t,n,a,i):i.map((function(r){return D(e,t,n,a,r,f)})),e.seen.pop(),function(e,t,n){if(e.reduce((function(e,t){return t.indexOf("\n"),e+t.replace(/\u001b\[\d\d?m/g,"").length+1}),0)>60)return n[0]+(""===t?"":t+"\n ")+" "+e.join(",\n  ")+" "+n[1];return n[0]+t+" "+e.join(", ")+" "+n[1]}(l,u,p)):p[0]+u+p[1]}function $(e){return"["+Error.prototype.toString.call(e)+"]"}function D(e,t,n,r,o,i){var a,s,c;if((c=Object.getOwnPropertyDescriptor(t,o)||{value:t[o]}).get?s=c.set?e.stylize("[Getter/Setter]","special"):e.stylize("[Getter]","special"):c.set&&(s=e.stylize("[Setter]","special")),G(r,o)||(a="["+o+"]"),s||(e.seen.indexOf(c.value)<0?(s=P(n)?N(e,c.value,null):N(e,c.value,n-1)).indexOf("\n")>-1&&(s=i?s.split("\n").map((function(e){return"  "+e})).join("\n").substr(2):"\n"+s.split("\n").map((function(e){return"   "+e})).join("\n")):s=e.stylize("[Circular]","special")),R(a)){if(i&&o.match(/^\d+$/))return s;(a=JSON.stringify(""+o)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)?(a=a.substr(1,a.length-2),a=e.stylize(a,"name")):(a=a.replace(/'/g,"\\'").replace(/\\"/g,'"').replace(/(^"|"$)/g,"'"),a=e.stylize(a,"string"))}return a+": "+s}function I(e){return"boolean"==typeof e}function P(e){return null===e}function q(e){return"string"==typeof e}function R(e){return void 0===e}function M(e){return F(e)&&"[object RegExp]"===W(e)}function F(e){return"object"==typeof e&&null!==e}function B(e){return F(e)&&"[object Date]"===W(e)}function U(e){return F(e)&&("[object Error]"===W(e)||e instanceof Error)}function H(e){return"function"==typeof e}function Z(e){return null===e||"boolean"==typeof e||"number"==typeof e||"string"==typeof e||"symbol"==typeof e||void 0===e}function W(e){return Object.prototype.toString.call(e)}function J(e,t){if(!t||!F(t))return e;for(var n=Object.keys(t),r=n.length;r--;)e[n[r]]=t[n[r]];return e}function G(e,t){return Object.prototype.hasOwnProperty.call(e,t)}function V(e,t){if(e===t)return 0;for(var n=e.length,r=t.length,o=0,i=Math.min(n,r);o<i;++o)if(e[o]!==t[o]){n=e[o],r=t[o];break}return n<r?-1:r<n?1:0}j.colors={bold:[1,22],italic:[3,23],underline:[4,24],inverse:[7,27],white:[37,39],grey:[90,39],black:[30,39],blue:[34,39],cyan:[36,39],green:[32,39],magenta:[35,39],red:[31,39],yellow:[33,39]},j.styles={special:"cyan",number:"yellow",boolean:"yellow",undefined:"grey",null:"bold",string:"green",date:"magenta",regexp:"red"};var Y,X=Object.prototype.hasOwnProperty,K=Object.keys||function(e){var t=[];for(var n in e)X.call(e,n)&&t.push(n);return t},Q=Array.prototype.slice;function ee(){return void 0!==Y?Y:Y="foo"===function(){}.name}function te(e){return Object.prototype.toString.call(e)}function ne(e){return!A(e)&&("function"==typeof n.ArrayBuffer&&("function"==typeof ArrayBuffer.isView?ArrayBuffer.isView(e):!!e&&(e instanceof DataView||!!(e.buffer&&e.buffer instanceof ArrayBuffer))))}function re(e,t){e||le(e,!0,t,"==",ue)}var oe=/\s*function\s+([^\(\s]*)\s*/;function ie(e){if(H(e)){if(ee())return e.name;var t=e.toString().match(oe);return t&&t[1]}}function ae(e){this.name="AssertionError",this.actual=e.actual,this.expected=e.expected,this.operator=e.operator,e.message?(this.message=e.message,this.generatedMessage=!1):(this.message=function(e){return se(ce(e.actual),128)+" "+e.operator+" "+se(ce(e.expected),128)}(this),this.generatedMessage=!0);var t=e.stackStartFunction||le;if(Error.captureStackTrace)Error.captureStackTrace(this,t);else{var n=new Error;if(n.stack){var r=n.stack,o=ie(t),i=r.indexOf("\n"+o);if(i>=0){var a=r.indexOf("\n",i+1);r=r.substring(a+1)}this.stack=r}}}function se(e,t){return"string"==typeof e?e.length<t?e:e.slice(0,t):e}function ce(e){if(ee()||!H(e))return j(e);var t=ie(e);return"[Function"+(t?": "+t:"")+"]"}function le(e,t,n,r,o){throw new ae({message:n,actual:e,expected:t,operator:r,stackStartFunction:o})}function ue(e,t){e||le(e,!0,t,"==",ue)}function fe(e,t,n){e!=t&&le(e,t,n,"==",fe)}function pe(e,t,n){e==t&&le(e,t,n,"!=",pe)}function de(e,t,n){ge(e,t,!1)||le(e,t,n,"deepEqual",de)}function he(e,t,n){ge(e,t,!0)||le(e,t,n,"deepStrictEqual",he)}function ge(e,t,n,r){if(e===t)return!0;if(A(e)&&A(t))return 0===V(e,t);if(B(e)&&B(t))return e.getTime()===t.getTime();if(M(e)&&M(t))return e.source===t.source&&e.global===t.global&&e.multiline===t.multiline&&e.lastIndex===t.lastIndex&&e.ignoreCase===t.ignoreCase;if(null!==e&&"object"==typeof e||null!==t&&"object"==typeof t){if(ne(e)&&ne(t)&&te(e)===te(t)&&!(e instanceof Float32Array||e instanceof Float64Array))return 0===V(new Uint8Array(e.buffer),new Uint8Array(t.buffer));if(A(e)!==A(t))return!1;var o=(r=r||{actual:[],expected:[]}).actual.indexOf(e);return-1!==o&&o===r.expected.indexOf(t)||(r.actual.push(e),r.expected.push(t),function(e,t,n,r){if(null==e||null==t)return!1;if(Z(e)||Z(t))return e===t;if(n&&Object.getPrototypeOf(e)!==Object.getPrototypeOf(t))return!1;var o=me(e),i=me(t);if(o&&!i||!o&&i)return!1;if(o)return ge(e=Q.call(e),t=Q.call(t),n);var a,s,c=K(e),l=K(t);if(c.length!==l.length)return!1;for(c.sort(),l.sort(),s=c.length-1;s>=0;s--)if(c[s]!==l[s])return!1;for(s=c.length-1;s>=0;s--)if(!ge(e[a=c[s]],t[a],n,r))return!1;return!0}(e,t,n,r))}return n?e===t:e==t}function me(e){return"[object Arguments]"==Object.prototype.toString.call(e)}function be(e,t,n){ge(e,t,!1)&&le(e,t,n,"notDeepEqual",be)}function ve(e,t,n){ge(e,t,!0)&&le(e,t,n,"notDeepStrictEqual",ve)}function ye(e,t,n){e!==t&&le(e,t,n,"===",ye)}function we(e,t,n){e===t&&le(e,t,n,"!==",we)}function ke(e,t){if(!e||!t)return!1;if("[object RegExp]"==Object.prototype.toString.call(t))return t.test(e);try{if(e instanceof t)return!0}catch(e){}return!Error.isPrototypeOf(t)&&!0===t.call({},e)}function xe(e,t,n,r){var o;if("function"!=typeof t)throw new TypeError('"block" argument must be a function');"string"==typeof n&&(r=n,n=null),o=function(e){var t;try{e()}catch(e){t=e}return t}(t),r=(n&&n.name?" ("+n.name+").":".")+(r?" "+r:"."),e&&!o&&le(o,n,"Missing expected exception"+r);var i="string"==typeof r,a=!e&&o&&!n;if((!e&&U(o)&&i&&ke(o,n)||a)&&le(o,n,"Got unwanted exception"+r),e&&o&&n&&!ke(o,n)||!e&&o)throw o}function Se(e,t,n){xe(!0,e,t,n)}function _e(e,t,n){xe(!1,e,t,n)}function Ee(e){if(e)throw e}re.AssertionError=ae,T(ae,Error),re.fail=le,re.ok=ue,re.equal=fe,re.notEqual=pe,re.deepEqual=de,re.deepStrictEqual=he,re.notDeepEqual=be,re.notDeepStrictEqual=ve,re.strictEqual=ye,re.notStrictEqual=we,re.throws=Se,re.doesNotThrow=_e,re.ifError=Ee;var Ce=t(Object.freeze({__proto__:null,default:re,AssertionError:ae,fail:le,ok:ue,assert:ue,equal:fe,notEqual:pe,deepEqual:de,deepStrictEqual:he,notDeepEqual:be,notDeepStrictEqual:ve,strictEqual:ye,notStrictEqual:we,throws:Se,doesNotThrow:_e,ifError:Ee})),Ae=Ce,Oe="undefined"!=typeof window;function Te(e){this.hasWindow=e,this.hasIdle=this.hasWindow&&window.requestIdleCallback,this.method=this.hasIdle?window.requestIdleCallback.bind(window):this.setTimeout,this.scheduled=!1,this.queue=[]}Te.prototype.push=function(e){Ae.equal(typeof e,"function","nanoscheduler.push: cb should be type function"),this.queue.push(e),this.schedule()},Te.prototype.schedule=function(){if(!this.scheduled){this.scheduled=!0;var e=this;this.method((function(t){for(;e.queue.length&&t.timeRemaining()>0;)e.queue.shift()(t);e.scheduled=!1,e.queue.length&&e.schedule()}))}},Te.prototype.setTimeout=function(e){setTimeout(e,0,{timeRemaining:function(){return 1}})};var je,ze=function(){var e;return Oe?(window._nanoScheduler||(window._nanoScheduler=new Te(!0)),e=window._nanoScheduler):e=new Te,e},Le=ze(),Ne=Ce;De.disabled=!0;try{je=window.performance,De.disabled="true"===window.localStorage.DISABLE_NANOTIMING||!je.mark}catch(e){}var $e=De;function De(e){if(Ne.equal(typeof e,"string","nanotiming: name should be type string"),De.disabled)return Ie;var t=(1e4*je.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;je.mark(o),Le.push((function(){var i=null;try{var a=e+" ["+t+"]";je.measure(a,n,o),je.clearMarks(n),je.clearMarks(o)}catch(e){i=e}r&&r(i,e)}))}return je.mark(n),r.uuid=t,r}function Ie(e){e&&Le.push((function(){e(new Error("nanotiming: performance API unavailable"))}))}var Pe,qe=Ce;Re.disabled=!0;try{Pe=require("perf_hooks").performance,Re.disabled=C.env.DISABLE_NANOTIMING||!Pe.mark}catch(e){}function Re(e){if("undefined"!=typeof window)return $e(e);if(qe.equal(typeof e,"string","nanotiming: name should be type string"),Re.disabled)return Me;var t=(1e4*Pe.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;Pe.mark(o);var i=null;try{var a=e+" ["+t+"]";Pe.measure(a,n,o),Pe.clearMarks(n),Pe.clearMarks(o)}catch(e){i=e}r&&r(i,e)}return Pe.mark(n),r.uuid=t,r}function Me(e){e&&e(new Error("nanotiming: performance API unavailable"))}var Fe=function(e,t,n){var r,o=e.length;if(!(t>=o||0===n)){var i=o-(n=t+n>o?o-t:n);for(r=t;r<i;++r)e[r]=e[r+n];e.length=i}},Be=Re,Ue=Ce,He=Ze;function Ze(e){if(!(this instanceof Ze))return new Ze(e);this._name=e||"nanobus",this._starListeners=[],this._listeners={}}Ze.prototype.emit=function(e){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.emit: eventName should be type string or symbol");for(var t=[],n=1,r=arguments.length;n<r;n++)t.push(arguments[n]);var o=Be(this._name+"('"+e.toString()+"')"),i=this._listeners[e];return i&&i.length>0&&this._emit(this._listeners[e],t),this._starListeners.length>0&&this._emit(this._starListeners,e,t,o.uuid),o(),this},Ze.prototype.on=Ze.prototype.addListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.on: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.on: listener should be type function"),"*"===e?this._starListeners.push(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].push(t)),this},Ze.prototype.prependListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependListener: listener should be type function"),"*"===e?this._starListeners.unshift(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].unshift(t)),this},Ze.prototype.once=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.once: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.once: listener should be type function");var n=this;return this.on(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.prependOnceListener=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependOnceListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependOnceListener: listener should be type function");var n=this;return this.prependListener(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.removeListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.removeListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.removeListener: listener should be type function"),"*"===e?(this._starListeners=this._starListeners.slice(),n(this._starListeners,t)):(void 0!==this._listeners[e]&&(this._listeners[e]=this._listeners[e].slice()),n(this._listeners[e],t));function n(e,t){if(e){var n=e.indexOf(t);return-1!==n?(Fe(e,n,1),!0):void 0}}},Ze.prototype.removeAllListeners=function(e){return e?"*"===e?this._starListeners=[]:this._listeners[e]=[]:(this._starListeners=[],this._listeners={}),this},Ze.prototype.listeners=function(e){var t="*"!==e?this._listeners[e]:this._starListeners,n=[];if(t)for(var r=t.length,o=0;o<r;o++)n.push(t[o]);return n},Ze.prototype._emit=function(e,t,n,r){if(void 0!==e&&0!==e.length){void 0===n&&(n=t,t=null),t&&(n=void 0!==r?[t].concat(n,r):[t].concat(n));for(var o=e.length,i=0;i<o;i++){var a=e[i];a.apply(a,n)}}};var We=He();function Je(e){return Je="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Je(e)}function Ge(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function Ve(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function Ye(e,t,n){return t&&Ve(e.prototype,t),n&&Ve(e,n),Object.defineProperty(e,"prototype",{writable:!1}),e}function Xe(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&Qe(e,t)}function Ke(e){return Ke=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},Ke(e)}function Qe(e,t){return Qe=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},Qe(e,t)}function et(e,t){if(t&&("object"==typeof t||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e)}function tt(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}();return function(){var n,r=Ke(e);if(t){var o=Ke(this).constructor;n=Reflect.construct(r,arguments,o)}else n=r.apply(this,arguments);return et(this,n)}}function nt(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null==n)return;var r,o,i=[],a=!0,s=!1;try{for(n=n.call(e);!(a=(r=n.next()).done)&&(i.push(r.value),!t||i.length!==t);a=!0);}catch(e){s=!0,o=e}finally{try{a||null==n.return||n.return()}finally{if(s)throw o}}return i}(e,t)||ot(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}
+본 스토리는 2주 대기 2일차부터 시작되며, 스테이터스가 모두 초기화됩니다.&lt;br&gt;
+2주 대기 이벤트 기간동안에는 당신의 행동이 매우 제한되며, 할 수 있는 선택지 또한
+한정됩니다.
+만약 2주 대기 기간을 스킵하시길 바라시는 경우에는 2주 대기 스킵 버튼을 눌러주세요.&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;stress=0;reputation=0;stamina_strength=0;military_discipline=0;day+=1;hour=6;minute=30;&quot;&gt;다음날로(튜토리얼끝)&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;생활관&quot; onclick=&quot;stress=0;reputation=0;stamina_strength=0;military_discipline=0;day+=16;hour=6;minute=30;&quot;&gt;2주대기 스킵&lt;/a&gt;&lt;/b&gt;
+[continue]</tw-passagedata><tw-passagedata pid="85" name="{prev}" tags="" position="1100,500" size="100,100"></tw-passagedata><tw-passagedata pid="86" name="도수체조" tags="" position="400,700" size="100,100">minute: minute+15
+military_discipline: military_discipline+1
+--
+당신은 국군 도수체조를 모두 완수했습니다.&lt;br&gt;
+적지만 당신의 체력이 좋아진게 느껴집니다.&lt;br&gt;
+
+&lt;b&gt;&lt;div style=&quot;color:green;&quot;&gt;체력/근력↑&lt;/div&gt;&lt;/b&gt;
+
+도수체조가 끝나자 당신의 맞선임인 일병 박유원이 당신을 부릅니다.&lt;br&gt;
+체단시간에 할것도 없으니까 나랑 캐치볼이나 하자&lt;br&gt;
+하지만 동기들은 당신이 오기를 바라는것처럼 당신을 계속 바라보고 있습니다.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;동기들과 체단&quot;&gt;동기들에게 간다.&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;이 행동은 당신의 &lt;div style=&quot;color:red;&quot;&gt;군기&lt;/div&gt;를 떨어트릴것입니다.&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;박유원과 체단&quot;&gt;박유원을 따라간다.&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;이 행동은 당신의 &lt;div style=&quot;color:red;&quot;&gt;스트레스&lt;/div&gt;를 상승시킬것입니다.&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;&lt;a href=&quot;javascript:void(0)&quot; data-cb-go=&quot;혼자 체단&quot;&gt;혼자 체단한다.&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;이 행동은 당신의 &lt;div style=&quot;color:red;&quot;&gt;평판과 군기&lt;/div&gt;를 하락시킬것입니다.&lt;/b&gt;</tw-passagedata><tw-passagedata pid="87" name="박유원과 체단" tags="" position="500,800" size="100,100"></tw-passagedata><tw-passagedata pid="88" name="동기들과 체단" tags="" position="400,800" size="100,100">stress: stress-1
+reputation: reputation+Math.round(((1+((military_discipline*-1)*0.1)))*10)/10;
+stamina_strength: stamina_strength+1
+military_discipline: military_discipline-1
+--
+당신은 맞선임인 박유원에게 거절의 의사를 내비치고&lt;br&gt;
+동기들과 체단을 하기위해 자리를 떠났습니다.&lt;br&gt;
+뒤에서 박유원이 당신을 죽일듯이 쳐다보고 있습니다.&lt;br&gt;
+
+당신은 그 시선이 신경쓰이지만 동기들이 도와준 덕분에 금방 잊을 수 있었습니다.br&gt;
+
+
+&lt;b&gt;&lt;div style=&quot;color:green;&quot;&gt;스트레스↓&lt;/div&gt;&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;&lt;div style=&quot;color:green;&quot;&gt;평판↑&lt;/div&gt;&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;&lt;div style=&quot;color:green;&quot;&gt;체력/근력↑&lt;/div&gt;&lt;/b&gt;
+&lt;b&gt;&lt;div style=&quot;color:red;&quot;&gt;군기↓&lt;/div&gt;&lt;/b&gt;</tw-passagedata><tw-passagedata pid="89" name="혼자 체단" tags="" position="600,800" size="100,100"></tw-passagedata></tw-storydata><script>!function(){"use strict";var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function t(e){if(e.__esModule)return e;var t=Object.defineProperty({},"__esModule",{value:!0});return Object.keys(e).forEach((function(n){var r=Object.getOwnPropertyDescriptor(e,n);Object.defineProperty(t,n,r.get?r:{enumerable:!0,get:function(){return e[n]}})})),t}var n="undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{};function r(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}var i=r,a=o;function s(e){if(i===setTimeout)return setTimeout(e,0);if((i===r||!i)&&setTimeout)return i=setTimeout,setTimeout(e,0);try{return i(e,0)}catch(t){try{return i.call(null,e,0)}catch(t){return i.call(this,e,0)}}}"function"==typeof n.setTimeout&&(i=setTimeout),"function"==typeof n.clearTimeout&&(a=clearTimeout);var c,l=[],u=!1,f=-1;function p(){u&&c&&(u=!1,c.length?l=c.concat(l):f=-1,l.length&&d())}function d(){if(!u){var e=s(p);u=!0;for(var t=l.length;t;){for(c=l,l=[];++f<t;)c&&c[f].run();f=-1,t=l.length}c=null,u=!1,function(e){if(a===clearTimeout)return clearTimeout(e);if((a===o||!a)&&clearTimeout)return a=clearTimeout,clearTimeout(e);try{a(e)}catch(t){try{return a.call(null,e)}catch(t){return a.call(this,e)}}}(e)}}function h(e,t){this.fun=e,this.array=t}h.prototype.run=function(){this.fun.apply(null,this.array)};function g(){}var m=g,b=g,v=g,y=g,w=g,k=g,x=g;var S=n.performance||{},_=S.now||S.mozNow||S.msNow||S.oNow||S.webkitNow||function(){return(new Date).getTime()};var E=new Date;var C={nextTick:function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];l.push(new h(e,t)),1!==l.length||u||s(d)},title:"browser",browser:!0,env:{},argv:[],version:"",versions:{},on:m,addListener:b,once:v,off:y,removeListener:w,removeAllListeners:k,emit:x,binding:function(e){throw new Error("process.binding is not supported")},cwd:function(){return"/"},chdir:function(e){throw new Error("process.chdir is not supported")},umask:function(){return 0},hrtime:function(e){var t=.001*_.call(S),n=Math.floor(t),r=Math.floor(t%1*1e9);return e&&(n-=e[0],(r-=e[1])<0&&(n--,r+=1e9)),[n,r]},platform:"browser",release:{},config:{},uptime:function(){return(new Date-E)/1e3}};function A(e){return null!=e&&(!!e._isBuffer||O(e)||function(e){return"function"==typeof e.readFloatLE&&"function"==typeof e.slice&&O(e.slice(0,0))}(e))}function O(e){return!!e.constructor&&"function"==typeof e.constructor.isBuffer&&e.constructor.isBuffer(e)}void 0===n.TYPED_ARRAY_SUPPORT||n.TYPED_ARRAY_SUPPORT;var T="function"==typeof Object.create?function(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}:function(e,t){e.super_=t;var n=function(){};n.prototype=t.prototype,e.prototype=new n,e.prototype.constructor=e};function j(e,t){var n={seen:[],stylize:L};return arguments.length>=3&&(n.depth=arguments[2]),arguments.length>=4&&(n.colors=arguments[3]),I(t)?n.showHidden=t:t&&J(n,t),R(n.showHidden)&&(n.showHidden=!1),R(n.depth)&&(n.depth=2),R(n.colors)&&(n.colors=!1),R(n.customInspect)&&(n.customInspect=!0),n.colors&&(n.stylize=z),N(n,e,n.depth)}function z(e,t){var n=j.styles[t];return n?"["+j.colors[n][0]+"m"+e+"["+j.colors[n][1]+"m":e}function L(e,t){return e}function N(e,t,n){if(e.customInspect&&t&&H(t.inspect)&&t.inspect!==j&&(!t.constructor||t.constructor.prototype!==t)){var r=t.inspect(n,e);return q(r)||(r=N(e,r,n)),r}var o=function(e,t){if(R(t))return e.stylize("undefined","undefined");if(q(t)){var n="'"+JSON.stringify(t).replace(/^"|"$/g,"").replace(/'/g,"\\'").replace(/\\"/g,'"')+"'";return e.stylize(n,"string")}if(r=t,"number"==typeof r)return e.stylize(""+t,"number");var r;if(I(t))return e.stylize(""+t,"boolean");if(P(t))return e.stylize("null","null")}(e,t);if(o)return o;var i=Object.keys(t),a=function(e){var t={};return e.forEach((function(e,n){t[e]=!0})),t}(i);if(e.showHidden&&(i=Object.getOwnPropertyNames(t)),U(t)&&(i.indexOf("message")>=0||i.indexOf("description")>=0))return $(t);if(0===i.length){if(H(t)){var s=t.name?": "+t.name:"";return e.stylize("[Function"+s+"]","special")}if(M(t))return e.stylize(RegExp.prototype.toString.call(t),"regexp");if(B(t))return e.stylize(Date.prototype.toString.call(t),"date");if(U(t))return $(t)}var c,l,u="",f=!1,p=["{","}"];(c=t,Array.isArray(c)&&(f=!0,p=["[","]"]),H(t))&&(u=" [Function"+(t.name?": "+t.name:"")+"]");return M(t)&&(u=" "+RegExp.prototype.toString.call(t)),B(t)&&(u=" "+Date.prototype.toUTCString.call(t)),U(t)&&(u=" "+$(t)),0!==i.length||f&&0!=t.length?n<0?M(t)?e.stylize(RegExp.prototype.toString.call(t),"regexp"):e.stylize("[Object]","special"):(e.seen.push(t),l=f?function(e,t,n,r,o){for(var i=[],a=0,s=t.length;a<s;++a)G(t,String(a))?i.push(D(e,t,n,r,String(a),!0)):i.push("");return o.forEach((function(o){o.match(/^\d+$/)||i.push(D(e,t,n,r,o,!0))})),i}(e,t,n,a,i):i.map((function(r){return D(e,t,n,a,r,f)})),e.seen.pop(),function(e,t,n){if(e.reduce((function(e,t){return t.indexOf("\n"),e+t.replace(/\u001b\[\d\d?m/g,"").length+1}),0)>60)return n[0]+(""===t?"":t+"\n ")+" "+e.join(",\n  ")+" "+n[1];return n[0]+t+" "+e.join(", ")+" "+n[1]}(l,u,p)):p[0]+u+p[1]}function $(e){return"["+Error.prototype.toString.call(e)+"]"}function D(e,t,n,r,o,i){var a,s,c;if((c=Object.getOwnPropertyDescriptor(t,o)||{value:t[o]}).get?s=c.set?e.stylize("[Getter/Setter]","special"):e.stylize("[Getter]","special"):c.set&&(s=e.stylize("[Setter]","special")),G(r,o)||(a="["+o+"]"),s||(e.seen.indexOf(c.value)<0?(s=P(n)?N(e,c.value,null):N(e,c.value,n-1)).indexOf("\n")>-1&&(s=i?s.split("\n").map((function(e){return"  "+e})).join("\n").substr(2):"\n"+s.split("\n").map((function(e){return"   "+e})).join("\n")):s=e.stylize("[Circular]","special")),R(a)){if(i&&o.match(/^\d+$/))return s;(a=JSON.stringify(""+o)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)?(a=a.substr(1,a.length-2),a=e.stylize(a,"name")):(a=a.replace(/'/g,"\\'").replace(/\\"/g,'"').replace(/(^"|"$)/g,"'"),a=e.stylize(a,"string"))}return a+": "+s}function I(e){return"boolean"==typeof e}function P(e){return null===e}function q(e){return"string"==typeof e}function R(e){return void 0===e}function M(e){return F(e)&&"[object RegExp]"===W(e)}function F(e){return"object"==typeof e&&null!==e}function B(e){return F(e)&&"[object Date]"===W(e)}function U(e){return F(e)&&("[object Error]"===W(e)||e instanceof Error)}function H(e){return"function"==typeof e}function Z(e){return null===e||"boolean"==typeof e||"number"==typeof e||"string"==typeof e||"symbol"==typeof e||void 0===e}function W(e){return Object.prototype.toString.call(e)}function J(e,t){if(!t||!F(t))return e;for(var n=Object.keys(t),r=n.length;r--;)e[n[r]]=t[n[r]];return e}function G(e,t){return Object.prototype.hasOwnProperty.call(e,t)}function V(e,t){if(e===t)return 0;for(var n=e.length,r=t.length,o=0,i=Math.min(n,r);o<i;++o)if(e[o]!==t[o]){n=e[o],r=t[o];break}return n<r?-1:r<n?1:0}j.colors={bold:[1,22],italic:[3,23],underline:[4,24],inverse:[7,27],white:[37,39],grey:[90,39],black:[30,39],blue:[34,39],cyan:[36,39],green:[32,39],magenta:[35,39],red:[31,39],yellow:[33,39]},j.styles={special:"cyan",number:"yellow",boolean:"yellow",undefined:"grey",null:"bold",string:"green",date:"magenta",regexp:"red"};var Y,X=Object.prototype.hasOwnProperty,K=Object.keys||function(e){var t=[];for(var n in e)X.call(e,n)&&t.push(n);return t},Q=Array.prototype.slice;function ee(){return void 0!==Y?Y:Y="foo"===function(){}.name}function te(e){return Object.prototype.toString.call(e)}function ne(e){return!A(e)&&("function"==typeof n.ArrayBuffer&&("function"==typeof ArrayBuffer.isView?ArrayBuffer.isView(e):!!e&&(e instanceof DataView||!!(e.buffer&&e.buffer instanceof ArrayBuffer))))}function re(e,t){e||le(e,!0,t,"==",ue)}var oe=/\s*function\s+([^\(\s]*)\s*/;function ie(e){if(H(e)){if(ee())return e.name;var t=e.toString().match(oe);return t&&t[1]}}function ae(e){this.name="AssertionError",this.actual=e.actual,this.expected=e.expected,this.operator=e.operator,e.message?(this.message=e.message,this.generatedMessage=!1):(this.message=function(e){return se(ce(e.actual),128)+" "+e.operator+" "+se(ce(e.expected),128)}(this),this.generatedMessage=!0);var t=e.stackStartFunction||le;if(Error.captureStackTrace)Error.captureStackTrace(this,t);else{var n=new Error;if(n.stack){var r=n.stack,o=ie(t),i=r.indexOf("\n"+o);if(i>=0){var a=r.indexOf("\n",i+1);r=r.substring(a+1)}this.stack=r}}}function se(e,t){return"string"==typeof e?e.length<t?e:e.slice(0,t):e}function ce(e){if(ee()||!H(e))return j(e);var t=ie(e);return"[Function"+(t?": "+t:"")+"]"}function le(e,t,n,r,o){throw new ae({message:n,actual:e,expected:t,operator:r,stackStartFunction:o})}function ue(e,t){e||le(e,!0,t,"==",ue)}function fe(e,t,n){e!=t&&le(e,t,n,"==",fe)}function pe(e,t,n){e==t&&le(e,t,n,"!=",pe)}function de(e,t,n){ge(e,t,!1)||le(e,t,n,"deepEqual",de)}function he(e,t,n){ge(e,t,!0)||le(e,t,n,"deepStrictEqual",he)}function ge(e,t,n,r){if(e===t)return!0;if(A(e)&&A(t))return 0===V(e,t);if(B(e)&&B(t))return e.getTime()===t.getTime();if(M(e)&&M(t))return e.source===t.source&&e.global===t.global&&e.multiline===t.multiline&&e.lastIndex===t.lastIndex&&e.ignoreCase===t.ignoreCase;if(null!==e&&"object"==typeof e||null!==t&&"object"==typeof t){if(ne(e)&&ne(t)&&te(e)===te(t)&&!(e instanceof Float32Array||e instanceof Float64Array))return 0===V(new Uint8Array(e.buffer),new Uint8Array(t.buffer));if(A(e)!==A(t))return!1;var o=(r=r||{actual:[],expected:[]}).actual.indexOf(e);return-1!==o&&o===r.expected.indexOf(t)||(r.actual.push(e),r.expected.push(t),function(e,t,n,r){if(null==e||null==t)return!1;if(Z(e)||Z(t))return e===t;if(n&&Object.getPrototypeOf(e)!==Object.getPrototypeOf(t))return!1;var o=me(e),i=me(t);if(o&&!i||!o&&i)return!1;if(o)return ge(e=Q.call(e),t=Q.call(t),n);var a,s,c=K(e),l=K(t);if(c.length!==l.length)return!1;for(c.sort(),l.sort(),s=c.length-1;s>=0;s--)if(c[s]!==l[s])return!1;for(s=c.length-1;s>=0;s--)if(!ge(e[a=c[s]],t[a],n,r))return!1;return!0}(e,t,n,r))}return n?e===t:e==t}function me(e){return"[object Arguments]"==Object.prototype.toString.call(e)}function be(e,t,n){ge(e,t,!1)&&le(e,t,n,"notDeepEqual",be)}function ve(e,t,n){ge(e,t,!0)&&le(e,t,n,"notDeepStrictEqual",ve)}function ye(e,t,n){e!==t&&le(e,t,n,"===",ye)}function we(e,t,n){e===t&&le(e,t,n,"!==",we)}function ke(e,t){if(!e||!t)return!1;if("[object RegExp]"==Object.prototype.toString.call(t))return t.test(e);try{if(e instanceof t)return!0}catch(e){}return!Error.isPrototypeOf(t)&&!0===t.call({},e)}function xe(e,t,n,r){var o;if("function"!=typeof t)throw new TypeError('"block" argument must be a function');"string"==typeof n&&(r=n,n=null),o=function(e){var t;try{e()}catch(e){t=e}return t}(t),r=(n&&n.name?" ("+n.name+").":".")+(r?" "+r:"."),e&&!o&&le(o,n,"Missing expected exception"+r);var i="string"==typeof r,a=!e&&o&&!n;if((!e&&U(o)&&i&&ke(o,n)||a)&&le(o,n,"Got unwanted exception"+r),e&&o&&n&&!ke(o,n)||!e&&o)throw o}function Se(e,t,n){xe(!0,e,t,n)}function _e(e,t,n){xe(!1,e,t,n)}function Ee(e){if(e)throw e}re.AssertionError=ae,T(ae,Error),re.fail=le,re.ok=ue,re.equal=fe,re.notEqual=pe,re.deepEqual=de,re.deepStrictEqual=he,re.notDeepEqual=be,re.notDeepStrictEqual=ve,re.strictEqual=ye,re.notStrictEqual=we,re.throws=Se,re.doesNotThrow=_e,re.ifError=Ee;var Ce=t(Object.freeze({__proto__:null,default:re,AssertionError:ae,fail:le,ok:ue,assert:ue,equal:fe,notEqual:pe,deepEqual:de,deepStrictEqual:he,notDeepEqual:be,notDeepStrictEqual:ve,strictEqual:ye,notStrictEqual:we,throws:Se,doesNotThrow:_e,ifError:Ee})),Ae=Ce,Oe="undefined"!=typeof window;function Te(e){this.hasWindow=e,this.hasIdle=this.hasWindow&&window.requestIdleCallback,this.method=this.hasIdle?window.requestIdleCallback.bind(window):this.setTimeout,this.scheduled=!1,this.queue=[]}Te.prototype.push=function(e){Ae.equal(typeof e,"function","nanoscheduler.push: cb should be type function"),this.queue.push(e),this.schedule()},Te.prototype.schedule=function(){if(!this.scheduled){this.scheduled=!0;var e=this;this.method((function(t){for(;e.queue.length&&t.timeRemaining()>0;)e.queue.shift()(t);e.scheduled=!1,e.queue.length&&e.schedule()}))}},Te.prototype.setTimeout=function(e){setTimeout(e,0,{timeRemaining:function(){return 1}})};var je,ze=function(){var e;return Oe?(window._nanoScheduler||(window._nanoScheduler=new Te(!0)),e=window._nanoScheduler):e=new Te,e},Le=ze(),Ne=Ce;De.disabled=!0;try{je=window.performance,De.disabled="true"===window.localStorage.DISABLE_NANOTIMING||!je.mark}catch(e){}var $e=De;function De(e){if(Ne.equal(typeof e,"string","nanotiming: name should be type string"),De.disabled)return Ie;var t=(1e4*je.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;je.mark(o),Le.push((function(){var i=null;try{var a=e+" ["+t+"]";je.measure(a,n,o),je.clearMarks(n),je.clearMarks(o)}catch(e){i=e}r&&r(i,e)}))}return je.mark(n),r.uuid=t,r}function Ie(e){e&&Le.push((function(){e(new Error("nanotiming: performance API unavailable"))}))}var Pe,qe=Ce;Re.disabled=!0;try{Pe=require("perf_hooks").performance,Re.disabled=C.env.DISABLE_NANOTIMING||!Pe.mark}catch(e){}function Re(e){if("undefined"!=typeof window)return $e(e);if(qe.equal(typeof e,"string","nanotiming: name should be type string"),Re.disabled)return Me;var t=(1e4*Pe.now()).toFixed()%Number.MAX_SAFE_INTEGER,n="start-"+t+"-"+e;function r(r){var o="end-"+t+"-"+e;Pe.mark(o);var i=null;try{var a=e+" ["+t+"]";Pe.measure(a,n,o),Pe.clearMarks(n),Pe.clearMarks(o)}catch(e){i=e}r&&r(i,e)}return Pe.mark(n),r.uuid=t,r}function Me(e){e&&e(new Error("nanotiming: performance API unavailable"))}var Fe=function(e,t,n){var r,o=e.length;if(!(t>=o||0===n)){var i=o-(n=t+n>o?o-t:n);for(r=t;r<i;++r)e[r]=e[r+n];e.length=i}},Be=Re,Ue=Ce,He=Ze;function Ze(e){if(!(this instanceof Ze))return new Ze(e);this._name=e||"nanobus",this._starListeners=[],this._listeners={}}Ze.prototype.emit=function(e){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.emit: eventName should be type string or symbol");for(var t=[],n=1,r=arguments.length;n<r;n++)t.push(arguments[n]);var o=Be(this._name+"('"+e.toString()+"')"),i=this._listeners[e];return i&&i.length>0&&this._emit(this._listeners[e],t),this._starListeners.length>0&&this._emit(this._starListeners,e,t,o.uuid),o(),this},Ze.prototype.on=Ze.prototype.addListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.on: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.on: listener should be type function"),"*"===e?this._starListeners.push(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].push(t)),this},Ze.prototype.prependListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependListener: listener should be type function"),"*"===e?this._starListeners.unshift(t):(this._listeners[e]||(this._listeners[e]=[]),this._listeners[e].unshift(t)),this},Ze.prototype.once=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.once: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.once: listener should be type function");var n=this;return this.on(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.prependOnceListener=function(e,t){Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.prependOnceListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.prependOnceListener: listener should be type function");var n=this;return this.prependListener(e,(function r(){t.apply(n,arguments),n.removeListener(e,r)})),this},Ze.prototype.removeListener=function(e,t){return Ue.ok("string"==typeof e||"symbol"==typeof e,"nanobus.removeListener: eventName should be type string or symbol"),Ue.equal(typeof t,"function","nanobus.removeListener: listener should be type function"),"*"===e?(this._starListeners=this._starListeners.slice(),n(this._starListeners,t)):(void 0!==this._listeners[e]&&(this._listeners[e]=this._listeners[e].slice()),n(this._listeners[e],t));function n(e,t){if(e){var n=e.indexOf(t);return-1!==n?(Fe(e,n,1),!0):void 0}}},Ze.prototype.removeAllListeners=function(e){return e?"*"===e?this._starListeners=[]:this._listeners[e]=[]:(this._starListeners=[],this._listeners={}),this},Ze.prototype.listeners=function(e){var t="*"!==e?this._listeners[e]:this._starListeners,n=[];if(t)for(var r=t.length,o=0;o<r;o++)n.push(t[o]);return n},Ze.prototype._emit=function(e,t,n,r){if(void 0!==e&&0!==e.length){void 0===n&&(n=t,t=null),t&&(n=void 0!==r?[t].concat(n,r):[t].concat(n));for(var o=e.length,i=0;i<o;i++){var a=e[i];a.apply(a,n)}}};var We=He();function Je(e){return Je="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Je(e)}function Ge(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function Ve(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function Ye(e,t,n){return t&&Ve(e.prototype,t),n&&Ve(e,n),Object.defineProperty(e,"prototype",{writable:!1}),e}function Xe(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),t&&Qe(e,t)}function Ke(e){return Ke=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},Ke(e)}function Qe(e,t){return Qe=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},Qe(e,t)}function et(e,t){if(t&&("object"==typeof t||"function"==typeof t))return t;if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined");return function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e)}function tt(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}();return function(){var n,r=Ke(e);if(t){var o=Ke(this).constructor;n=Reflect.construct(r,arguments,o)}else n=r.apply(this,arguments);return et(this,n)}}function nt(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null==n)return;var r,o,i=[],a=!0,s=!1;try{for(n=n.call(e);!(a=(r=n.next()).done)&&(i.push(r.value),!t||i.length!==t);a=!0);}catch(e){s=!0,o=e}finally{try{a||null==n.return||n.return()}finally{if(s)throw o}}return i}(e,t)||ot(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}
 /*!
 	 * isobject <https://github.com/jonschlinkert/isobject>
 	 *
