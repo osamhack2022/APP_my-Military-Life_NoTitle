@@ -1,14 +1,21 @@
-15:14~15:39
-일병 박지문, 일병 백종은, 일병 전지후, 일병 이선우, 일병 김재욱
+pjm_favorability:	일병 박지문
+bje_favorability:	일병 백종은
+jjh_favorability:	일병 전지후
+lsw_favorability:	일병 이선우
+kjw_favorability:	일병 김재욱
 
 스트레스
 평판
 근력/체력
 군기
 
-stress = stress+Math.round(((1+((military_discipline*-1)*0.1)))*10)/10;
-stamina_strength
-military_discipline
-reputation
+stress: 			스트레스
+stamina_strength:	체력/근력
+military_discipline:	군기
+reputation:			평판
+
+스트레스, 평판 증가 공식: n+Math.round(((1+((military_discipline*-1)*0.1)))*10)/10;
+모든 스테이터스 감소 공식: n-수치
+
 <b><div style="color:green;">평판↑</div></b>
 <b><div style="color:green;">군기↑</div></b>
