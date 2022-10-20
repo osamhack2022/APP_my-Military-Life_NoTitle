@@ -2,7 +2,6 @@
 
 ![글꼴-갈무리 복사](https://user-images.githubusercontent.com/111365147/196962885-aacd2857-ee99-4a96-8773-5555f75358d7.png)
 ---
-## my Military Life✿
 
 ## 프로잭트 소개
 - 군대에 들어오면 다양한 생각을 하곤 합니다.
