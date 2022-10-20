@@ -15,12 +15,14 @@
 하지만 처음이자 마지막이 될 군생활, 이러한 기회들을 알지도 못하고 시간을 보내게 됩니다.<br>
 저는 **기회를 놓치는 사람들이 가능한 없으면 좋겠다는 생각**에 프로젝트를 구상하게 되었습니다.<br>
 
-test | test
+[체험]
+
+운동 | 자기개발
 ------------ | ------------- 
-Content cell 1 | Content cell 2 
-Content column 1 | Content column 2
-Content cell 1 | Content cell 2 
-Content column 1 | Content column 2
+체단실 이용 | 공부방/사지방 이용
+체단실 비품 신청 | 자기개발 비용 신청
+운동 관련된 행사 | 각종 대회, 공모전
+헬스뿜뿜 | 해커톤, 도박방지 포스터 전공모전
 
 
 [전략]
