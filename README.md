@@ -26,7 +26,7 @@
 
 **[진행방식]**
 
-![화면 캡처 2022-10-20 233249](https://user-images.githubusercontent.com/111365147/196977969-b26c4d4e-6e64-496a-a32a-f3cb199b5bd0.png)
+![게임화면 - 예시](https://user-images.githubusercontent.com/111365147/196982182-5bde5537-b93e-4fa9-a07f-ff52525288d4.png)
 
 위 사진과 같이 이야기를 읽어가는것처럼 진행하되 행동이나 사건이 일어났을때 선택지를 직접 고르는 식으로 진행됩니다.
 
