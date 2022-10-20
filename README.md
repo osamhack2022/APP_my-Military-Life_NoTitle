@@ -2,7 +2,6 @@
 
 ![글꼴-갈무리 복사](https://user-images.githubusercontent.com/111365147/196962885-aacd2857-ee99-4a96-8773-5555f75358d7.png)
 ---
-<b>test</b>
 
 
 ## 프로젝트 소개
