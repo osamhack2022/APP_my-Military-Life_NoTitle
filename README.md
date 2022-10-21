@@ -29,6 +29,7 @@
 
 <br>
 <br>
+
 **[진행방식]**
 
 ![화면 캡처 2022-10-20 233249](https://user-images.githubusercontent.com/111365147/196982399-f053f2a8-b5d9-4d9f-9fee-6e6a801a0afa.png)
