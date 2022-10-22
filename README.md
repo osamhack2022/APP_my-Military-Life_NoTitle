@@ -71,7 +71,7 @@
 
 ## 기술 스택 (Technique Used) 
 ### Server(back-end)
- - javascript![javascript](https://user-images.githubusercontent.com/111365147/197317138-a34cb005-a955-43cc-9f0e-8f6dbb1cea4e.svg)
+ - <img alt="Html" src ="https://img.shields.io/badge/HTML5-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="Css" src ="https://img.shields.io/badge/CSS3-1572B6.svg?&style=for-the-badge&logo=CSS3&logoColor=white"/>
  - html ![html5](https://user-images.githubusercontent.com/111365147/197317132-521ba8e2-d1a7-43fb-ab3e-0cd5810deab8.svg)
  - css ![css3](https://user-images.githubusercontent.com/111365147/197317135-d39f1a24-f3f0-4176-ba77-a8c1038c1623.svg)
 
