@@ -14,7 +14,7 @@ stamina_strength:	체력/근력
 military_discipline:	군기
 reputation:			평판
 
-스트레스, 평판 증가 공식: n+Math.round(((1+((military_discipline*-1)*0.1)))*10)/10;
+스트레스, 평판 증가 공식: n+Math.round(((1+((military_discipline*-1)*0.1)))*10)/10
 모든 스테이터스 감소 공식: n-수치
 
 <b><div style="color:green;">평판↑</div></b>
